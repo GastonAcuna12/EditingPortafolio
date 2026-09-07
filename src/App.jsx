@@ -5,7 +5,6 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
-  useScroll,
   useSpring,
   useTransform,
 } from "motion/react"
@@ -45,14 +44,14 @@ const projects = [
     title: "Brand Film Cutdown",
     type: "Editing / Brand Film",
     description:
-      "Brand film edit and cutdowns shaped for message order, pacing and clean campaign delivery.",
+      "A campaign edit shaped around message order, clear pacing and shorter cutdowns for paid social.",
     youtubeId: "TU_ID_DE_YOUTUBE_1",
     tags: ["Editing", "Cutdowns", "Brand"],
     metadata: [
+      ["Challenge", "Long footage needed a sharper message"],
+      ["Approach", "Rebuilt rhythm around the strongest beats"],
+      ["Output", "16:9 film + paid social cutdowns"],
       ["Role", "Editor"],
-      ["Format", "16:9 + cutdowns"],
-      ["Use", "Brand / paid social"],
-      ["Tools", "Premiere + AE"],
     ],
   },
   {
@@ -60,14 +59,14 @@ const projects = [
     title: "Paid Social Motion Ads",
     type: "Motion Graphics / Paid Social",
     description:
-      "Short-form ad deliverables with animated type, product beats and platform-ready motion graphics.",
+      "Short-form motion pieces built around fast hooks, animated type and product moments that read quickly.",
     youtubeId: "TU_ID_DE_YOUTUBE_2",
     tags: ["Motion Graphics", "Short-Form", "Ads"],
     metadata: [
+      ["Challenge", "Make the offer read in seconds"],
+      ["Approach", "Type, UI beats and clean motion hierarchy"],
+      ["Output", "1:1 / 4:5 / 9:16 ad assets"],
       ["Role", "Motion + edit"],
-      ["Format", "1:1 / 4:5 / 9:16"],
-      ["Use", "Paid social"],
-      ["Tools", "After Effects"],
     ],
   },
   {
@@ -75,14 +74,14 @@ const projects = [
     title: "VFX Cleanup & Post",
     type: "VFX Cleanup / Post-Production",
     description:
-      "VFX cleanup, compositing support and post-production passes for sharper final exports.",
+      "Post-production support for cleaner final assets: cleanup, compositing help and delivery-ready exports.",
     youtubeId: "TU_ID_DE_YOUTUBE_3",
     tags: ["VFX Cleanup", "Post", "Compositing"],
     metadata: [
+      ["Challenge", "Final assets needed a cleaner finish"],
+      ["Approach", "Cleanup, compositing support and final polish"],
+      ["Output", "Campaign exports ready for handoff"],
       ["Role", "Post-production"],
-      ["Format", "Campaign assets"],
-      ["Use", "Final delivery"],
-      ["Tools", "AE + Adobe Suite"],
     ],
   },
 ]
@@ -292,33 +291,6 @@ const serviceAccentClasses = {
   },
 }
 
-const workAccentClasses = [
-  {
-    hairline: "from-[#D6C7A1]/62 via-[#5C667A]/24 to-transparent",
-    dot: "bg-[#D6C7A1]/80",
-    hover: "hover:border-[#D6C7A1]/40",
-    tag: "group-hover:border-[#D6C7A1]/24",
-    surface:
-      "bg-[linear-gradient(145deg,rgba(20,24,32,0.78),rgba(8,11,17,0.70))]",
-  },
-  {
-    hairline: "from-[#6D6A90]/72 via-[#D6C7A1]/16 to-transparent",
-    dot: "bg-[#6D6A90]/80",
-    hover: "hover:border-[#6D6A90]/44",
-    tag: "group-hover:border-[#6D6A90]/30",
-    surface:
-      "bg-[linear-gradient(145deg,rgba(24,23,34,0.78),rgba(9,10,17,0.70))]",
-  },
-  {
-    hairline: "from-[#6D5A86]/62 via-[#B88A3B]/20 to-transparent",
-    dot: "bg-[#6D5A86]/78",
-    hover: "hover:border-[#6D5A86]/38",
-    tag: "group-hover:border-[#6D5A86]/28",
-    surface:
-      "bg-[linear-gradient(145deg,rgba(18,26,28,0.72),rgba(9,12,15,0.72))]",
-  },
-]
-
 const verticalAccentClasses = [
   {
     hairline: "from-[#D6C7A1]/46 via-white/10 to-transparent",
@@ -342,9 +314,9 @@ const verticalAccentClasses = [
   },
 ]
 
-const cardTiltPattern = [-0.45, 0.35, -0.2, 0.4, -0.3]
-const cardYOffsetPattern = [3, -2, 1, -3, 2]
-const cardXOffsetPattern = [-2, 1, 0, 2, -1]
+const cardTiltPattern = [0, 0, 0, 0, 0]
+const cardYOffsetPattern = [0, 0, 0, 0, 0]
+const cardXOffsetPattern = [0, 0, 0, 0, 0]
 
 function getCardOffset(index) {
   return {
@@ -363,7 +335,6 @@ const siteCopy = {
       items: [
         { href: "#work", label: "Work" },
         { href: "#about", label: "About" },
-        { href: "#vertical-work", label: "Vertical" },
         { href: "#process", label: "Process" },
         { href: "#contact", label: "Contact" },
       ],
@@ -398,15 +369,15 @@ const siteCopy = {
     },
     work: {
       eyebrow: "01 / Selected Work",
-      title: "Core campaign edits, brand pieces and post-production work.",
+      title: "Selected edits with a clear problem, approach and output.",
       description:
-        "Selected horizontal and campaign pieces covering brand edits, motion graphics, cutdowns and VFX cleanup.",
+        "Campaign edits, motion pieces and post-production work presented around what needed to be solved.",
       note:
-        "This section focuses on role, format, usage and delivery context for broader campaign work.",
+        "Short context, no long case studies: what the piece needed, how I shaped it and what was delivered.",
       projects,
     },
     about: {
-      eyebrow: "03 / About",
+      eyebrow: "02 / About",
       title: "Editing has been part of how I see things since I was 13.",
       titleLines: ["Editing has been part", "of how I see things", "since I was 13."],
       note: "Started editing at 13",
@@ -444,34 +415,33 @@ const siteCopy = {
       ],
     },
     vertical: {
-      eyebrow: "02 / Vertical Work",
-      title: "9:16 vertical ads for paid social and mobile-first campaigns.",
+      eyebrow: "01 / Selected Work",
+      title: "Selected work built for pacing, motion and retention.",
       description:
-        "TikTok, creator events, motion ads and cutdowns built for mobile feeds, hooks and platform-ready delivery.",
+        "Vertical edits, motion ads and short-form pieces shaped for mobile-first campaigns.",
       tagsLabel: "tags",
       specsLabel: "specs",
       goToLabel: "Go to",
       projects: verticalProjects,
     },
     process: {
-      eyebrow: "04 / Process",
-      title: "Typical project flow",
+      eyebrow: "03 / Process",
+      title: "A simple project flow",
       description:
         "Every project changes by scope, but this is the usual path from brief to platform-ready exports.",
-      hint: "Use the markers to see how expectations, review points and delivery stay clear.",
+      hint: "The goal is to reduce friction: clear scope, useful review points and exports that match the platform.",
       note: "Scope first. Timing second. Delivery clear.",
       steps: workflowSteps,
     },
     contact: {
-      eyebrow: "05 / Contact",
+      eyebrow: "04 / Contact",
       title: "Let's talk about the next piece.",
       description:
-        "Send a brief, reference or asset list and I will help shape the cut, motion pass and delivery specs.",
-      details: [
-        "Scope-based timing",
-        "Remote from Paraguay",
-        "Response within 24h",
-      ],
+        "Send a brief, references or assets. We define scope, timing and the best delivery format before the edit starts.",
+      details: "Scope-based timing · Remote from Paraguay · Response within 24h",
+      actionTitle: "Project start",
+      actionNote: "A rough brief, a few references or an asset list is enough to start.",
+      flow: ["Send brief", "Define scope", "Start edit"],
       email: "Email",
       copied: "Copied to clipboard",
       whatsapp: "WhatsApp",
@@ -489,7 +459,6 @@ const siteCopy = {
       items: [
         { href: "#work", label: "Trabajos" },
         { href: "#about", label: "Sobre mí" },
-        { href: "#vertical-work", label: "Vertical" },
         { href: "#process", label: "Proceso" },
         { href: "#contact", label: "Contacto" },
       ],
@@ -524,25 +493,25 @@ const siteCopy = {
     },
     work: {
       eyebrow: "01 / Trabajos Seleccionados",
-      title: "Edits de campaña, piezas de marca y postproducción.",
+      title: "Trabajos con problema, enfoque y entrega claros.",
       description:
-        "Una selección de piezas horizontales y de campaña con brand edits, motion graphics, cutdowns y VFX cleanup.",
+        "Edits de campaña, motion pieces y postproducción explicados desde lo que había que resolver.",
       note:
-        "Esta sección se enfoca en rol, formato, uso y contexto de entrega para trabajos de campaña más amplios.",
+        "Contexto corto, sin case studies largos: qué necesitaba la pieza, cómo la trabajé y qué se entregó.",
       projects: [
         {
           id: "brand-film",
           title: "Brand Film Cutdown",
           type: "Edición / Brand Film",
           description:
-            "Edición de brand film y cutdowns pensados para ordenar mensaje, ritmo y entrega de campaña.",
+            "Edit de campaña trabajado para ordenar mensaje, ritmo y cutdowns más claros para paid social.",
           youtubeId: "TU_ID_DE_YOUTUBE_1",
           tags: ["Edición", "Cutdowns", "Brand"],
           metadata: [
+            ["Problema", "Mucho material necesitaba un mensaje más claro"],
+            ["Enfoque", "Rearmar ritmo alrededor de los beats fuertes"],
+            ["Entrega", "Film 16:9 + cutdowns paid social"],
             ["Rol", "Editor"],
-            ["Formato", "16:9 + cutdowns"],
-            ["Uso", "Brand / paid social"],
-            ["Tools", "Premiere + AE"],
           ],
         },
         {
@@ -550,14 +519,14 @@ const siteCopy = {
           title: "Paid Social Motion Ads",
           type: "Motion Graphics / Paid Social",
           description:
-            "Entregables short-form con tipografía animada, beats de producto y motion graphics listos para plataforma.",
+            "Piezas short-form de motion con hooks rápidos, tipografía animada y momentos de producto fáciles de leer.",
           youtubeId: "TU_ID_DE_YOUTUBE_2",
           tags: ["Motion Graphics", "Short-Form", "Ads"],
           metadata: [
+            ["Problema", "Hacer que la oferta se entienda en segundos"],
+            ["Enfoque", "Type, UI beats y jerarquía de motion limpia"],
+            ["Entrega", "Assets 1:1 / 4:5 / 9:16"],
             ["Rol", "Motion + edición"],
-            ["Formato", "1:1 / 4:5 / 9:16"],
-            ["Uso", "Paid social"],
-            ["Tools", "After Effects"],
           ],
         },
         {
@@ -565,20 +534,20 @@ const siteCopy = {
           title: "VFX Cleanup & Post",
           type: "VFX Cleanup / Postproducción",
           description:
-            "Limpieza VFX, soporte de composición y pasadas de postproducción para exports finales más precisos.",
+            "Soporte de postproducción para assets más limpios: cleanup, composición y exports listos para entrega.",
           youtubeId: "TU_ID_DE_YOUTUBE_3",
           tags: ["VFX Cleanup", "Post", "Compositing"],
           metadata: [
+            ["Problema", "Los assets finales necesitaban más acabado"],
+            ["Enfoque", "Cleanup, composición y polish final"],
+            ["Entrega", "Exports de campaña listos para handoff"],
             ["Rol", "Postproducción"],
-            ["Formato", "Assets de campaña"],
-            ["Uso", "Entrega final"],
-            ["Tools", "AE + Adobe Suite"],
           ],
         },
       ],
     },
     about: {
-      eyebrow: "03 / Sobre mí",
+      eyebrow: "02 / Sobre mí",
       title: "La edición forma parte de cómo veo las cosas desde los 13.",
       titleLines: ["La edición forma parte", "de cómo veo las cosas", "desde los 13."],
       note: "Editando desde los 13",
@@ -616,10 +585,10 @@ const siteCopy = {
       ],
     },
     vertical: {
-      eyebrow: "02 / Piezas Verticales",
-      title: "Ads verticales 9:16 para paid social y campañas mobile-first.",
+      eyebrow: "01 / Trabajos",
+      title: "Trabajos pensados para ritmo, motion y retención.",
       description:
-        "TikToks, creator events, motion ads y cutdowns pensados para feeds mobile, hooks y entrega lista para plataforma.",
+        "Edits verticales, motion ads y piezas short-form para campañas mobile-first.",
       tagsLabel: "tags",
       specsLabel: "specs",
       goToLabel: "Ir a",
@@ -704,11 +673,11 @@ const siteCopy = {
       ],
     },
     process: {
-      eyebrow: "04 / Proceso",
-      title: "Flujo típico de proyecto",
+      eyebrow: "03 / Proceso",
+      title: "Un flujo simple de proyecto",
       description:
         "Cada proyecto cambia según el alcance, pero este suele ser el camino desde el brief hasta los exports finales.",
-      hint: "Usá los marcadores para ver cómo se ordenan expectativas, revisiones y entrega.",
+      hint: "La idea es reducir fricción: alcance claro, revisiones útiles y exports correctos para la plataforma.",
       note: "Primero alcance. Luego timing. Entrega clara.",
       steps: [
         {
@@ -744,15 +713,14 @@ const siteCopy = {
       ],
     },
     contact: {
-      eyebrow: "05 / Contacto",
+      eyebrow: "04 / Contacto",
       title: "Hablemos de la próxima pieza.",
       description:
-        "Mandame un brief, referencias o assets y armamos el corte, motion pass y specs de entrega.",
-      details: [
-        "Timing según alcance",
-        "Remoto desde Paraguay",
-        "Respuesta dentro de 24h",
-      ],
+        "Mandame un brief, referencias o assets. Definimos alcance, timing y el mejor formato de entrega antes de empezar.",
+      details: "Timing según alcance · Remoto desde Paraguay · Respuesta dentro de 24h",
+      actionTitle: "Inicio de proyecto",
+      actionNote: "Un brief rápido, algunas referencias o una lista de assets alcanza para empezar.",
+      flow: ["Enviar brief", "Definir alcance", "Empezar edit"],
       email: "Email",
       copied: "Email copiado",
       whatsapp: "WhatsApp",
@@ -832,11 +800,9 @@ const lightFadeUp = {
   },
 }
 
-function cardReveal(index = 0, rotation = 1) {
-  const direction = index % 2 === 0 ? -1 : 1
-
+function cardReveal(index = 0) {
   return {
-    hidden: { opacity: 0, y: 24, rotate: direction * rotation },
+    hidden: { opacity: 0, y: 20, rotate: 0 },
     visible: {
       opacity: 1,
       y: 0,
@@ -1016,231 +982,40 @@ function BackgroundTexture() {
 
 function MobileBackgroundTexture() {
   return (
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#050505]">
-        <div
-          className="fixed inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 8%, rgba(214,199,161,0.055), transparent 32%), radial-gradient(circle at 88% 72%, rgba(68,49,95,0.035), transparent 34%), linear-gradient(180deg, #0E1013 0%, #07080A 48%, #050505 100%)",
-          }}
-        />
-        <div className="fixed inset-0 opacity-[0.075]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(184,189,199,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(92,102,122,0.08) 1px, transparent 1px)",
-              backgroundSize: "68px 68px",
-            }}
-          />
-        </div>
-        <div
-          className="fixed right-[-44%] top-[7vh] h-[420px] w-[420px] opacity-[0.10]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(214,199,161,0.22) 1px, transparent 1.18px)",
-            backgroundSize: "28px 28px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 50% 40%, black 0%, rgba(0,0,0,0.55) 42%, transparent 78%)",
-            maskImage:
-              "radial-gradient(circle at 50% 40%, black 0%, rgba(0,0,0,0.55) 42%, transparent 78%)",
-          }}
-        />
-      </div>
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#050505]">
+      <div
+        className="fixed inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 0%, rgba(214,199,161,0.07), transparent 34%), radial-gradient(circle at 100% 78%, rgba(184,138,59,0.035), transparent 32%), linear-gradient(180deg, #0B0C0E 0%, #07080A 44%, #050505 100%)",
+        }}
+      />
+      <div className="fixed inset-0 film-noise-layer opacity-[0.009]" />
+    </div>
   )
 }
 
 function DesktopBackgroundTexture() {
-  const shouldReduceMotion = useReducedMotion()
-  const { scrollYProgress } = useScroll()
-  const gridY = useTransform(scrollYProgress, [0, 1], [0, -28])
-  const halftoneY = useTransform(scrollYProgress, [0, 1], [0, -58])
-
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#050505]">
       <div
         className="fixed inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 10%, rgba(214,199,161,0.06), transparent 34%), radial-gradient(circle at 12% 32%, rgba(92,102,122,0.14), transparent 31%), radial-gradient(circle at 88% 72%, rgba(109,106,144,0.095), transparent 40%), radial-gradient(circle at 22% 78%, rgba(68,49,95,0.040), transparent 30%), radial-gradient(circle at 46% 58%, rgba(184,138,59,0.030), transparent 26%), linear-gradient(180deg, #0E1013 0%, #07080A 46%, #050505 100%)",
+            "radial-gradient(circle at 50% 4%, rgba(214,199,161,0.075), transparent 34%), radial-gradient(circle at 88% 78%, rgba(184,138,59,0.035), transparent 32%), radial-gradient(circle at 12% 42%, rgba(52,57,68,0.18), transparent 36%), linear-gradient(180deg, #0B0C0E 0%, #07080A 42%, #050505 100%)",
         }}
       />
-      <div className="fixed inset-0 film-noise-layer opacity-[0.018]" />
-
+      <div className="fixed inset-0 film-noise-layer opacity-[0.012]" />
       <div
-        className="absolute inset-x-0 top-0 min-h-full"
-        style={{ height: "620vh" }}
-      >
-        <motion.div
-          className="absolute inset-0 opacity-[0.22]"
-          style={{ y: shouldReduceMotion ? 0 : gridY }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(184,189,199,0.115) 1px, transparent 1px), linear-gradient(90deg, rgba(92,102,122,0.11) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-              WebkitMaskImage:
-                "linear-gradient(180deg, rgba(0,0,0,0.9) 0%, black 18%, rgba(0,0,0,0.75) 46%, black 70%, rgba(0,0,0,0.58) 100%)",
-              maskImage:
-                "linear-gradient(180deg, rgba(0,0,0,0.9) 0%, black 18%, rgba(0,0,0,0.75) 46%, black 70%, rgba(0,0,0,0.58) 100%)",
-            }}
-          />
-        </motion.div>
-
-        <div
-          className="absolute inset-0 opacity-[0.052]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(184,189,199,0.11) 1px, transparent 1px), linear-gradient(90deg, rgba(109,106,144,0.10) 1px, transparent 1px)",
-            backgroundSize: "18px 18px",
-            WebkitMaskImage:
-              "linear-gradient(115deg, transparent 0%, rgba(0,0,0,0.55) 18%, black 52%, rgba(0,0,0,0.38) 78%, transparent 100%)",
-            maskImage:
-              "linear-gradient(115deg, transparent 0%, rgba(0,0,0,0.55) 18%, black 52%, rgba(0,0,0,0.38) 78%, transparent 100%)",
-          }}
-        />
-
-        <div
-          className="absolute left-[-8%] top-[18vh] h-[620px] w-[720px] opacity-[0.30]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(184,189,199,0.34) 1.15px, transparent 1.32px)",
-            backgroundSize: "24px 24px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 30% 22%, black 0%, rgba(0,0,0,0.72) 42%, transparent 80%)",
-            maskImage:
-              "radial-gradient(circle at 30% 22%, black 0%, rgba(0,0,0,0.72) 42%, transparent 80%)",
-          }}
-        />
-
-        <div
-          className="absolute right-[-10%] top-[8vh] h-[700px] w-[860px] opacity-[0.16]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(214,199,161,0.26) 1.15px, transparent 1.34px)",
-            backgroundSize: "25px 25px",
-            WebkitMaskImage:
-              "linear-gradient(105deg, transparent 0%, rgba(0,0,0,0.70) 18%, black 52%, rgba(0,0,0,0.56) 82%, transparent 100%)",
-            maskImage:
-              "linear-gradient(105deg, transparent 0%, rgba(0,0,0,0.70) 18%, black 52%, rgba(0,0,0,0.56) 82%, transparent 100%)",
-          }}
-        />
-
-        <div
-          className="absolute left-[20%] top-[115vh] h-[520px] w-[760px] opacity-[0.22]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(109,106,144,0.30) 1.05px, transparent 1.22px)",
-            backgroundSize: "28px 28px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 50% 50%, black 0%, rgba(0,0,0,0.62) 42%, transparent 76%)",
-            maskImage:
-              "radial-gradient(circle at 50% 50%, black 0%, rgba(0,0,0,0.62) 42%, transparent 76%)",
-          }}
-        />
-
-        <div
-          className="absolute right-[-6%] top-[265vh] h-[650px] w-[820px] opacity-[0.28]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(184,189,199,0.32) 1px, transparent 1.16px)",
-            backgroundSize: "24px 24px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 70% 56%, black 0%, rgba(0,0,0,0.64) 45%, transparent 82%)",
-            maskImage:
-              "radial-gradient(circle at 70% 56%, black 0%, rgba(0,0,0,0.64) 45%, transparent 82%)",
-          }}
-        />
-
-        <div
-          className="absolute left-[-10%] top-[430vh] h-[620px] w-[760px] opacity-[0.21]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(68,49,95,0.24) 1px, transparent 1.18px)",
-            backgroundSize: "26px 26px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 35% 50%, black 0%, rgba(0,0,0,0.58) 44%, transparent 82%)",
-            maskImage:
-              "radial-gradient(circle at 35% 50%, black 0%, rgba(0,0,0,0.58) 44%, transparent 82%)",
-          }}
-        />
-
-        <div className="absolute left-[7%] top-[18vh] h-px w-[260px] bg-gradient-to-r from-transparent via-[#5C667A]/34 to-transparent" />
-        <div className="absolute right-[10%] top-[74vh] h-px w-[320px] bg-gradient-to-r from-transparent via-white/14 to-transparent" />
-        <div className="absolute left-[18%] top-[164vh] h-px w-[420px] bg-gradient-to-r from-transparent via-[#6D6A90]/22 to-transparent" />
-        <div className="absolute right-[16%] top-[330vh] h-[170px] w-px bg-gradient-to-b from-transparent via-white/12 to-transparent" />
-        <div className="absolute left-[10%] top-[470vh] h-[130px] w-px bg-gradient-to-b from-transparent via-[#6D5A86]/18 to-transparent" />
-        <div className="hidden absolute left-[50%] top-[86vh] h-[340px] w-[520px] -translate-x-1/2 rounded-full bg-[#6D6A90]/[0.055] blur-[86px]" />
-        <div className="hidden absolute right-[-12%] top-[205vh] h-[360px] w-[520px] rounded-full bg-[#1A2A5E]/[0.10] blur-[92px]" />
-        <div className="hidden absolute left-[-10%] top-[325vh] h-[320px] w-[440px] rounded-full bg-[#6D5A86]/[0.035] blur-[90px]" />
-        <div className="hidden absolute right-[10%] top-[470vh] h-[380px] w-[520px] rounded-full bg-[#D6C7A1]/[0.055] blur-[98px]" />
-        <div className="hidden absolute left-[44%] top-[245vh] h-[280px] w-[420px] -translate-x-1/2 rounded-full bg-[#B88A3B]/[0.028] blur-[88px]" />
-      </div>
-
-      <motion.div
-        className="fixed inset-0"
-        style={{ y: shouldReduceMotion ? 0 : halftoneY }}
-      >
-        <div
-          className="absolute -left-12 top-0 h-[520px] w-[620px] opacity-[0.20]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(184,189,199,0.30) 1.1px, transparent 1.26px)",
-            backgroundSize: "24px 24px",
-            WebkitMaskImage:
-              "radial-gradient(circle at 28% 20%, black 0%, rgba(0,0,0,0.56) 42%, transparent 78%)",
-            maskImage:
-              "radial-gradient(circle at 28% 20%, black 0%, rgba(0,0,0,0.56) 42%, transparent 78%)",
-          }}
-        />
-
-        <div
-          className="absolute right-[-90px] top-4 h-[600px] w-[780px] opacity-[0.19]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(214,199,161,0.30) 1.08px, transparent 1.25px)",
-            backgroundSize: "25px 25px",
-            WebkitMaskImage:
-              "linear-gradient(100deg, transparent 0%, rgba(0,0,0,0.58) 24%, black 55%, rgba(0,0,0,0.48) 80%, transparent 100%)",
-            maskImage:
-              "linear-gradient(100deg, transparent 0%, rgba(0,0,0,0.58) 24%, black 55%, rgba(0,0,0,0.48) 80%, transparent 100%)",
-          }}
-        />
-      </motion.div>
-
-      <div className="fixed inset-0">
-        <div className="absolute left-[18%] top-[38%] h-3 w-3 opacity-70">
-          <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-[#6D6A90]/26" />
-          <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-[#6D6A90]/26" />
-        </div>
-
-        <div className="absolute right-[24%] top-[18%] h-4 w-4 opacity-60">
-          <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-white/14" />
-          <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-white/14" />
-        </div>
-
-        <div className="absolute right-[13%] bottom-[30%] h-2 w-2 rounded-full bg-[#6D5A86]/34 shadow-[0_0_14px_rgba(68,49,95,0.24)]" />
-        <div className="absolute left-[36%] top-[22%] h-1.5 w-1.5 rounded-full bg-white/24" />
-        <div className="absolute left-[52%] bottom-[18%] h-1.5 w-1.5 rounded-full bg-[#B88A3B]/34 shadow-[0_0_12px_rgba(184,138,59,0.18)]" />
-      </div>
-
-      <div className="hidden fixed left-[58%] top-[-140px] h-[340px] w-[500px] rounded-full bg-[#D6C7A1]/[0.058] blur-[82px]" />
-      <div className="hidden fixed bottom-[12%] left-[-150px] h-[320px] w-[400px] rounded-full bg-[#6D5A86]/[0.035] blur-[82px]" />
-      <div className="hidden fixed right-[-160px] top-[50%] h-[340px] w-[400px] rounded-full bg-[#6D6A90]/[0.09] blur-[86px]" />
-
-      <div
-        className="fixed inset-0 opacity-[0.026]"
+        className="fixed inset-0 opacity-[0.045]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.75) 0.55px, transparent 0.7px)",
-          backgroundSize: "6px 6px",
+            "linear-gradient(rgba(232,232,227,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(232,232,227,0.08) 1px, transparent 1px)",
+          backgroundSize: "96px 96px",
         }}
       />
-
-      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_31%,rgba(13,16,19,0.42)_0%,rgba(13,16,19,0.22)_28%,transparent_52%)]" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_22%,transparent_0%,rgba(13,16,19,0.01)_54%,rgba(13,16,19,0.18)_100%)]" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_50%_18%,rgba(214,199,161,0.035)_0%,transparent_46%)]" />
+      <div className="fixed inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(5,5,5,0.18)_48%,rgba(5,5,5,0.52)_100%)]" />
     </div>
   )
 }
@@ -1433,7 +1208,7 @@ function HeroHeadline({ headline }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.05, delay: 0.3, ease: easeOut }}
       />
-      <h1 className="font-display relative text-[clamp(3rem,15vw,4.35rem)] font-bold uppercase leading-[0.88] tracking-[-0.062em] text-[#E8E8E3] sm:text-[clamp(3.15rem,10vw,5.25rem)] sm:tracking-[-0.06em] lg:text-[clamp(4.8rem,6vw,6.25rem)] lg:leading-[0.91] lg:tracking-[-0.058em] 2xl:text-[clamp(5.2rem,6.1vw,6.7rem)]">
+      <h1 className="font-display relative text-[clamp(2.35rem,10.8vw,3rem)] font-bold uppercase leading-[0.92] tracking-[-0.052em] text-[#E8E8E3] sm:text-[clamp(3.15rem,10vw,5.25rem)] sm:tracking-[-0.06em] lg:text-[clamp(4.8rem,6vw,6.25rem)] lg:leading-[0.91] lg:tracking-[-0.058em] 2xl:text-[clamp(5.2rem,6.1vw,6.7rem)]">
         <motion.span
           className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 sm:gap-x-3.5 sm:gap-y-2 lg:gap-x-5"
           variants={{
@@ -1474,7 +1249,7 @@ function HeroHeadline({ headline }) {
         </motion.span>
 
         <motion.span
-          className="mt-1.5 block overflow-hidden sm:mt-2"
+          className="mx-auto mt-1.5 block overflow-visible sm:mt-2"
           variants={{
             hidden: {},
             visible: { transition: { delayChildren: 0.08 } },
@@ -1820,7 +1595,7 @@ function KeyframeDiamond({ className = "", color = "bg-[#D6C7A1]", style }) {
 
 function FloatingPostElement({ mouseX, mouseY, enableMouse = false, isActive = true }) {
   const shouldReduceMotion = useReducedMotion()
-  const enableIdle = !shouldReduceMotion && isActive
+  const enableIdle = false
   const fallbackX = useMotionValue(0)
   const fallbackY = useMotionValue(0)
   const sourceX = mouseX || fallbackX
@@ -1869,8 +1644,8 @@ function FloatingPostElement({ mouseX, mouseY, enableMouse = false, isActive = t
   }
 
   const timelineRows = [
-    { width: 78, label: "01", color: "from-[#D6C7A1]/90 to-[#1A2A5E]/55", switchColor: "bg-[#D6C7A1]/72", keyframes: [{ left: "34%", color: "bg-[#D6C7A1]" }] },
-    { width: 62, label: "02", color: "from-[#1A2A5E]/86 to-[#6D6A90]/48", switchColor: "bg-[#6D6A90]/65", keyframes: [{ left: "54%", color: "bg-[#6D6A90]" }] },
+    { width: 78, label: "01", color: "from-[#D6C7A1]/82 to-[#343944]/55", switchColor: "bg-[#D6C7A1]/72", keyframes: [{ left: "34%", color: "bg-[#D6C7A1]" }] },
+    { width: 62, label: "02", color: "from-[#343944]/86 to-[#6D6A90]/42", switchColor: "bg-[#6D6A90]/55", keyframes: [{ left: "54%", color: "bg-[#6D6A90]" }] },
     { width: 86, label: "03", color: "from-[#D6C7A1]/72 to-[#6D5A86]/40", switchColor: "bg-[#6D5A86]/58", keyframes: [{ left: "42%", color: "bg-[#6D5A86]" }, { left: "74%", color: "bg-[#D6C7A1]" }] },
     { width: 48, label: "04", color: "from-[#D6C7A1]/58 to-[#D6C7A1]/28", switchColor: "bg-[#D6C7A1]/62", keyframes: [{ left: "67%", color: "bg-[#D6C7A1]" }] },
   ]
@@ -1889,12 +1664,12 @@ function FloatingPostElement({ mouseX, mouseY, enableMouse = false, isActive = t
     shouldReduceMotion
       ? {
           initial: false,
-          animate: { opacity },
+          animate: { opacity: isActive ? opacity : opacity * 0.65 },
           transition: { duration: 0 },
         }
       : {
           initial: { opacity: 0, y, scale: 0.96 },
-          animate: { opacity, y: 0, scale: 1 },
+          animate: { opacity: isActive ? opacity : opacity * 0.65, y: 0, scale: 1 },
           transition: { duration: 0.78, delay, ease: easeOut },
         }
 
@@ -1977,7 +1752,7 @@ function FloatingPostElement({ mouseX, mouseY, enableMouse = false, isActive = t
       </motion.div>
 
       <motion.div
-        className="absolute left-0 top-[42%] z-0 hidden xl:block 2xl:left-2"
+        className="hidden"
         {...assetEntrance(0.38, 0.62, 24)}
       >
         <motion.div
@@ -2094,7 +1869,7 @@ function FloatingPostElement({ mouseX, mouseY, enableMouse = false, isActive = t
       </motion.div>
 
       <motion.div
-        className="absolute right-[8%] top-[34%] z-20 hidden lg:block xl:right-[16%] xl:top-[43%]"
+        className="hidden"
         {...assetEntrance(0.66, 0.76, 28)}
       >
         <motion.div
@@ -2173,7 +1948,7 @@ function ServiceChips({ services }) {
   )
 }
 
-function ButtonLink({ href, children, variant = "primary", ...props }) {
+function ButtonLink({ href, children, variant = "primary", className = "", ...props }) {
   const isPrimary = variant === "primary"
   const hoverWash = isPrimary
     ? "bg-[linear-gradient(115deg,transparent,rgba(214,199,161,0.075)_34%,rgba(68,49,95,0.055)_64%,transparent)]"
@@ -2183,11 +1958,11 @@ function ButtonLink({ href, children, variant = "primary", ...props }) {
   return (
     <motion.a
       href={href}
-      className={
+      className={`${
         isPrimary
           ? "font-ui group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-[1rem_1rem_1rem_0.42rem] border border-[#D6C7A1]/34 bg-[linear-gradient(135deg,#1A1D23_0%,#0E1013_52%,#050505_100%)] px-4 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[#E8E8E3] shadow-[0_18px_38px_rgba(0,0,0,0.34),0_0_0_1px_rgba(214,199,161,0.10),inset_0_1px_0_rgba(255,255,255,0.14)] transition-colors hover:border-[#D6C7A1]/42 sm:w-auto sm:px-6 sm:text-[0.72rem] sm:tracking-[0.15em] sm:shadow-[0_22px_52px_rgba(0,0,0,0.42),0_0_0_1px_rgba(214,199,161,0.12),inset_0_1px_0_rgba(255,255,255,0.14)]"
           : "font-ui group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-[0.45rem_1rem_1rem_1rem] border border-[#5C667A]/72 bg-[linear-gradient(145deg,rgba(17,21,27,0.84),rgba(7,10,15,0.72))] px-4 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[#E8E8E3] shadow-[inset_0_1px_0_rgba(255,255,255,0.055)] backdrop-blur-md transition-colors hover:border-[#B8A7FF]/55 hover:bg-[#15171C]/88 sm:w-auto sm:px-6 sm:text-[0.72rem] sm:tracking-[0.15em]"
-      }
+      } ${className}`}
       whileHover={{ y: -4, scale: 1.012 }}
       whileTap={{ scale: 0.975 }}
       transition={quickHover}
@@ -2201,7 +1976,7 @@ function ButtonLink({ href, children, variant = "primary", ...props }) {
   )
 }
 
-function CopyEmailButton({ label = "Email", copiedLabel = "Copied to clipboard" }) {
+function CopyEmailButton({ label = "Email", copiedLabel = "Copied to clipboard", className = "" }) {
   const [copied, setCopied] = useState(false)
   const copiedTimeoutRef = useRef(null)
 
@@ -2224,12 +1999,12 @@ function CopyEmailButton({ label = "Email", copiedLabel = "Copied to clipboard" 
     <motion.button
       type="button"
       onClick={handleCopy}
-      className="font-ui group relative z-20 inline-flex items-center justify-center gap-2 overflow-visible rounded-[1rem_1rem_1rem_0.42rem] border border-[#D6C7A1]/34 bg-[linear-gradient(135deg,#1A1D23_0%,#0E1013_52%,#050505_100%)] px-6 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-[#E8E8E3] shadow-[0_22px_52px_rgba(0,0,0,0.42),0_0_0_1px_rgba(214,199,161,0.12),inset_0_1px_0_rgba(255,255,255,0.14)] transition-colors hover:border-[#D6C7A1]/42"
+      className={`font-ui group relative z-20 inline-flex items-center justify-center gap-2 overflow-visible rounded-[1rem_1rem_1rem_0.42rem] border border-[#D6C7A1]/34 bg-[linear-gradient(135deg,#1A1D23_0%,#0E1013_52%,#050505_100%)] px-6 py-3.5 text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-[#E8E8E3] shadow-[0_22px_52px_rgba(0,0,0,0.42),0_0_0_1px_rgba(214,199,161,0.12),inset_0_1px_0_rgba(255,255,255,0.14)] transition-colors hover:border-[#D6C7A1]/42 ${className}`}
       whileHover={{ y: -4, scale: 1.012 }}
       whileTap={{ scale: 0.975 }}
       transition={quickHover}
     >
-      <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-[1rem_1rem_1rem_0.42rem] bg-[linear-gradient(115deg,transparent,rgba(214,199,161,0.075)_34%,rgba(68,49,95,0.055)_64%,transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+      <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] bg-[linear-gradient(115deg,transparent,rgba(214,199,161,0.075)_34%,rgba(68,49,95,0.055)_64%,transparent)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
       <span className="pointer-events-none absolute bottom-0 left-3 right-3 h-px bg-gradient-to-r from-transparent via-[#D6C7A1]/24 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
       <span>{label}</span>
       <span className="translate-x-0 text-[#E8E8E3]/85 transition-transform duration-200 group-hover:translate-x-[3px]">→</span>
@@ -2688,288 +2463,32 @@ function Hero({ copy }) {
   )
 }
 
-function WorkSection({ copy }) {
-  const workPanelLabels = ["CASE / EDIT", "CASE / MOTION", "CASE / POST"]
-  const { work } = copy
-
-  return (
-    <ScrollRevealSection id="work" spacingClass="py-[92px] sm:py-[128px]">
-      <div className="grid gap-[46px] lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-[52px]">
-        <SectionHeader
-          eyebrow={work.eyebrow}
-          title={work.title}
-          description={work.description}
-        />
-
-        <p className="max-w-xl text-sm leading-7 text-[#A7AAB2] lg:justify-self-end">
-          {work.note}
-        </p>
-      </div>
-
-      <motion.div
-        className="relative mt-[58px] grid gap-[22px] lg:grid-cols-[1.08fr_0.92fr] lg:grid-rows-[auto_auto] lg:gap-[24px]"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.22 }}
-      >
-        <div className="pointer-events-none absolute -left-4 -top-5 hidden h-12 w-12 border-l border-t border-[#D6C7A1]/22 lg:block" />
-        <div className="pointer-events-none absolute -right-4 bottom-2 hidden h-12 w-12 border-b border-r border-[#5C667A]/26 lg:block" />
-        {work.projects.map((project, index) => {
-          const accent = workAccentClasses[index % workAccentClasses.length]
-          const panelLabel = workPanelLabels[index % workPanelLabels.length]
-          const revealRotation = [0.75, 1.35, 0.5][index % 3]
-          const offset = getCardOffset(index)
-
-          return (
-          <div
-            key={project.id}
-            className={`sm:motion-safe:[transform:translate3d(var(--card-x),var(--card-y),0)_rotate(var(--card-tilt))] ${
-              index === 0
-                ? "lg:row-span-2 lg:self-start"
-                : index === 1
-                  ? "lg:col-start-2 lg:row-start-1"
-                  : "lg:col-start-2 lg:row-start-2"
-            }`}
-            style={{
-              "--card-tilt": `${offset.rotate}deg`,
-              "--card-x": `${offset.x}px`,
-              "--card-y": `${offset.y}px`,
-            }}
-          >
-          <motion.article
-            className={`group relative overflow-hidden rounded-[1.65rem_1.1rem_1.45rem_1.1rem] border border-white/10 ${accent.surface} p-3 shadow-[0_24px_70px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors ${accent.hover} ${
-              index === 0 ? "lg:p-4 lg:shadow-[0_36px_110px_rgba(0,0,0,0.48),inset_0_1px_0_rgba(255,255,255,0.05)]" : ""
-            }`}
-            variants={cardReveal(index, revealRotation)}
-            whileHover={{
-              y: -6,
-              scale: 1.014,
-            }}
-            transition={quickHover}
-          >
-            <div className={`absolute inset-x-5 top-0 h-px bg-gradient-to-r ${accent.hairline}`} />
-            <div className="font-ui mb-3 flex items-center justify-between rounded-[0.95rem_0.65rem_0.95rem_0.65rem] border border-white/[0.055] bg-[#050505]/45 px-3 py-2 text-[0.54rem] uppercase tracking-[0.18em] text-[#A7AAB2]/55">
-              <span className="flex items-center gap-2">
-                <span className={`h-1.5 w-1.5 rounded-[2px] ${accent.dot}`} />
-                {panelLabel}
-              </span>
-              <span className="text-white/28">/ {String(index + 1).padStart(2, "0")}</span>
-            </div>
-            <div className={index === 0 ? "lg:rounded-[1.55rem] lg:border lg:border-[#D6C7A1]/10 lg:bg-[#050505]/35 lg:p-2" : ""}>
-              <YouTubeEmbed
-                id={project.youtubeId}
-                title={project.title}
-                placeholderLabel={copy.media.preview}
-                frameClassName={index === 0 ? "h-[230px] sm:h-[320px] lg:h-[330px]" : "h-[220px] sm:h-[260px] lg:h-[190px]"}
-              />
-            </div>
-
-            <div className={`p-[18px] pt-[22px] ${index === 0 ? "lg:p-[24px] lg:pt-[28px]" : ""}`}>
-              <p className="font-ui text-[0.68rem] uppercase tracking-[0.26em] text-[#D6C7A1]/72">
-                {project.type}
-              </p>
-              <h3 className={`font-display mt-3 font-semibold tracking-[-0.035em] text-[#E8E8E3] ${index === 0 ? "text-2xl lg:text-3xl" : "text-xl"}`}>
-                {project.title}
-              </h3>
-              <p className={`mt-3 text-sm text-[#A7AAB2] ${index === 0 ? "leading-7 lg:max-w-xl lg:text-[0.98rem] lg:leading-8" : "leading-7 lg:[display:-webkit-box] lg:[-webkit-box-orient:vertical] lg:[-webkit-line-clamp:3] lg:overflow-hidden"}`}>
-                {project.description}
-              </p>
-
-              <div className="mt-5 grid grid-cols-2 gap-2 border-y border-white/[0.06] py-4">
-                {project.metadata.map(([label, value]) => (
-                  <div key={`${project.id}-${label}`} className="min-w-0">
-                    <p className="font-ui text-[0.52rem] uppercase tracking-[0.18em] text-white/28">
-                      {label}
-                    </p>
-                    <p className="mt-1 truncate text-[0.72rem] leading-5 text-[#A7AAB2]">
-                      {value}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className={`font-ui rounded-[999px_999px_999px_0.4rem] border border-white/10 bg-[#07080A]/70 px-3 py-1 text-[0.64rem] uppercase tracking-[0.08em] text-[#A7AAB2] transition-colors ${accent.tag}`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.article>
-          </div>
-          )
-        })}
-      </motion.div>
-    </ScrollRevealSection>
-  )
-}
-
 function AboutDetailVisual({ type }) {
-  if (type === "retention") {
-    return (
-      <div className="relative h-12 overflow-hidden rounded-[0.7rem] border border-white/[0.06] bg-[#050505]/46 px-3 py-2">
-        <svg className="h-full w-full" viewBox="0 0 150 34" fill="none" aria-hidden="true">
-          <path d="M8 17H142" stroke="rgba(92,102,122,0.32)" strokeWidth="1" />
-          <path d="M12 17 C 34 17, 38 8, 56 11 C 74 14, 76 24, 96 20 C 114 16, 120 10, 140 12" stroke="rgba(214,199,161,0.62)" strokeWidth="1.35" strokeLinecap="round" />
-          <rect x="33" y="14" width="6" height="6" rx="1" transform="rotate(45 36 17)" fill="rgba(214,199,161,0.78)" />
-          <rect x="93" y="17" width="6" height="6" rx="1" transform="rotate(45 96 20)" fill="rgba(68,49,95,0.72)" />
-        </svg>
-      </div>
-    )
-  }
-
-  if (type === "direction") {
-    return (
-      <div className="relative h-12 overflow-hidden rounded-[0.7rem] border border-white/[0.06] bg-[#050505]/46 p-3">
-        <span className="absolute left-3 top-3 h-3 w-3 border-l border-t border-[#D6C7A1]/46" />
-        <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-[#D6C7A1]/46" />
-        <span className="absolute left-[18%] right-[18%] top-1/2 h-px -translate-y-1/2 bg-[#5C667A]/30" />
-        <span className="absolute bottom-[24%] left-[24%] right-[28%] h-px bg-[#6D5A86]/34" />
-        <span className="absolute left-[32%] top-[30%] h-2.5 w-2.5 rotate-45 rounded-[2px] bg-[#D6C7A1]/58" />
-      </div>
-    )
-  }
+  const markerPositions = {
+    rhythm: ["18%", "46%", "74%"],
+    retention: ["26%", "58%", "82%"],
+    direction: ["14%", "50%", "88%"],
+  }[type] || ["22%", "56%", "78%"]
 
   return (
-    <div className="relative h-12 overflow-hidden rounded-[0.7rem] border border-white/[0.06] bg-[#050505]/46 px-3 py-2">
-      <span className="absolute left-3 right-3 top-1/2 h-px -translate-y-1/2 bg-[#5C667A]/32" />
-      <span className="absolute left-[22%] top-1/2 h-2 -translate-y-1/2 rounded-full bg-[#D6C7A1]/34" style={{ width: "22%" }} />
-      <span className="absolute left-[52%] top-1/2 h-2 -translate-y-1/2 rounded-full bg-[#5C667A]/30" style={{ width: "24%" }} />
-      <span className="absolute left-[47%] bottom-2 top-2 w-px bg-[#6D5A86]/58" />
-      {[30, 58, 76].map((left, index) => (
+    <div className="relative h-8 overflow-hidden rounded-[0.65rem] border border-white/[0.045] bg-[#050505]/34 px-3">
+      <span className="absolute left-3 right-3 top-1/2 h-px -translate-y-1/2 bg-[#5C667A]/28" />
+      <span className="absolute left-[18%] top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-[#D6C7A1]/18" style={{ width: "48%" }} />
+      {markerPositions.map((left, index) => (
         <span
           key={left}
           className={`absolute top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-[1px] ${
-            index === 0 ? "bg-[#D6C7A1]/78" : index === 1 ? "bg-[#6D5A86]/72" : "bg-[#B88A3B]/70"
+            index === 0 ? "bg-[#D6C7A1]/70" : index === 1 ? "bg-[#B88A3B]/54" : "bg-[#A7AAB2]/42"
           }`}
-          style={{ left: `${left}%` }}
+          style={{ left }}
         />
       ))}
     </div>
   )
 }
 
-function AdobeAppTile({ code, label, className = "", delay = 0 }) {
-  const shouldReduceMotion = useReducedMotion()
-  const variants = {
-    Ae: {
-      border: "border-[#6D5A86]/38",
-      bg: "bg-[linear-gradient(145deg,rgba(31,22,45,0.86),rgba(11,8,16,0.92)_58%,rgba(5,5,5,0.78))]",
-      text: "text-[#CBB8E3]",
-      dot: "bg-[#D6C7A1]/78",
-      glow: "rgba(68,49,95,0.18)",
-    },
-    Pr: {
-      border: "border-[#4B5A8C]/34",
-      bg: "bg-[linear-gradient(145deg,rgba(22,25,45,0.82),rgba(7,9,18,0.90)_58%,rgba(5,5,5,0.78))]",
-      text: "text-[#A8B2E8]",
-      dot: "bg-[#6D5A86]/74",
-      glow: "rgba(75,90,140,0.14)",
-    },
-    Ai: {
-      border: "border-[#B88A3B]/32",
-      bg: "bg-[linear-gradient(145deg,rgba(42,31,18,0.76),rgba(10,8,5,0.90)_58%,rgba(5,5,5,0.78))]",
-      text: "text-[#D6C7A1]",
-      dot: "bg-[#B88A3B]/74",
-      glow: "rgba(184,138,59,0.12)",
-    },
-    Me: {
-      border: "border-[#44315F]/32",
-      bg: "bg-[linear-gradient(145deg,rgba(23,20,35,0.80),rgba(7,7,13,0.92)_58%,rgba(5,5,5,0.78))]",
-      text: "text-[#9D8BB4]",
-      dot: "bg-[#5C667A]/82",
-      glow: "rgba(68,49,95,0.12)",
-    },
-  }
-  const accent = variants[code] || variants.Ae
-
-  return (
-    <motion.div
-      className={`pointer-events-auto absolute ${className}`}
-      aria-label={label}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: shouldReduceMotion ? 0 : 0.58, ease: easeOut, delay }}
-    >
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                y: [0, -3, 0],
-                rotate: [-3, -2.35, -3],
-                x: [0, 0.8, 0],
-              }
-        }
-        transition={{
-          duration: shouldReduceMotion ? 0 : 9.4,
-          ease: "easeInOut",
-          repeat: shouldReduceMotion ? 0 : Infinity,
-          delay: delay + 0.2,
-        }}
-      >
-        <motion.div
-          whileHover={shouldReduceMotion ? {} : { x: -3, y: -2, rotate: -1.2 }}
-          transition={quickHover}
-        >
-          <div
-            className={`relative h-[66px] w-[66px] overflow-hidden rounded-[1.05rem] border ${accent.border} ${accent.bg} shadow-[0_18px_46px_rgba(0,0,0,0.30),inset_0_1px_0_rgba(255,255,255,0.055)]`}
-            style={{ boxShadow: `0 18px 46px rgba(0,0,0,0.30), 0 0 22px ${accent.glow}, inset 0 1px 0 rgba(255,255,255,0.055), inset 0 -22px 40px rgba(5,5,5,0.34)` }}
-          >
-            <div className="absolute inset-x-3 top-0 h-px bg-gradient-to-r from-[#B9A4CF]/36 via-white/10 to-transparent" />
-            <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(rgba(245,245,242,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(245,245,242,0.12)_1px,transparent_1px)] [background-size:17px_17px]" />
-            <span className={`absolute left-3 top-3 h-1.5 w-1.5 rounded-full ${accent.dot}`} />
-            <span className={`font-display absolute bottom-[11px] left-3 text-[1.92rem] font-semibold leading-none tracking-[-0.075em] ${accent.text}`}>
-              {code}
-            </span>
-          </div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
 function AboutDecorLayer() {
-  return (
-    <>
-      <div className="pointer-events-none absolute inset-0 z-[26] overflow-visible">
-        <AdobeAppTile
-          code="Pr"
-          label="Premiere Pro"
-          className="left-[39%] top-[72%] hidden scale-[0.9] opacity-90 lg:block xl:left-[42%]"
-          delay={0.34}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-0 z-[18] overflow-visible">
-        <AdobeAppTile
-          code="Ae"
-          label="After Effects"
-          className="left-[118px] top-[8px] hidden opacity-95 lg:block xl:left-[142px]"
-          delay={0.12}
-        />
-      </div>
-      <div className="pointer-events-none absolute inset-0 z-[28] overflow-visible">
-        <AdobeAppTile
-          code="Ai"
-          label="Illustrator"
-          className="right-[-24px] top-[-18px] hidden scale-[0.78] opacity-80 xl:block"
-          delay={0.48}
-        />
-        <AdobeAppTile
-          code="Me"
-          label="Media Encoder"
-          className="bottom-[2%] right-[-20px] hidden scale-[0.74] opacity-72 xl:block"
-          delay={0.66}
-        />
-      </div>
-    </>
-  )
+  return null
 }
 
 function AboutSection({ copy }) {
@@ -2986,8 +2505,7 @@ function AboutSection({ copy }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <div className="pointer-events-none absolute -left-3 -top-4 hidden h-14 w-14 border-l border-t border-[#D6C7A1]/22 sm:block" />
-          <div className="pointer-events-none absolute -bottom-7 right-6 hidden h-12 w-12 border-b border-r border-[#5C667A]/28 lg:block" />
+          <div className="pointer-events-none absolute -left-3 -top-4 hidden h-12 w-12 border-l border-t border-[#D6C7A1]/16 sm:block" />
 
           <motion.p
             className="font-ui mb-[18px] flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#D6C7A1]/78"
@@ -2999,7 +2517,7 @@ function AboutSection({ copy }) {
           </motion.p>
 
           <motion.div
-            className="font-ui mb-[20px] flex flex-wrap items-center gap-2 text-[0.58rem] uppercase tracking-[0.16em] text-[#A7AAB2]/72"
+            className="font-ui mb-[20px] flex flex-wrap items-center gap-2 text-[0.66rem] uppercase tracking-[0.12em] text-[#A7AAB2]/72"
             variants={lightFadeUp}
           >
             <span className="rounded-full border border-[#D6C7A1]/22 bg-[#050505]/48 px-3 py-1.5 text-[#D6C7A1]/82">
@@ -3035,13 +2553,12 @@ function AboutSection({ copy }) {
         </motion.div>
 
         <motion.div
-          className="relative z-20 overflow-hidden rounded-[1.35rem_1.9rem_1.35rem_1.9rem] border border-white/10 bg-[linear-gradient(145deg,rgba(22,24,30,0.82),rgba(12,14,18,0.76))] p-[28px] shadow-[0_32px_90px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-[38px]"
+          className="relative z-20 overflow-hidden rounded-[1.35rem] border border-white/[0.09] bg-[linear-gradient(145deg,rgba(22,24,30,0.78),rgba(8,9,12,0.82))] p-[28px] shadow-[0_24px_70px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-[38px]"
           variants={fadeUp}
-          whileHover={{ y: -4, scale: 1.012 }}
-          transition={quickHover}
+          transition={{ duration: 0.58, ease: easeOut }}
         >
           <div className="absolute left-0 top-8 h-24 w-px bg-gradient-to-b from-transparent via-[#B88A3B]/55 to-transparent" />
-          <div className="hidden absolute right-[-90px] top-[-90px] h-56 w-56 rounded-full bg-[#6D6A90]/[0.075] blur-[70px]" />
+          <div className="hidden absolute right-[-90px] top-[-90px] h-56 w-56 rounded-full bg-[#D6C7A1]/[0.035] blur-[70px]" />
 
           <p className="relative text-lg leading-9 text-[#E8E8E3]">
             {about.body.before}{" "}
@@ -3073,9 +2590,9 @@ function AboutSection({ copy }) {
           >
             {about.details.map((item, index) => {
               const accents = [
-                { border: "border-[#D6C7A1]/38 hover:border-[#D6C7A1]/58", hairline: "from-[#D6C7A1]/72", dot: "bg-[#D6C7A1] shadow-[0_0_14px_rgba(214,199,161,0.55)]", glow: "bg-[#D6C7A1]/[0.08]" },
-                { border: "border-[#6D6A90]/38 hover:border-[#6D6A90]/58", hairline: "from-[#6D6A90]/72", dot: "bg-[#6D6A90] shadow-[0_0_14px_rgba(109,106,144,0.45)]", glow: "bg-[#6D6A90]/[0.08]" },
-                { border: "border-[#B88A3B]/32 hover:border-[#B88A3B]/50", hairline: "from-[#B88A3B]/65", dot: "bg-[#B88A3B] shadow-[0_0_14px_rgba(184,138,59,0.38)]", glow: "bg-[#B88A3B]/[0.07]" },
+                { border: "border-[#D6C7A1]/24 hover:border-[#D6C7A1]/42", hairline: "from-[#D6C7A1]/46", dot: "bg-[#D6C7A1]", glow: "bg-[#D6C7A1]/[0.035]" },
+                { border: "border-[#5C667A]/34 hover:border-[#D6C7A1]/32", hairline: "from-[#5C667A]/42", dot: "bg-[#A7AAB2]/70", glow: "bg-[#D6C7A1]/[0.025]" },
+                { border: "border-[#B88A3B]/22 hover:border-[#B88A3B]/38", hairline: "from-[#B88A3B]/40", dot: "bg-[#B88A3B]/82", glow: "bg-[#B88A3B]/[0.03]" },
               ][index % 3]
               const offset = getCardOffset(index + 1)
 
@@ -3090,9 +2607,9 @@ function AboutSection({ copy }) {
                 }}
               >
               <motion.div
-                className={`group relative min-h-[170px] overflow-hidden rounded-[1.05rem_1.05rem_1.05rem_0.48rem] border bg-[#07080A]/72 p-[15px] transition-colors hover:bg-[#0E1013]/92 sm:min-h-[184px] ${accents.border}`}
+                className={`group relative min-h-[150px] overflow-hidden rounded-[1rem] border bg-[#07080A]/66 p-[15px] transition-colors hover:bg-[#0E1013]/88 sm:min-h-[164px] ${accents.border}`}
                 variants={cardReveal(index, 0.55)}
-                whileHover={{ y: -3, scale: 1.016 }}
+                whileHover={{ y: -2 }}
                 transition={quickHover}
               >
                 <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${accents.hairline} via-white/12 to-transparent`} />
@@ -3100,7 +2617,7 @@ function AboutSection({ copy }) {
 
                 <AboutDetailVisual type={item.id} />
 
-                <span className="font-ui relative mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-[#E8E8E3]">
+                <span className="font-ui relative mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#E8E8E3]">
                   <span className={`h-1.5 w-1.5 rounded-full ${accents.dot}`} />
                   {item.title}
                 </span>
@@ -3225,7 +2742,7 @@ function VerticalWorkCarousel({ copy }) {
 
   return (
     <ScrollRevealSection
-      id="vertical-work"
+      id="work"
       className="overflow-visible"
       spacingClass="py-[92px] sm:py-[118px] lg:py-[124px]"
     >
@@ -3241,7 +2758,7 @@ function VerticalWorkCarousel({ copy }) {
       <div ref={carouselRef} className="relative mx-auto mt-16 max-w-6xl overflow-visible">
         <div className="relative h-[965px] overflow-visible sm:h-[980px]">
           <div className="pointer-events-none absolute left-1/2 top-20 hidden h-[620px] w-[min(92vw,880px)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(13,16,19,0.72)_0%,rgba(13,16,19,0.38)_48%,transparent_74%)] sm:block" />
-          <div className="pointer-events-none absolute left-1/2 top-36 hidden h-[430px] w-[min(84vw,720px)] -translate-x-1/2 rounded-full bg-[#1A2A5E]/[0.075] blur-[94px] sm:block" />
+          <div className="pointer-events-none absolute left-1/2 top-36 hidden h-[430px] w-[min(84vw,720px)] -translate-x-1/2 rounded-full bg-[#D6C7A1]/[0.035] blur-[88px] sm:block" />
           <div className="pointer-events-none absolute left-1/2 top-[18rem] h-[1px] w-[min(78vw,760px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#6D5A86]/20 to-transparent" />
 
           <motion.div
@@ -3476,7 +2993,7 @@ function StepMicroVisual({ number, isActive, isHovered, shouldReduceMotion }) {
   const loopTransition =
     shouldReduceMotion || !isOn
       ? softTransition
-      : { duration: 1.55, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }
+      : { duration: 0.62, ease: easeOut }
   const shellState = isOn
     ? "border-[#D6C7A1]/32 bg-[#15171C]/72 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]"
     : "border-[#3B465C]/26 bg-[#050505]/44 opacity-[0.48]"
@@ -3989,59 +3506,68 @@ function ContactSection({ copy }) {
 
   return (
     <ScrollRevealSection id="contact" spacingClass="py-[92px] sm:py-[116px] lg:py-[132px]">
-      <div className="relative overflow-visible rounded-[2rem_1.35rem_2rem_1.35rem] border border-[#D6C7A1]/14 bg-[linear-gradient(145deg,rgba(26,29,35,0.78),rgba(5,5,5,0.88))] p-[30px] shadow-[0_34px_110px_rgba(0,0,0,0.58),inset_0_1px_0_rgba(255,255,255,0.055)] sm:p-[46px]">
-        <div className="hidden pointer-events-none absolute right-[-160px] top-[-160px] h-[320px] w-[320px] rounded-full bg-[#D6C7A1]/[0.045] blur-[82px]" />
-        <div className="hidden pointer-events-none absolute left-[-120px] bottom-[-140px] h-[240px] w-[300px] rounded-full bg-[#6D5A86]/[0.028] blur-[78px]" />
-        <div className="pointer-events-none absolute inset-4 rounded-[1.55rem_0.95rem_1.55rem_0.95rem] border border-white/[0.045]" />
-        <div className="pointer-events-none absolute right-8 top-8 hidden text-right font-ui text-[0.52rem] uppercase tracking-[0.22em] text-white/24 sm:block">
-          final frame<br />project start
-        </div>
+      <div className="relative overflow-visible border border-[#343944]/55 bg-[linear-gradient(145deg,rgba(14,16,19,0.92),rgba(5,5,5,0.94))] p-[28px] shadow-[0_26px_80px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.045)] sm:p-[44px] lg:p-[54px]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D6C7A1]/44 to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-[#D6C7A1]/36 via-white/[0.06] to-transparent" />
 
-        <div className="relative z-10 grid gap-[38px] lg:grid-cols-[1fr_auto] lg:items-end">
+        <div className="relative z-10 grid gap-[34px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,390px)] lg:items-center">
           <div>
-            <p className="font-ui mb-4 text-xs font-semibold uppercase tracking-[0.32em] text-[#D6C7A1]/78">
+            <p className="font-ui mb-5 text-xs font-semibold uppercase tracking-[0.26em] text-[#D6C7A1]/78">
               {contactCopy.eyebrow}
             </p>
-            <h2 className="font-display max-w-3xl text-3xl font-semibold tracking-[-0.045em] text-[#E8E8E3] sm:text-5xl">
+            <h2 className="font-display max-w-3xl text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.048em] text-[#E8E8E3] sm:text-5xl">
               {contactCopy.title}
             </h2>
             <p className="mt-[22px] max-w-2xl text-base leading-8 text-[#A7AAB2] sm:text-lg">
               {contactCopy.description}
             </p>
-            {contactCopy.details?.length ? (
-              <div className="font-ui mt-[22px] flex max-w-2xl flex-wrap gap-2 text-[0.58rem] uppercase tracking-[0.16em] text-[#A7AAB2]/62">
-                {contactCopy.details.map((detail) => (
-                  <span
-                    key={detail}
-                    className="rounded-full border border-[#3B465C]/46 bg-[#050505]/38 px-3 py-1.5 text-[#A7AAB2]/72"
-                  >
-                    {detail}
-                  </span>
-                ))}
-              </div>
+
+            {contactCopy.details ? (
+              <p className="font-ui mt-[24px] max-w-2xl text-[0.62rem] uppercase leading-6 tracking-[0.14em] text-[#D6C7A1]/62">
+                {contactCopy.details}
+              </p>
             ) : null}
           </div>
 
-          <div className="flex flex-wrap gap-3 overflow-visible">
-            <CopyEmailButton label={contactCopy.email} copiedLabel={contactCopy.copied} />
+          <div className="relative w-full overflow-visible sm:max-w-[440px] lg:w-[400px] lg:justify-self-end">
+            <div className="mb-5 hidden items-center gap-3 lg:flex">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D6C7A1]/26 to-white/[0.04]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#D6C7A1]/72 shadow-[0_0_18px_rgba(214,199,161,0.22)]" />
+            </div>
 
-            <ButtonLink
-              href={`https://wa.me/${contact.whatsapp}`}
-              variant="secondary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {contactCopy.whatsapp}
-            </ButtonLink>
+            <div className="grid gap-3 overflow-visible">
+              <CopyEmailButton
+                label={contactCopy.email}
+                copiedLabel={contactCopy.copied}
+                className="min-h-[56px] w-full rounded-[0.75rem_0.75rem_0.75rem_0.28rem] sm:min-w-[320px]"
+              />
 
-            <ButtonLink
-              href={contact.linkedin}
-              variant="secondary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {contactCopy.linkedin}
-            </ButtonLink>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <ButtonLink
+                  href={`https://wa.me/${contact.whatsapp}`}
+                  variant="secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="min-h-[52px] !w-full rounded-[0.32rem_0.75rem_0.75rem_0.75rem] sm:!w-full"
+                >
+                  {contactCopy.whatsapp}
+                </ButtonLink>
+
+                <ButtonLink
+                  href={contact.linkedin}
+                  variant="secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="min-h-[52px] !w-full rounded-[0.32rem_0.75rem_0.75rem_0.75rem] sm:!w-full"
+                >
+                  {contactCopy.linkedin}
+                </ButtonLink>
+              </div>
+            </div>
+
+            <p className="mt-5 max-w-[25rem] text-sm leading-6 text-[#A7AAB2]/72 sm:text-right lg:ml-auto">
+              {contactCopy.actionNote}
+            </p>
           </div>
         </div>
       </div>
@@ -4079,7 +3605,6 @@ function App() {
           onLanguageChange={setLanguage}
         />
         <Hero copy={copy} />
-        <WorkSection copy={copy} />
         <VerticalWorkCarousel copy={copy} />
         <AboutSection key={`about-${language}`} copy={copy} />
         <WorkflowSection copy={copy} />
@@ -4091,4 +3616,3 @@ function App() {
 }
 
 export default App
-
