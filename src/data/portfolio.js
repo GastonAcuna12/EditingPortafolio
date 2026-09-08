@@ -12,6 +12,7 @@ export const playgroundProjects = []
 export const projects = [
   {
     "id": "julian-motion-performance",
+    "posterSecond": 1,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
     "format": "9:16",
     "tags": [
@@ -46,6 +47,7 @@ export const projects = [
   },
   {
     "id": "authoritative-motion-ad",
+    "posterSecond": 8,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074774/MOTION_41_xsii0z.mp4",
     "format": "9:16",
     "tags": [
@@ -80,6 +82,7 @@ export const projects = [
   },
   {
     "id": "top-iphone",
+    "posterSecond": 5,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/Top_Iphone_atljw6.mp4",
     "format": "9:16",
     "tags": [
@@ -114,6 +117,7 @@ export const projects = [
   },
   {
     "id": "gorilon-event",
+    "posterSecond": 8,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779075003/Gorilon_portafolio_nu0nxj.mp4",
     "format": "9:16",
     "tags": [
@@ -148,6 +152,7 @@ export const projects = [
   },
   {
     "id": "which-is-stronger-motion-ad",
+    "posterSecond": 2.6,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074832/SP_WhichIsStronger_A1_20250910_AIR_EN_Vid_1080x1920_16s_l003kd.mp4",
     "format": "9:16",
     "tags": [
@@ -182,6 +187,7 @@ export const projects = [
   },
   {
     "id": "the-guest-rush-3d-ad",
+    "posterSecond": 1,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779379990/DM_TheGuestRush_V1_30s_21_05_Demeter_EN_Vid_1080x1920_nohir4.mp4",
     "format": "9:16",
     "tags": [
@@ -216,6 +222,7 @@ export const projects = [
   },
   {
     "id": "semana-santa-motion-ad",
+    "posterSecond": 3,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074796/Motion_SemanaSanta_zu22d8.mp4",
     "format": "9:16",
     "tags": [
@@ -253,4 +260,3 @@ export const projects = [
 export function localizeProject(project, language) {
   return { ...project, ...project.copy.en, ...project.copy[language] }
 }
-

@@ -27,7 +27,7 @@ export function getOptimizedCloudinaryVideo(src, mode = "desktop") {
   return `${prefix}/video/upload/${transform}/${publicPath}`
 }
 
-export function getCloudinaryVideoPoster(src, mode = "desktop", second = 0) {
+export function getCloudinaryVideoPoster(src, mode = "desktop", second = 0, requestedWidth) {
   if (!src || !src.includes("res.cloudinary.com") || !src.includes("/video/upload/")) {
     return null
   }
@@ -37,8 +37,12 @@ export function getCloudinaryVideoPoster(src, mode = "desktop", second = 0) {
   if (!publicPath) return null
 
   const posterPath = publicPath.replace(/\.(mp4|mov|webm)(\?.*)?$/i, ".jpg$2")
-  const width = mode === "mobile" ? "w_360" : "w_540"
+  const width = `w_${requestedWidth || (mode === "mobile" ? 360 : 540)}`
 
   return `${prefix}/video/upload/so_${second},f_jpg,q_auto:eco,${width}/${posterPath}`
 }
 
+export function getCloudinaryPosterSrcSet(src, second = 0) {
+  if (!getCloudinaryVideoPoster(src)) return undefined
+  return [360, 540, 720, 1080].map((width) => `${getCloudinaryVideoPoster(src, "desktop", second, width)} ${width}w`).join(", ")
+}

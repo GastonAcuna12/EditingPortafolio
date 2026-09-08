@@ -9,12 +9,12 @@ function stopVideo(video, reset = true) {
   }
 }
 
-export function CloudinaryVideo({ src, title, videoMode = "desktop", isActive = true, copy }) {
+export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", isActive = true, copy }) {
   const videoRef = useRef(null)
   const [failed, setFailed] = useState(false)
   const [attempt, setAttempt] = useState(0)
   const videoSrc = getOptimizedCloudinaryVideo(src, videoMode)
-  const posterSrc = getCloudinaryVideoPoster(src, videoMode, 1)
+  const poster = posterSrc || getCloudinaryVideoPoster(src, videoMode, 1)
 
   useEffect(() => {
     const video = videoRef.current
@@ -56,7 +56,7 @@ export function CloudinaryVideo({ src, title, videoMode = "desktop", isActive = 
         key={`${videoSrc}-${attempt}`}
         title={title}
         aria-label={title}
-        poster={posterSrc || undefined}
+        poster={poster || undefined}
         controls={isActive}
         muted={!isActive}
         playsInline

@@ -8,7 +8,7 @@ export const copy = {
       cta: "Watch my work",
       location: "Based in Paraguay. Working everywhere.",
     },
-    work: { label: "Selected work", title: "Made to be watched.", description: "Motion ads, short-form edits and a good sense of rhythm.", open: "Watch", more: "See all work", less: "Show selected work" },
+    work: { label: "Selected work", title: "Made to be watched.", description: "Motion ads, short-form edits and a good sense of rhythm.", open: "Watch", featured: "Featured project" },
     detail: { close: "Close project", role: "Role", format: "Format", year: "Year", client: "Client", context: "The piece", approach: "My approach", outcome: "Outcome", next: "Next project", previous: "Previous project", position: "Project", loading: "Loading video", error: "This video couldn't load. Try the original file.", retry: "Retry video", original: "Open original video", related: "More work" },
     clients: { label: "Selected collaborations", title: "Good work is a conversation." },
     about: {
@@ -34,7 +34,7 @@ export const copy = {
       cta: "Ver mis trabajos",
       location: "Desde Paraguay. Para cualquier lugar.",
     },
-    work: { label: "Trabajos seleccionados", title: "Para quedarse mirando.", description: "Motion ads, edits short-form y mucho sentido del ritmo.", open: "Ver", more: "Ver todos los trabajos", less: "Ver selección" },
+    work: { label: "Trabajos seleccionados", title: "Para quedarse mirando.", description: "Motion ads, edits short-form y mucho sentido del ritmo.", open: "Ver", featured: "Proyecto destacado" },
     detail: { close: "Cerrar proyecto", role: "Rol", format: "Formato", year: "Año", client: "Cliente", context: "La pieza", approach: "Mi enfoque", outcome: "Resultado", next: "Siguiente proyecto", previous: "Proyecto anterior", position: "Proyecto", loading: "Cargando video", error: "No se pudo cargar el video. Probá con el archivo original.", retry: "Reintentar video", original: "Abrir video original", related: "Más trabajos" },
     clients: { label: "Colaboraciones", title: "Un buen trabajo empieza conversando." },
     about: {
