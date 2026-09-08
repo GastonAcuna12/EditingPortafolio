@@ -16,7 +16,7 @@ export const copy = {
       lines: ["Editing since 13.", "Still hooked."],
       intro: "I'm Gastón Acuña, an editor and motion designer from Paraguay.",
       paragraphs: [
-        "I started editing at 13. What began as curiosity became something I keep coming back to: finding the moment when footage, ideas and sound finally take shape.",
+        "What began as curiosity became something I keep coming back to: finding the moment when footage, ideas and sound finally take shape.",
         "I care about keeping people watching. But the edit has to have a point of view, too. Rhythm, a well-placed pause, a transition that belongs there. That's the part I love figuring out.",
       ],
       signoff: "Raw footage. A few ideas. Something worth watching.",
@@ -42,7 +42,7 @@ export const copy = {
       lines: ["Edito desde los 13.", "Y sigo enganchado."],
       intro: "Soy Gastón Acuña, editor y motion designer de Paraguay.",
       paragraphs: [
-        "Empecé a editar a los 13. Lo que arrancó por curiosidad se convirtió en algo a lo que siempre vuelvo: encontrar ese momento en que el material, las ideas y el sonido empiezan a tomar forma.",
+        "Lo que arrancó por curiosidad se convirtió en algo a lo que siempre vuelvo: encontrar ese momento en que el material, las ideas y el sonido empiezan a tomar forma.",
         "Me importa mantener a alguien mirando, pero también que la pieza tenga una mirada propia. El ritmo, una pausa justa, una transición que tenga sentido. Eso es lo que más disfruto resolver.",
       ],
       signoff: "Material crudo. Algunas ideas. Algo que vale la pena mirar.",

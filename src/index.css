@@ -106,9 +106,13 @@ svg { flex-shrink: 0; }
 }
 .poster-fallback { display: grid; place-items: center; padding: 24px; height: 100%; font: 24px var(--display); }
 
-.about-section { display: grid; grid-template-columns: 1.05fr 1fr; gap: 90px; padding-block: 112px 144px; border-top: 1px solid var(--line); }
+.about-section { display: grid; grid-template-columns: 1.05fr 1fr; gap: 90px; padding-block: 100px 112px; border-top: 1px solid var(--line); }
+.about-identity { min-width: 0; display: flex; flex-direction: column; }
+.about-heading { position: relative; z-index: 1; }
 .about-heading h2 { font-size: 57px; line-height: 1.16; }
 .about-heading em { display: block; color: var(--accent); margin-top: 7px; }
+.about-art { position: relative; flex: 1; min-height: 260px; margin-top: 38px; overflow: clip; }
+.about-art .ga-dissolve { position: absolute; width: 150%; height: 150%; left: -36%; bottom: -32%; }
 .about-story { padding-top: 44px; display: grid; gap: 24px; font-size: 18px; color: var(--muted); }
 .about-story .about-intro { font-size: 24px; color: var(--paper); line-height: 1.5; }
 .about-signoff { color: var(--paper); padding-top: 10px; }
@@ -119,22 +123,38 @@ svg { flex-shrink: 0; }
 .lab-section > div > p:last-child { margin-top: 20px; color: var(--muted); }
 .lab-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px; margin-top: 48px; }
 
-.contact-section { padding-top: 70px; border-top: 1px solid var(--line); }
-.contact-section h2 { font-size: 82px; line-height: 1.1; }
+.contact-section { min-height: 90svh; padding-top: 56px; display: grid; grid-template-rows: auto minmax(220px, 1fr) auto; border-top: 1px solid var(--line); }
+.contact-content { position: relative; z-index: 1; }
+.contact-section h2 { font-size: 72px; line-height: 1.08; }
 .contact-section h2 em { color: var(--accent); font: inherit; }
-.contact-body { display: grid; grid-template-columns: 1fr 1.25fr; gap: 72px; margin-top: 44px; align-items: start; }
+.contact-body { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; margin-top: 28px; align-items: start; }
 .contact-body > p { max-width: 350px; font-size: 18px; color: var(--muted); }
 .email-row { display: flex; align-items: center; gap: 12px; }
-.email-link { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex: 1; min-width: 0; font-size: 25px; line-height: 1.5; padding-block: 6px 12px; border-bottom: 1px solid #69655b; }
+.email-link { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex: 1; min-width: 0; font-size: 30px; line-height: 1.5; min-height: 44px; padding-block: 6px 12px; border-bottom: 1px solid #69655b; }
 .email-link:hover { color: var(--accent); }
 .copy-email { color: var(--muted); }
 .social-links { display: flex; gap: 28px; margin-top: 14px; }
 .social-links a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-size: 16px; }
 .social-links a:hover { color: var(--accent); }
-.footer-line { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 32px; margin-top: 110px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+.contact-art { position: relative; overflow: clip; min-height: 220px; margin-top: 24px; }
+.contact-art .ga-dissolve { position: absolute; width: min(1360px, 115%); height: 145%; left: 50%; bottom: -38%; transform: translateX(-50%); }
+.footer-line { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 16px 24px; color: var(--muted); font-size: 14px; }
 .footer-line a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
 .copy-feedback { position: fixed; z-index: 40; bottom: 24px; left: 50%; transform: translate(-50%, 8px); opacity: 0; pointer-events: none; color: #161410; background: var(--accent); border-radius: 4px; padding: 13px 22px; font-size: 16px; transition: opacity 180ms ease, transform 180ms ease; }
 .copy-feedback.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* A few repeated raster cells, revealed once; no per-pixel runtime animation. */
+.ga-dissolve { color: #b3b1ab; pointer-events: none; --ga-duration: 1100ms; }
+.ga-dissolve svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ga-dissolve--about { opacity: .29; --ga-duration: 980ms; }
+.ga-dissolve--footer { opacity: .65; }
+.ga-solid, .ga-raster, .ga-playhead { opacity: 0; }
+.ga-dissolve[data-revealed="true"] .ga-solid { animation: ga-solid-in var(--ga-duration) cubic-bezier(.22,1,.36,1) both; }
+.ga-dissolve[data-revealed="true"] .ga-raster { animation: ga-raster-in var(--ga-duration) cubic-bezier(.22,1,.36,1) both; }
+.ga-dissolve[data-revealed="true"] .ga-playhead { animation: ga-playhead-in var(--ga-duration) cubic-bezier(.22,1,.36,1) both; }
+@keyframes ga-solid-in { 0% { opacity: 0; transform: translateY(16px); } 55%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes ga-raster-in { 0%, 16% { opacity: 0; transform: translateX(-12px); } 78%, 100% { opacity: 1; transform: translateX(0); } }
+@keyframes ga-playhead-in { 0%, 24% { opacity: 0; transform: translateX(-160px); } 42% { opacity: .5; } 100% { opacity: .18; transform: translateX(400px); } }
 
 /* Native dialog supplies focus trapping and an inert background. */
 .project-dialog { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; color: var(--paper); background: transparent; overflow-y: auto; overscroll-behavior: contain; }
@@ -188,7 +208,7 @@ svg { flex-shrink: 0; }
   .about-section { gap: 52px; }
   .about-heading h2 { font-size: 44px; }
   .contact-body { gap: 36px; }
-  .email-link { font-size: 21px; }
+  .email-link { font-size: 24px; }
   .detail-layout { gap: 30px 56px; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); }
   .detail-heading h2 { font-size: 44px; }
 }
@@ -204,11 +224,15 @@ svg { flex-shrink: 0; }
   .work-heading { display: block; }
   .work-heading > p { margin-top: 18px; max-width: 400px; }
   .about-section { grid-template-columns: 1fr; gap: 36px; }
+  .about-identity { position: relative; padding-bottom: 30px; }
+  .about-art { position: absolute; inset: -18px -10px 0 46%; min-height: 0; margin: 0; }
+  .about-art .ga-dissolve { width: 170%; height: 100%; left: 0; bottom: 0; opacity: .12; }
   .about-heading h2 { font-size: 56px; }
   .about-story { padding-top: 0; max-width: 620px; margin-left: auto; }
   .contact-section h2 { font-size: 66px; }
   .contact-body { grid-template-columns: 1fr; gap: 26px; }
   .contact-links { max-width: 570px; }
+  .contact-art { min-height: 240px; }
   .detail-layout { gap: 26px 32px; }
   .detail-heading h2 { font-size: 36px; }
   .detail-surface { padding-inline: 32px; }
@@ -253,6 +277,9 @@ svg { flex-shrink: 0; }
   .project-caption { padding-top: 16px; }
   .project-watch { display: none; }
   .about-section { padding-block: 66px 76px; gap: 28px; }
+  .about-identity { padding-bottom: 8px; }
+  .about-art { inset: -10px -10px 0 36%; }
+  .about-art .ga-dissolve { width: 240%; left: 0; opacity: .1; }
   .about-heading h2 { font-size: 35px; line-height: 1.2; }
   .about-story { font-size: 17px; gap: 22px; }
   .about-story .about-intro { font-size: 21px; }
@@ -260,15 +287,17 @@ svg { flex-shrink: 0; }
   .clients-section h2, .lab-section h2 { font-size: 32px; }
   .client-names { font-size: 26px; gap: 24px; }
   .lab-gallery { grid-template-columns: 1fr; }
-  .contact-section { padding-top: 60px; }
+  .contact-section { min-height: 0; padding-top: 48px; grid-template-rows: auto 210px auto; }
   .contact-section h2 { font-size: 45px; }
   .contact-body { margin-top: 28px; }
   .contact-body > p { font-size: 17px; }
   .email-row { gap: 4px; }
-  .email-link { font-size: 17px; gap: 6px; overflow-wrap: anywhere; }
+  .email-link { font-size: 19px; gap: 6px; overflow-wrap: anywhere; }
   .email-link svg { width: 19px; }
   .social-links { gap: 28px; }
-  .footer-line { flex-wrap: wrap; gap: 12px 24px; margin-top: 72px; font-size: 14px; }
+  .contact-art { min-height: 0; margin-top: 24px; }
+  .contact-art .ga-dissolve { width: 780px; max-width: none; height: 400px; left: -120px; bottom: -160px; transform: none; opacity: .46; }
+  .footer-line { flex-wrap: wrap; gap: 0 18px; padding-block: 22px 24px; font-size: 14px; }
   .footer-line > span:first-child { width: 100%; }
   .footer-line > a { margin-left: auto; }
   .detail-surface { padding-inline: 20px; }
@@ -292,7 +321,7 @@ svg { flex-shrink: 0; }
   .hero .hero-italic { font-size: 32px; }
   .about-heading h2 { font-size: 30px; }
   .contact-section h2 { font-size: 38px; }
-  .email-link { font-size: 15px; }
+  .email-link { font-size: 17px; }
   .email-row { gap: 0; }
   .email-link svg { display: none; }
   .detail-toolbar .wordmark { font-size: 16px; }
@@ -309,4 +338,6 @@ svg { flex-shrink: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
   .project-open:hover img { transform: none; }
+  .ga-solid, .ga-raster { opacity: 1; transform: none; }
+  .ga-playhead { opacity: .18; transform: translateX(400px); }
 }

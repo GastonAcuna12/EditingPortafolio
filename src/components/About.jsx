@@ -1,10 +1,14 @@
 import { ArrowUpRight } from "lucide-react"
 import { Reveal } from "./Reveal"
+import { GADissolve } from "./GADissolve"
 
 export function About({ copy }) {
   return (
     <section id="about" className="about-section shell" aria-labelledby="about-title">
-      <Reveal className="about-heading"><p className="eyebrow">{copy.label}</p><h2 id="about-title">{copy.lines[0]}<em>{copy.lines[1]}</em></h2></Reveal>
+      <div className="about-identity">
+        <Reveal className="about-heading"><p className="eyebrow">{copy.label}</p><h2 id="about-title">{copy.lines[0]}<em>{copy.lines[1]}</em></h2></Reveal>
+        <div className="about-art"><GADissolve variant="about" /></div>
+      </div>
       <div className="about-story">
         <Reveal><p className="about-intro">{copy.intro}</p></Reveal>
         {copy.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
