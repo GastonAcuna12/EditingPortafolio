@@ -1,0 +1,54 @@
+export const copy = {
+  en: {
+    nav: { work: "Work", about: "About", lab: "Lab", contact: "Let's talk", menu: "Menu", close: "Close menu", label: "Main navigation", skip: "Skip to work", language: "Language" },
+    hero: {
+      role: "Video editor & motion designer",
+      lines: ["I keep cutting", "until it clicks."],
+      intro: "I'm Gastón. I turn footage and ideas into edits you want to keep watching.",
+      cta: "Watch my work",
+      location: "Based in Paraguay. Working everywhere.",
+    },
+    work: { label: "Selected work", title: "Made to be watched.", description: "Motion ads, short-form edits and a good sense of rhythm.", open: "Watch", more: "See all work", less: "Show selected work" },
+    detail: { close: "Close project", role: "Role", format: "Format", year: "Year", client: "Client", context: "The piece", approach: "My approach", outcome: "Outcome", next: "Next project", previous: "Previous project", position: "Project", loading: "Loading video", error: "This video couldn't load. Try the original file.", retry: "Retry video", original: "Open original video", related: "More work" },
+    clients: { label: "Selected collaborations", title: "Good work is a conversation." },
+    about: {
+      label: "A little about me",
+      lines: ["Editing since 13.", "Still hooked."],
+      intro: "I'm Gastón Acuña, an editor and motion designer from Paraguay.",
+      paragraphs: [
+        "I started editing at 13. What began as curiosity became something I keep coming back to: finding the moment when footage, ideas and sound finally take shape.",
+        "I care about keeping people watching. But the edit has to have a point of view, too. Rhythm, a well-placed pause, a transition that belongs there. That's the part I love figuring out.",
+      ],
+      signoff: "Raw footage. A few ideas. Something worth watching.",
+      link: "Let's make something",
+    },
+    lab: { label: "Playground", title: "Just because I wanted to try it.", description: "Motion studies, small experiments and ideas outside the brief." },
+    contact: { label: "Have something in mind?", lines: ["Let's make", "the next piece."], description: "A brief, a reference, or just an idea. Tell me what you're thinking.", copy: "Copy email", copied: "Email copied", email: "Send an email", back: "Back to top", location: "Asunción, Paraguay" },
+  },
+  es: {
+    nav: { work: "Trabajos", about: "Sobre mí", lab: "Lab", contact: "Hablemos", menu: "Menú", close: "Cerrar menú", label: "Navegación principal", skip: "Ir a los trabajos", language: "Idioma" },
+    hero: {
+      role: "Editor de video & motion designer",
+      lines: ["Sigo editando", "hasta que encaja."],
+      intro: "Soy Gastón. Transformo material e ideas en piezas que dan ganas de seguir viendo.",
+      cta: "Ver mis trabajos",
+      location: "Desde Paraguay. Para cualquier lugar.",
+    },
+    work: { label: "Trabajos seleccionados", title: "Para quedarse mirando.", description: "Motion ads, edits short-form y mucho sentido del ritmo.", open: "Ver", more: "Ver todos los trabajos", less: "Ver selección" },
+    detail: { close: "Cerrar proyecto", role: "Rol", format: "Formato", year: "Año", client: "Cliente", context: "La pieza", approach: "Mi enfoque", outcome: "Resultado", next: "Siguiente proyecto", previous: "Proyecto anterior", position: "Proyecto", loading: "Cargando video", error: "No se pudo cargar el video. Probá con el archivo original.", retry: "Reintentar video", original: "Abrir video original", related: "Más trabajos" },
+    clients: { label: "Colaboraciones", title: "Un buen trabajo empieza conversando." },
+    about: {
+      label: "Un poco sobre mí",
+      lines: ["Edito desde los 13.", "Y sigo enganchado."],
+      intro: "Soy Gastón Acuña, editor y motion designer de Paraguay.",
+      paragraphs: [
+        "Empecé a editar a los 13. Lo que arrancó por curiosidad se convirtió en algo a lo que siempre vuelvo: encontrar ese momento en que el material, las ideas y el sonido empiezan a tomar forma.",
+        "Me importa mantener a alguien mirando, pero también que la pieza tenga una mirada propia. El ritmo, una pausa justa, una transición que tenga sentido. Eso es lo que más disfruto resolver.",
+      ],
+      signoff: "Material crudo. Algunas ideas. Algo que vale la pena mirar.",
+      link: "Hagamos algo juntos",
+    },
+    lab: { label: "Playground", title: "Porque quería probarlo.", description: "Estudios de motion, experimentos e ideas fuera del brief." },
+    contact: { label: "¿Tenés algo en mente?", lines: ["Hagamos", "la próxima pieza."], description: "Un brief, una referencia o apenas una idea. Contame qué estás pensando.", copy: "Copiar email", copied: "Email copiado", email: "Enviar un email", back: "Volver arriba", location: "Asunción, Paraguay" },
+  },
+}
