@@ -126,7 +126,7 @@ svg { flex-shrink: 0; }
 .lab-section > div > p:last-child { margin-top: 20px; color: var(--muted); }
 .lab-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px; margin-top: 48px; }
 
-.contact-section { position: relative; isolation: isolate; overflow: clip; min-height: 90svh; padding-top: 56px; display: grid; grid-template-rows: auto minmax(220px, 1fr) auto; border-top: 1px solid var(--line); }
+.contact-section { position: relative; isolation: isolate; overflow: clip; min-height: 90svh; padding-top: 56px; display: grid; grid-template-rows: auto minmax(360px, 1fr) auto; border-top: 1px solid var(--line); }
 .contact-content { position: relative; z-index: 1; }
 .contact-section h2 { font-size: 72px; line-height: 1.08; }
 .contact-section h2 em { color: var(--accent); font: inherit; }
@@ -139,24 +139,22 @@ svg { flex-shrink: 0; }
 .social-links { display: flex; gap: 28px; margin-top: 14px; }
 .social-links a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-size: 16px; }
 .social-links a:hover { color: var(--accent); }
-.contact-art { position: absolute; z-index: -1; inset: 0; overflow: clip; pointer-events: none; mask-image: linear-gradient(to bottom, #0002, #0002 44%, #000 72%, #000 87%, #0001); }
+.contact-art { position: relative; grid-row: 2; min-width: 0; overflow: clip; pointer-events: none; margin-top: 24px; }
 .footer-line { position: relative; grid-row: 3; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 16px 24px; color: var(--muted); font-size: 14px; }
 .footer-line a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
 .copy-feedback { position: fixed; z-index: 40; bottom: 24px; left: 50%; transform: translate(-50%, 8px); opacity: 0; pointer-events: none; color: #161410; background: var(--accent); border-radius: 4px; padding: 13px 22px; font-size: 16px; transition: opacity 180ms ease, transform 180ms ease; }
 .copy-feedback.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
-/* One clipped name plate, with still raster masks and three short reveal layers. */
-.name-residue { position: absolute; width: 154%; height: 118%; left: 9%; top: -8%; color: #b3b1ab; pointer-events: none; }
-.name-residue svg { display: block; width: 100%; height: 100%; }
-.residue-type { font-family: var(--display); font-size: 420px; font-weight: 700; letter-spacing: 0; }
-.residue-ink { opacity: .12; }
-.residue-remnants, .residue-fragments { opacity: 0; }
-.name-residue[data-revealed="true"] .residue-ink { animation: residue-ink-in 1000ms cubic-bezier(.22,1,.36,1) both; }
-.name-residue[data-revealed="true"] .residue-remnants { animation: residue-dust-in 1050ms cubic-bezier(.22,1,.36,1) both; }
-.name-residue[data-revealed="true"] .residue-fragments { animation: residue-fragments-in 1000ms cubic-bezier(.22,1,.36,1) both; }
-@keyframes residue-ink-in { from { opacity: .12; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes residue-dust-in { 0%, 20% { opacity: 0; } 100% { opacity: .65; } }
-@keyframes residue-fragments-in { 0%, 30% { opacity: 0; transform: translateX(-14px); } 100% { opacity: .25; transform: translateX(0); } }
+/* Both reveal layers use the same word. All raster fragments stay inside its letters. */
+.acuna-residue { position: absolute; width: 118%; height: 100%; left: -5%; top: 0; color: var(--paper); pointer-events: none; }
+.acuna-residue svg { display: block; width: 100%; height: 100%; fill: currentColor; }
+.acuna-type { font-family: var(--display); font-size: 400px; font-weight: 700; letter-spacing: 0; }
+.acuna-solid { opacity: .05; }
+.acuna-pixels { opacity: 0; }
+.acuna-residue[data-revealed="true"] .acuna-solid { animation: acuna-solid-in 950ms cubic-bezier(.22,1,.36,1) both; }
+.acuna-residue[data-revealed="true"] .acuna-pixels { animation: acuna-pixels-in 1100ms cubic-bezier(.22,1,.36,1) both; }
+@keyframes acuna-solid-in { from { opacity: .05; transform: translateY(10px); } to { opacity: .32; transform: translateY(0); } }
+@keyframes acuna-pixels-in { 0%, 16% { opacity: 0; clip-path: inset(0 100% 0 0); } 100% { opacity: .23; clip-path: inset(0); } }
 @keyframes about-title-in { to { opacity: 1; transform: translateY(0); } }
 @keyframes about-italic-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -235,7 +233,7 @@ svg { flex-shrink: 0; }
   .contact-section h2 { font-size: 66px; }
   .contact-body { grid-template-columns: 1fr; gap: 26px; }
   .contact-links { max-width: 570px; }
-  .name-residue { width: 190%; left: -12%; }
+  .acuna-residue { width: 138%; left: -16%; }
   .detail-layout { gap: 26px 32px; }
   .detail-heading h2 { font-size: 36px; }
   .detail-surface { padding-inline: 32px; }
@@ -299,8 +297,8 @@ svg { flex-shrink: 0; }
   .email-link { font-size: 19px; gap: 6px; overflow-wrap: anywhere; }
   .email-link svg { width: 19px; }
   .social-links { gap: 28px; }
-  .contact-art { top: auto; height: 250px; bottom: 76px; mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 78%, transparent); }
-  .name-residue { width: 1120px; height: 720px; left: -280px; top: -340px; }
+  .contact-art { margin-top: 22px; }
+  .acuna-residue { width: 810px; height: 230px; left: calc(50% - 480px); top: -4px; }
   .footer-line { flex-wrap: wrap; gap: 0 18px; padding-block: 22px 24px; font-size: 14px; }
   .footer-line > span:first-child { width: 100%; }
   .footer-line > a { margin-left: auto; }
@@ -343,7 +341,7 @@ svg { flex-shrink: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
   .project-open:hover img { transform: none; }
-  .residue-ink, .about-title-mask > span, .about-heading em { opacity: 1; transform: none; }
-  .residue-remnants { opacity: .65; }
-  .residue-fragments { opacity: .25; transform: none; }
+  .about-title-mask > span, .about-heading em { opacity: 1; transform: none; }
+  .acuna-solid { opacity: .32; transform: none; }
+  .acuna-pixels { opacity: .23; clip-path: none; }
 }
