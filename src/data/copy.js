@@ -13,7 +13,7 @@ export const copy = {
     clients: { label: "Selected collaborations", title: "Good work is a conversation." },
     about: {
       label: "A little about me",
-      lines: ["Editing since 13.", "Still hooked."],
+      lines: ["Editing", "since 13.", "Still hooked."],
       intro: "I'm Gastón Acuña, an editor and motion designer from Paraguay.",
       paragraphs: [
         "What began as curiosity became something I keep coming back to: finding the moment when footage, ideas and sound finally take shape.",
@@ -39,7 +39,7 @@ export const copy = {
     clients: { label: "Colaboraciones", title: "Un buen trabajo empieza conversando." },
     about: {
       label: "Un poco sobre mí",
-      lines: ["Edito desde los 13.", "Y sigo enganchado."],
+      lines: ["Edito desde", "los 13.", "Y sigo enganchado."],
       intro: "Soy Gastón Acuña, editor y motion designer de Paraguay.",
       paragraphs: [
         "Lo que arrancó por curiosidad se convirtió en algo a lo que siempre vuelvo: encontrar ese momento en que el material, las ideas y el sonido empiezan a tomar forma.",
