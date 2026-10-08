@@ -1,47 +1,37 @@
-# Gastón Acuña · Portfolio audiovisual
+# Video portfolio
 
-![Vista del portfolio](docs/preview.jpg)
+![Portfolio preview](docs/preview.jpg)
 
-Portfolio de edición de vídeo, motion graphics y narrativa visual. Una web bilingüe con tipografía de gran escala, una interfaz inspirada en herramientas de edición y transiciones por sección.
+My portfolio for video editing and motion graphics. Built with React, Vite, Motion and Tailwind CSS, with content in English and Spanish.
 
-## Qué muestra
+## What's here
 
-- Presentación animada con referencias al graph editor, keyframes, composición y timeline.
-- Galería de trabajos verticales 9:16 con vídeos alojados en Cloudinary.
-- Secciones de trabajo seleccionado, trayectoria, proceso y contacto.
-- Selector de contenido en español e inglés.
-- Microinteracciones, navegación por anclas y adaptación a movimiento reducido.
+- Animated sections inspired by editing timelines, keyframes and graph editors.
+- A carousel of vertical videos hosted on Cloudinary.
+- Selected work, background, process and contact sections.
+- An English/Spanish switch and reduced-motion support.
 
-## Decisiones visuales
+The showreel and horizontal video sections still have placeholder YouTube IDs. Replace those in `src/App.jsx` to enable playback. The vertical videos already use real video URLs.
 
-El diseño conecta con el oficio de editar: un fondo oscuro deja protagonismo al vídeo y la tipografía; los paneles, curvas y marcadores de movimiento aportan contexto sin reemplazar el contenido. La sección vertical utiliza un carrusel para explorar piezas pensadas para móvil.
+## Run locally
 
-## Stack
-
-React · Vite · Motion · Tailwind CSS · Lucide React
-
-## Desarrollo local
-
-Requiere una versión de Node.js compatible con Vite 8 (Node.js 22.12 o posterior en la rama 22).
+Use a Node.js version supported by Vite 8, such as Node.js 22.12 or later in the 22.x release line.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Abrí la dirección que muestre Vite. Para generar y revisar una build:
-
 ```bash
 npm run build
 npm run preview
+npm run lint
 ```
 
-`npm run lint` ejecuta ESLint.
+## Editing the site
 
-## Editar contenido
+- `src/App.jsx` — copy, project data, video links and components.
+- `src/App.css` and `src/index.css` — styles.
+- `public/` — icons and favicon.
 
-- `src/App.jsx`: textos bilingües, datos de proyectos, enlaces de vídeo y componentes.
-- `src/App.css` y `src/index.css`: estilos y sistema visual.
-- `public/`: iconos y favicon.
-
-El showreel y los vídeos de trabajo horizontal conservan identificadores de YouTube de ejemplo. Reemplazalos por IDs reales para activar esas vistas. Las piezas verticales ya usan URLs de vídeo. La captura del README corresponde a una ejecución local del proyecto.
+The preview above is a screenshot of the site running locally.
