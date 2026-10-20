@@ -1,5 +1,4 @@
-// The Hero reel is one MP4 that Cloudinary splices from short cuts of the real projects.
-// It keeps each cut's own audio; the monitor plays muted until the visitor turns sound on.
+// The Hero reel is one silent MP4 that Cloudinary splices from short cuts of the real projects.
 // Each cut: project id, in-point and length in seconds. Varied lengths keep the rhythm alive.
 export const reelCuts = [
   { id: "julian-motion-performance", in: 1, length: 1.2 },
@@ -29,7 +28,7 @@ export function buildReelUrl(projects, mode = "desktop", cuts = reelCuts) {
   const usable = cuts.filter((cut) => byId.get(cut.id)?.videoSrc?.includes("res.cloudinary.com"))
   if (!usable.length) return null
   const size = mode === "mobile" ? "w_360,h_640" : "w_540,h_960"
-  const look = `${size},c_fill,q_auto:eco`
+  const look = `${size},c_fill,q_auto:eco,ac_none`
   const [first, ...rest] = usable
   const firstSrc = byId.get(first.id).videoSrc
   const [prefix] = firstSrc.split("/video/upload/")

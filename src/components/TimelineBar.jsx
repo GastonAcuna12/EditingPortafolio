@@ -12,6 +12,16 @@ export function TimelineBar({ sections, copy }) {
   const trackRef = useRef(null)
   const lastClip = useRef(null)
   const [soundOn, toggleSound] = useSound()
+  const [ended, setEnded] = useState(false)
+
+  // The sequence ends where the credits begin: the bar fades out with the page.
+  useEffect(() => {
+    const credits = document.querySelector(".footer-credits")
+    if (!credits || typeof IntersectionObserver === "undefined") return
+    const observer = new IntersectionObserver(([entry]) => setEnded(entry.isIntersecting), { threshold: 0.2 })
+    observer.observe(credits)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const measure = () => {
@@ -97,9 +107,8 @@ export function TimelineBar({ sections, copy }) {
   }
 
   return (
-    <nav className="timeline" aria-label={copy.label} style={{ "--progress": head / layout.height }}>
+    <nav className="timeline" data-ended={ended} aria-label={copy.label} style={{ "--progress": head / layout.height }}>
       <span className="timeline-tc" aria-hidden="true">{formatTimecode(position / FPS)}</span>
-      <span className="timeline-track-label" aria-hidden="true">V1</span>
       <div className="timeline-track" ref={trackRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={endScrub} onPointerCancel={endScrub}>
         {layout.clips.map((clip) => (
           <button key={clip.id} type="button" className="timeline-clip" data-active={current?.id === clip.id} style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }} onClick={() => jump(clip.id)} onPointerEnter={() => play("tick")} aria-current={current?.id === clip.id ? "location" : undefined}>
@@ -108,9 +117,7 @@ export function TimelineBar({ sections, copy }) {
         ))}
         <span className="timeline-playhead" aria-hidden="true"><span className="timeline-grip" /></span>
       </div>
-      <span className="timeline-total" aria-hidden="true">{formatTimecode(layout.total / FPS)}</span>
       <button type="button" className="sound-toggle" data-on={soundOn} onClick={toggleSound} aria-pressed={soundOn} aria-label={copy.sound} title={copy.sound}>
-        <span className="sound-meter" aria-hidden="true"><span /><span /><span /><span /></span>
         <span className="sound-state" aria-hidden="true">{soundOn ? copy.soundOn : copy.soundOff}</span>
       </button>
     </nav>

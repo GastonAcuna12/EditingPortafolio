@@ -3,7 +3,7 @@
 :root {
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --rec: #e5484d;
-  --timeline-h: 46px;
+  --timeline-h: 40px;
 }
 
 /* Hero: copy on the left, program monitor on the right. */
@@ -65,18 +65,19 @@
 .video-player:fullscreen { background: #000; }
 .video-player:fullscreen video { width: 100%; height: 100%; }
 
-/* Page timeline: sections are clips on V1, scroll position is the playhead. */
-.timeline { position: fixed; z-index: 25; inset: auto 0 0; height: var(--timeline-h); display: flex; align-items: center; gap: 14px; padding-inline: 20px; background: #0a0a0a; border-top: 1px solid var(--line); font: 500 11px/1 var(--mono); color: var(--muted); }
-.timeline-tc { min-width: 92px; color: var(--accent); font-size: 12px; font-variant-numeric: tabular-nums; }
-.timeline-total { font-variant-numeric: tabular-nums; }
-.timeline-track-label { padding: 4px 6px; color: var(--paper); background: #1d1d1b; border-radius: 2px; }
-.timeline-track { position: relative; flex: 1; height: 26px; }
-.timeline-clip { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 9px; overflow: hidden; color: #b9b7b0; background: #1a1a18; border-left: 2px solid #0a0a0a; border-radius: 2px; font: 500 11px/1 "DM Sans", sans-serif; text-align: left; transition: background 160ms var(--ease-swift), color 160ms var(--ease-swift); }
+/* Page timeline: sections read as clips, scroll position is the playhead. Kept quiet on purpose. */
+.timeline { position: fixed; z-index: 25; inset: auto 0 0; height: var(--timeline-h); display: flex; align-items: center; gap: 20px; padding-inline: 28px; background: #0a0a0a; font: 500 11px/1 var(--mono); color: var(--muted); transition: opacity 600ms var(--ease-resolve), transform 600ms var(--ease-resolve); }
+.timeline[data-ended="true"] { opacity: 0; transform: translateY(100%); pointer-events: none; }
+.timeline-tc { min-width: 88px; color: var(--paper); font-variant-numeric: tabular-nums; }
+.timeline-track { position: relative; flex: 1; height: 100%; }
+.timeline-clip { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 0 0 10px; overflow: hidden; color: #77756f; background: none; border-left: 1px solid var(--line); font: 400 12px/1 "DM Sans", sans-serif; text-align: left; transition: color 200ms var(--ease-swift); }
+.timeline-clip:first-child { border-left: 0; padding-left: 0; }
 .timeline-clip span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.timeline-clip:hover { color: var(--paper); background: #262624; }
-.timeline-clip[data-active="true"] { color: #1a1813; background: var(--accent); }
-.timeline-playhead { position: absolute; top: -6px; bottom: -6px; left: calc(var(--progress) * 100%); width: 1px; background: var(--paper); pointer-events: none; }
-.timeline-playhead::before { content: ""; position: absolute; top: 0; left: -4px; border: 4px solid transparent; border-top: 6px solid var(--paper); }
+.timeline-clip:hover { color: var(--paper); }
+.timeline-clip[data-active="true"] { color: var(--paper); }
+.timeline-track::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); }
+.timeline-track::after { content: ""; position: absolute; left: 0; top: 0; height: 1px; width: calc(var(--progress) * 100%); background: var(--accent); }
+.timeline-playhead { position: absolute; top: 0; bottom: 0; left: calc(var(--progress) * 100%); width: 1px; background: var(--accent); pointer-events: none; }
 body { padding-bottom: var(--timeline-h); }
 .copy-feedback { bottom: calc(var(--timeline-h) + 16px); }
 
@@ -91,15 +92,13 @@ body { padding-bottom: var(--timeline-h); }
 @media (max-width: 899px) {
   .hero { grid-template-columns: 1fr; gap: 44px; }
   .hero-monitor { width: min(100%, 300px); }
-  .timeline-track-label, .timeline-total { display: none; }
-  .timeline-clip { padding: 0 6px; font-size: 10px; }
+  .timeline-clip { font-size: 11px; }
 }
 @media (max-width: 639px) {
   :root { --timeline-h: 38px; }
   .hero-monitor { width: min(78%, 280px); }
-  .timeline { gap: 10px; padding-inline: 12px; }
-  .timeline-tc { min-width: 0; font-size: 11px; }
-  .timeline-track { height: 20px; }
+  .timeline { gap: 12px; padding-inline: 16px; }
+  .timeline-tc { min-width: 0; }
   .timeline-clip span { display: none; }
   .project-meta { margin-top: 20px; padding-top: 16px; gap: 14px 28px; }
   .player-keys, .player-frame { display: none; }
@@ -122,18 +121,9 @@ body { padding-bottom: var(--timeline-h); }
   .hero h1 { font-size: min(104px, 7.2vw); }
 }
 
-/* Sound: off by default, a small level meter shows when it is on. */
-.sound-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; color: var(--muted); border: 1px solid var(--line); border-radius: 2px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-.sound-toggle:hover { color: var(--paper); border-color: #55534e; }
-.sound-toggle[data-on="true"] { color: var(--paper); }
-.sound-meter { display: inline-flex; align-items: flex-end; gap: 2px; width: 14px; height: 12px; }
-.sound-meter span { flex: 1; height: 3px; background: currentColor; border-radius: 1px; }
-.sound-toggle[data-on="true"] .sound-meter span { background: var(--accent); animation: meter 900ms ease-in-out infinite alternate; }
-.sound-toggle[data-on="true"] .sound-meter span:nth-child(2) { animation-duration: 640ms; animation-delay: -200ms; }
-.sound-toggle[data-on="true"] .sound-meter span:nth-child(3) { animation-duration: 780ms; animation-delay: -420ms; }
-.sound-toggle[data-on="true"] .sound-meter span:nth-child(4) { animation-duration: 560ms; animation-delay: -120ms; }
-@keyframes meter { from { height: 3px; } to { height: 12px; } }
-.reel-audio { margin-left: 6px; padding: 2px 4px; color: #1a1813; background: var(--accent); border-radius: 2px; font-size: 9px; }
+/* Sound: off by default, plain text toggle. */
+.sound-toggle { min-height: 36px; padding: 0; color: var(--muted); font: 400 12px/1 "DM Sans", sans-serif; white-space: nowrap; }
+.sound-toggle:hover, .sound-toggle[data-on="true"] { color: var(--paper); }
 
 /* Each reel cut is a beat on the headline: one quick jump cut. */
 .hero h1[data-beat="a"] .hero-italic { animation: beat-a 140ms steps(2, jump-none) both; }
@@ -148,14 +138,20 @@ body { padding-bottom: var(--timeline-h); }
 /* The playhead can be grabbed. */
 .timeline-track { cursor: ew-resize; touch-action: none; }
 .timeline-track[data-scrubbing="true"] .timeline-playhead { background: var(--accent); }
-.timeline-grip { position: absolute; top: -2px; left: -6px; width: 12px; height: 34px; }
+.timeline-grip { position: absolute; top: 0; left: -6px; width: 12px; height: 100%; }
 
 @media (max-width: 639px) {
-  .sound-state { display: none; }
-  .sound-toggle { padding: 0 8px; height: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sound-toggle[data-on="true"] .sound-meter span { animation: none; height: 8px; }
   .hero h1[data-beat] .hero-italic { animation: none; }
   .detail-cut { display: none; }
+}
+
+/* End card: the name comes into focus and the bottom of the frame fades out. */
+.footer-end { position: relative; overflow: hidden; padding-top: clamp(24px, 4vw, 56px); }
+.footer-end p { width: fit-content; margin-inline: auto; font: 600 min(12.4vw, 196px)/.82 var(--display); letter-spacing: -.045em; color: var(--paper); white-space: nowrap; will-change: opacity, filter, transform; }
+.footer-end p span { color: var(--accent); }
+.footer-end::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to bottom, #0a0a0a00, #0a0a0a 92%); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .timeline { transition: none; }
 }

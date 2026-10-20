@@ -13,12 +13,12 @@ test("timecode reads as HH:MM:SS:FF at 30fps", () => {
   assert.equal(frameNumber(2), "0060")
 })
 
-test("the Hero reel splices every real project once, in order", () => {
+test("the Hero reel splices every real project once, silent, in order", () => {
   const ids = new Set(projects.map((project) => project.id))
   assert.ok(reelCuts.every((cut) => ids.has(cut.id)))
   assert.equal(new Set(reelCuts.map((cut) => cut.id)).size, reelCuts.length)
   const url = buildReelUrl(projects)
-  assert.match(url, /^https:\/\/res\.cloudinary\.com\/.+\/video\/upload\/so_1,eo_2\.2,w_540,h_960,c_fill,q_auto:eco\//)
+  assert.match(url, /^https:\/\/res\.cloudinary\.com\/.+\/video\/upload\/so_1,eo_2\.2,w_540,h_960,c_fill,q_auto:eco,ac_none\//)
   assert.equal(url.match(/fl_splice/g).length, reelCuts.length - 1)
   assert.ok(url.endsWith("/f_mp4,vc_h264:baseline:3.1/v1779289607/JulianPort_y8itgt.mp4"))
   assert.match(buildReelUrl(projects, "mobile"), /w_360,h_640/)

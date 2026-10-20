@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { motion, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { ArrowUpRight, Play } from "lucide-react"
 import { Reveal } from "./Reveal"
 import { ProjectPoster } from "./ProjectPoster"
@@ -9,10 +9,6 @@ import { play } from "../lib/sound"
 export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
   const reduced = useReducedMotion()
   const [hovered, setHovered] = useState(null)
-  // Fast scrolling bends the gallery a touch, like footage under a quick pan; it settles when you stop.
-  const { scrollY } = useScroll()
-  const velocity = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 })
-  const skewY = useTransform(velocity, [-2500, 0, 2500], [1.4, 0, -1.4], { clamp: true })
   const [canHover, setCanHover] = useState(false)
   useEffect(() => {
     const query = window.matchMedia("(hover: hover) and (pointer: fine)")
@@ -34,7 +30,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
         <div><p className="eyebrow">{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
         <p>{copy.description}</p>
       </Reveal>
-      <motion.div className="work-gallery" style={reduced ? undefined : { skewY }}>
+      <div className="work-gallery">
         {projects.map((project, index) => {
           const slot = slots[index] || "closing"
           return (
@@ -53,7 +49,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
             </article>
           )
         })}
-      </motion.div>
+      </div>
     </motion.section>
   )
 }
