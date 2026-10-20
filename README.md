@@ -1,41 +1,40 @@
-# Gaston Acuna / Portfolio
+# Gastón Acuña — video portfolio
 
-Personal video and motion portfolio built with React, Vite and Motion. English is the default; Spanish updates live.
+![Portfolio preview](docs/preview.jpg)
 
-## Local Development
+Live at **[gaston.mov](https://gaston.mov)**. My portfolio for video editing and motion design, built like an editing room: a program monitor in the Hero cutting between real pieces, a viewer with timecode and J/K/L shortcuts, and the page itself read as a timeline. English by default, Spanish live.
+
+Built with React, Vite, Motion and Tailwind CSS. Videos are hosted on Cloudinary.
+
+## Run locally
+
+Use Node.js 24.
 
 ```sh
-npm install
-npm run dev -- --host 0.0.0.0
+npm ci
+npm run dev
 ```
-
-Vite prints the local and network addresses. A phone on the same network can use the network address. No deployment is needed to preview locally.
 
 ```sh
 npm run lint
 npm test
 npm run build
-npm run preview -- --host 0.0.0.0
 ```
 
-## Content And Architecture
+Pushing to `main` deploys to GitHub Pages on gaston.mov (`.github/workflows/deploy.yml`, `public/CNAME`). `gastonacuna.com` redirects there from the registrar.
 
-- `src/App.jsx`: language state, selected project and page composition.
-- `src/data/portfolio.js`: canonical Cloudinary sources, bilingual project data, contact links, clients and lab items.
-- `src/data/projectNotes.js`: short bilingual project context and editing approach.
+## Content and architecture
+
+- `src/data/portfolio.js`: Cloudinary sources, bilingual project data and contact links.
+- `src/data/projectNotes.js`: short bilingual project context and approach.
 - `src/data/copy.js`: interface, Hero, About and Contact translations.
-- `src/components/FeaturedWork.jsx`: all seven posters: lead project, pair, individual feature and a compact closing group.
-- `src/components/ProjectDetail.jsx`: native accessible dialog with one active video and previous/next navigation.
-- `src/hooks/useProjectNavigation.js`: project URLs, browser history and return focus.
-- `src/hooks/useProjectTransition.js`: poster-only FLIP entrance/exit, scroll locking and reduced-motion fallback.
-- `src/components/media/CloudinaryVideo.jsx`: direct MP4 playback, fallback source, retry and audio cleanup.
-- `src/lib/cloudinary.js`: device-specific video URLs and poster extraction.
-- `src/index.css`: editorial layout and responsive styling.
+- `src/lib/reel.js`: the Hero reel, one silent MP4 Cloudinary splices from short cuts of every project.
+- `src/components/HeroReel.jsx`: the program monitor around that reel; clicking it opens the piece on screen.
+- `src/components/media/CloudinaryVideo.jsx`: the project viewer, with SMPTE timecode, frame counter, scrub and J/K/L, frame-step, mute and fullscreen shortcuts.
+- `src/components/ProjectPoster.jsx`: curated poster frames that play a short silent clip on hover.
+- `src/components/TimelineBar.jsx`: the page timeline; sections are clips, scroll is the playhead, and it can be dragged to scrub.
+- `src/lib/sound.js`: optional interface sound, synthesized with Web Audio and off by default.
+- `src/hooks/useProjectNavigation.js` and `useProjectTransition.js`: project URLs, history and the poster flight between gallery and viewer.
+- `src/index.css`, `src/edit.css`, `src/components/Contact.css`: styles.
 
-Clients and Playground stay hidden while their data arrays are empty. Add only confirmed public clients and real experiments. No showreel, metrics or client names are fabricated. Horizontal project data is retained in `src/data/archive-horizontal.js` but is not rendered.
-
-The gallery uses curated `posterSecond` frames and responsive JPEGs (360/540/720/1080px), not hidden video players. The opening transition moves only a poster for 620ms, then mounts one video with metadata preload and no autoplay. Closing uses a 420ms return when the matching cover is visible, otherwise a short fade. Reduced motion skips the movement. Changing/closing projects pauses, mutes and resets the previous video. Leaving the video viewport or hiding the tab also pauses playback. Language changes do not remount the active player.
-
-## Visual Checkpoint
-
-The previous portfolio is saved in commit `b797103`; the work-first rebuild before gallery refinement is saved in `0a4b935`. This work lives on branch `design/work-first-editorial-20260907`; it has not been pushed automatically.
+Clients and Playground stay hidden while their data arrays are empty. Add only confirmed public clients and real experiments; no showreel, metrics or client names are fabricated. Reduced motion is respected throughout.
