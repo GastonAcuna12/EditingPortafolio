@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react"
-import { motion, useReducedMotion } from "motion/react"
+import { motion, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from "motion/react"
 import { ArrowUpRight, Play } from "lucide-react"
 import { Reveal } from "./Reveal"
 import { ProjectPoster } from "./ProjectPoster"
 import { resolveEase, timing } from "../lib/motion"
+import { play } from "../lib/sound"
 
 export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
   const reduced = useReducedMotion()
   const [hovered, setHovered] = useState(null)
+  // Fast scrolling bends the gallery a touch, like footage under a quick pan; it settles when you stop.
+  const { scrollY } = useScroll()
+  const velocity = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 })
+  const skewY = useTransform(velocity, [-2500, 0, 2500], [1.4, 0, -1.4], { clamp: true })
   const [canHover, setCanHover] = useState(false)
   useEffect(() => {
     const query = window.matchMedia("(hover: hover) and (pointer: fine)")
@@ -29,12 +34,12 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
         <div><p className="eyebrow">{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
         <p>{copy.description}</p>
       </Reveal>
-      <div className="work-gallery">
+      <motion.div className="work-gallery" style={reduced ? undefined : { skewY }}>
         {projects.map((project, index) => {
           const slot = slots[index] || "closing"
           return (
             <article className={`project project--${slot}`} key={project.id}>
-              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { setHovered(null); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => canHover && setHovered(project.id)} onPointerLeave={() => setHovered((current) => current === project.id ? null : current)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
+              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { setHovered(null); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { if (canHover) { setHovered(project.id); play("tick") } }} onPointerLeave={() => setHovered((current) => current === project.id ? null : current)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
                 <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
@@ -48,7 +53,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
             </article>
           )
         })}
-      </div>
+      </motion.div>
     </motion.section>
   )
 }

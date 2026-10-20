@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
 import { VideoHandoff } from "./VideoHandoff"
@@ -13,12 +13,14 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
   const backdropRef = useRef(null)
   const ready = useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRef, backdropRef, origin, projectId: project.id, closing, onClosed })
   const poster = getCloudinaryVideoPoster(project.videoSrc, videoMode, project.posterSecond ?? 1)
+  const [firstId] = useState(project.id)
 
   useEffect(() => { dialogRef.current.scrollTop = 0 }, [project.id])
 
   return createPortal(
     <dialog ref={dialogRef} className="project-dialog" data-ready={ready} data-phase={closing ? "closing" : ready ? "ready" : "opening"} aria-labelledby="detail-title" onCancel={(event) => { event.preventDefault(); onClose() }}>
       <div className="detail-backdrop" ref={backdropRef} aria-hidden="true" />
+      {project.id !== firstId && <span key={project.id} className="detail-cut" aria-hidden="true" />}
       <div className="detail-surface" ref={surfaceRef}>
       <div className="detail-toolbar">
         <a className="wordmark" href="#work" onClick={(event) => { event.preventDefault(); onClose() }}>Gastón Acuña<span>.</span></a>

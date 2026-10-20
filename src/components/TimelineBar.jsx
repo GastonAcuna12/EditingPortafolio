@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { FPS, formatTimecode } from "../lib/timecode"
+import { play } from "../lib/sound"
+import { useSound } from "../hooks/useSound"
 
 // The page read as a sequence: every section is a clip on V1, scroll is the playhead.
 // One pixel of scroll is one frame, so the timecode is the page's own running time.
@@ -7,6 +9,9 @@ export function TimelineBar({ sections, copy }) {
   const [layout, setLayout] = useState({ clips: [], total: 1, height: 1 })
   const [position, setPosition] = useState(0)
   const frame = useRef(0)
+  const trackRef = useRef(null)
+  const lastClip = useRef(null)
+  const [soundOn, toggleSound] = useSound()
 
   useEffect(() => {
     const measure = () => {
@@ -43,6 +48,46 @@ export function TimelineBar({ sections, copy }) {
   const head = position + window.innerHeight * progress
   const current = [...layout.clips].reverse().find((clip) => head >= clip.start) ?? layout.clips[0]
 
+  // Crossing into another section is a cut.
+  useEffect(() => {
+    if (!current) return
+    if (lastClip.current && lastClip.current !== current.id) play("cut")
+    lastClip.current = current.id
+  }, [current])
+
+  // Grab the playhead: dragging along the track scrubs the page.
+  function scrub(event) {
+    const track = trackRef.current
+    if (!track) return
+    const rect = track.getBoundingClientRect()
+    const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width))
+    const target = ratio * layout.height
+    // Invert the head mapping (head = scroll + viewport * scroll / max) to find the scroll position.
+    window.scrollTo({ top: target / (1 + window.innerHeight / layout.total), behavior: "instant" })
+  }
+
+  // A press on a clip is a click (jump to it); moving a few pixels turns it into a scrub.
+  function onPointerDown(event) {
+    if (event.button !== 0) return
+    event.currentTarget.dataset.pressX = String(event.clientX)
+  }
+
+  function onPointerMove(event) {
+    const track = event.currentTarget
+    if (track.dataset.pressX === undefined) return
+    if (track.dataset.scrubbing !== "true") {
+      if (Math.abs(event.clientX - Number(track.dataset.pressX)) < 4) return
+      track.setPointerCapture(event.pointerId)
+      track.dataset.scrubbing = "true"
+    }
+    scrub(event)
+  }
+
+  function endScrub(event) {
+    delete event.currentTarget.dataset.pressX
+    delete event.currentTarget.dataset.scrubbing
+  }
+
   function jump(id) {
     const target = document.getElementById(id)
     if (!target) return
@@ -55,15 +100,19 @@ export function TimelineBar({ sections, copy }) {
     <nav className="timeline" aria-label={copy.label} style={{ "--progress": head / layout.height }}>
       <span className="timeline-tc" aria-hidden="true">{formatTimecode(position / FPS)}</span>
       <span className="timeline-track-label" aria-hidden="true">V1</span>
-      <div className="timeline-track">
+      <div className="timeline-track" ref={trackRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={endScrub} onPointerCancel={endScrub}>
         {layout.clips.map((clip) => (
-          <button key={clip.id} type="button" className="timeline-clip" data-active={current?.id === clip.id} style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }} onClick={() => jump(clip.id)} aria-current={current?.id === clip.id ? "location" : undefined}>
+          <button key={clip.id} type="button" className="timeline-clip" data-active={current?.id === clip.id} style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }} onClick={() => jump(clip.id)} onPointerEnter={() => play("tick")} aria-current={current?.id === clip.id ? "location" : undefined}>
             <span>{clip.label}</span>
           </button>
         ))}
-        <span className="timeline-playhead" aria-hidden="true" />
+        <span className="timeline-playhead" aria-hidden="true"><span className="timeline-grip" /></span>
       </div>
       <span className="timeline-total" aria-hidden="true">{formatTimecode(layout.total / FPS)}</span>
+      <button type="button" className="sound-toggle" data-on={soundOn} onClick={toggleSound} aria-pressed={soundOn} aria-label={copy.sound} title={copy.sound}>
+        <span className="sound-meter" aria-hidden="true"><span /><span /><span /><span /></span>
+        <span className="sound-state" aria-hidden="true">{soundOn ? copy.soundOn : copy.soundOff}</span>
+      </button>
     </nav>
   )
 }

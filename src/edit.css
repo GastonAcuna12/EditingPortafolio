@@ -121,3 +121,41 @@ body { padding-bottom: var(--timeline-h); }
 @media (min-width: 900px) {
   .hero h1 { font-size: min(104px, 7.2vw); }
 }
+
+/* Sound: off by default, a small level meter shows when it is on. */
+.sound-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; color: var(--muted); border: 1px solid var(--line); border-radius: 2px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.sound-toggle:hover { color: var(--paper); border-color: #55534e; }
+.sound-toggle[data-on="true"] { color: var(--paper); }
+.sound-meter { display: inline-flex; align-items: flex-end; gap: 2px; width: 14px; height: 12px; }
+.sound-meter span { flex: 1; height: 3px; background: currentColor; border-radius: 1px; }
+.sound-toggle[data-on="true"] .sound-meter span { background: var(--accent); animation: meter 900ms ease-in-out infinite alternate; }
+.sound-toggle[data-on="true"] .sound-meter span:nth-child(2) { animation-duration: 640ms; animation-delay: -200ms; }
+.sound-toggle[data-on="true"] .sound-meter span:nth-child(3) { animation-duration: 780ms; animation-delay: -420ms; }
+.sound-toggle[data-on="true"] .sound-meter span:nth-child(4) { animation-duration: 560ms; animation-delay: -120ms; }
+@keyframes meter { from { height: 3px; } to { height: 12px; } }
+.reel-audio { margin-left: 6px; padding: 2px 4px; color: #1a1813; background: var(--accent); border-radius: 2px; font-size: 9px; }
+
+/* Each reel cut is a beat on the headline: one quick jump cut. */
+.hero h1[data-beat="a"] .hero-italic { animation: beat-a 140ms steps(2, jump-none) both; }
+.hero h1[data-beat="b"] .hero-italic { animation: beat-b 140ms steps(2, jump-none) both; }
+@keyframes beat-a { 0% { transform: translateX(3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
+@keyframes beat-b { 0% { transform: translateX(-3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
+
+/* Next and previous project: a whip of accent across the frame, like a hard transition. */
+.detail-cut { position: fixed; inset: 0; z-index: 4; background: var(--accent); pointer-events: none; animation: whip 380ms var(--ease-travel) both; }
+@keyframes whip { 0% { clip-path: inset(0 100% 0 0); } 45% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
+
+/* The playhead can be grabbed. */
+.timeline-track { cursor: ew-resize; touch-action: none; }
+.timeline-track[data-scrubbing="true"] .timeline-playhead { background: var(--accent); }
+.timeline-grip { position: absolute; top: -2px; left: -6px; width: 12px; height: 34px; }
+
+@media (max-width: 639px) {
+  .sound-state { display: none; }
+  .sound-toggle { padding: 0 8px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sound-toggle[data-on="true"] .sound-meter span { animation: none; height: 8px; }
+  .hero h1[data-beat] .hero-italic { animation: none; }
+  .detail-cut { display: none; }
+}

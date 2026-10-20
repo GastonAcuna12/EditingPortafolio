@@ -3,14 +3,17 @@ import { useReducedMotion } from "motion/react"
 import { buildReelUrl, cutAt, reelCuts } from "../lib/reel"
 import { formatTimecode } from "../lib/timecode"
 import { getCloudinaryVideoPoster } from "../lib/cloudinary"
+import { useSound } from "../hooks/useSound"
 
 // A program monitor: one silent spliced reel of real cuts, with the editor's readouts around it.
-export function HeroReel({ projects, videoMode, copy, onOpen }) {
+export function HeroReel({ projects, videoMode, copy, onOpen, onCut }) {
   const videoRef = useRef(null)
   const reduced = useReducedMotion()
   const [time, setTime] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [failed, setFailed] = useState(false)
+  const [soundOn] = useSound()
+  const lastCut = useRef(-1)
   const src = useMemo(() => buildReelUrl(projects, videoMode), [projects, videoMode])
   const cut = cutAt(time)
   const project = projects.find((item) => item.id === cut.id)
@@ -42,12 +45,22 @@ export function HeroReel({ projects, videoMode, copy, onOpen }) {
     }
   }, [reduced, src])
 
+  // The reel carries its own audio; it is only heard once the visitor turns sound on.
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.muted = !soundOn
+  }, [soundOn, failed])
+
+  useEffect(() => {
+    if (lastCut.current !== -1 && lastCut.current !== cut.index) onCut?.(cut.index)
+    lastCut.current = cut.index
+  }, [cut.index, onCut])
+
   if (!src) return null
 
   return (
     <figure className="reel" data-playing={playing}>
       <figcaption className="reel-bar reel-bar--top" aria-hidden="true">
-        <span className="reel-rec"><span className="reel-dot" />PGM</span>
+        <span className="reel-rec"><span className="reel-dot" />PGM{soundOn && <span className="reel-audio">A1</span>}</span>
         <span className="reel-clip">{project?.title}</span>
       </figcaption>
       <button type="button" className="reel-frame" data-cursor="project" onClick={(event) => project && onOpen(project.id, event.currentTarget)} aria-label={`${copy.watchCut}: ${project?.title ?? ""}`}>

@@ -11,7 +11,7 @@ export const copy = {
     },
     work: { label: "Selected work", title: "Made to be watched.", description: "Motion ads, short-form edits and a good sense of rhythm.", open: "Watch", featured: "Featured project", role: "Role", format: "Format" },
     detail: { close: "Close project", role: "Role", format: "Format", year: "Year", client: "Client", context: "The piece", approach: "My approach", outcome: "Outcome", next: "Next project", previous: "Previous project", position: "Project", loading: "Loading video", error: "This video couldn't load. Try the original file.", retry: "Retry video", original: "Open original video", related: "More work", play: "Play", pause: "Pause", mute: "Mute", unmute: "Unmute", fullscreen: "Fullscreen", scrub: "Timeline" },
-    timeline: { label: "Page timeline", intro: "Intro", contact: "Contact" },
+    timeline: { label: "Page timeline", intro: "Intro", contact: "Contact", sound: "Sound", soundOn: "Sound on", soundOff: "Sound off" },
     clients: { label: "Selected collaborations", title: "Good work is a conversation." },
     about: {
       label: "A little about me",
@@ -39,7 +39,7 @@ export const copy = {
     },
     work: { label: "Trabajos seleccionados", title: "Para quedarse mirando.", description: "Motion ads, edits short-form y mucho sentido del ritmo.", open: "Ver", featured: "Proyecto destacado", role: "Rol", format: "Formato" },
     detail: { close: "Cerrar proyecto", role: "Rol", format: "Formato", year: "Año", client: "Cliente", context: "La pieza", approach: "Mi enfoque", outcome: "Resultado", next: "Siguiente proyecto", previous: "Proyecto anterior", position: "Proyecto", loading: "Cargando video", error: "No se pudo cargar el video. Probá con el archivo original.", retry: "Reintentar video", original: "Abrir video original", related: "Más trabajos", play: "Reproducir", pause: "Pausar", mute: "Silenciar", unmute: "Activar sonido", fullscreen: "Pantalla completa", scrub: "Línea de tiempo" },
-    timeline: { label: "Línea de tiempo de la página", intro: "Intro", contact: "Contacto" },
+    timeline: { label: "Línea de tiempo de la página", intro: "Intro", contact: "Contacto", sound: "Sonido", soundOn: "Sonido on", soundOff: "Sonido off" },
     clients: { label: "Colaboraciones", title: "Un buen trabajo empieza conversando." },
     about: {
       label: "Un poco sobre mí",

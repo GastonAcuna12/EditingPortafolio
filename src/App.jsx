@@ -15,6 +15,7 @@ import { Playground } from "./components/Playground"
 import { Contact } from "./components/Contact"
 import { CustomCursor } from "./components/CustomCursor"
 import { TimelineBar } from "./components/TimelineBar"
+import { play } from "./lib/sound"
 
 export default function App() {
   const [language, setLanguage] = useState("en")
@@ -27,7 +28,11 @@ export default function App() {
   const work = projects.map(localize)
   const lab = playgroundProjects.map(localize)
   const allProjects = [...work, ...lab]
-  const { selection, openProject, closeProject, stepProject, finishClose } = useProjectNavigation(allProjects)
+  const navigation = useProjectNavigation(allProjects)
+  const { selection, finishClose } = navigation
+  const openProject = (id, trigger) => { play("whoosh"); navigation.openProject(id, trigger) }
+  const closeProject = () => { if (selection && !selection.closing) play("whoosh"); navigation.closeProject() }
+  const stepProject = (direction) => { play("cut"); navigation.stepProject(direction) }
   const selectedIndex = allProjects.findIndex((project) => project.id === selection?.id)
   const selectedProject = allProjects[selectedIndex]
 
