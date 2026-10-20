@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
-import { CloudinaryVideo } from "./media/CloudinaryVideo"
+import { VideoHandoff } from "./VideoHandoff"
 import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet } from "../lib/cloudinary"
 import { useProjectTransition } from "../hooks/useProjectTransition"
 
@@ -17,7 +17,7 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
   useEffect(() => { dialogRef.current.scrollTop = 0 }, [project.id])
 
   return createPortal(
-    <dialog ref={dialogRef} className="project-dialog" data-phase={closing ? "closing" : ready ? "ready" : "opening"} aria-labelledby="detail-title" onCancel={(event) => { event.preventDefault(); onClose() }}>
+    <dialog ref={dialogRef} className="project-dialog" data-ready={ready} data-phase={closing ? "closing" : ready ? "ready" : "opening"} aria-labelledby="detail-title" onCancel={(event) => { event.preventDefault(); onClose() }}>
       <div className="detail-backdrop" ref={backdropRef} aria-hidden="true" />
       <div className="detail-surface" ref={surfaceRef}>
       <div className="detail-toolbar">
@@ -40,7 +40,7 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
         <div className="detail-video">
           <div ref={frameRef} className="detail-media-frame">
             <img className="detail-poster" src={poster} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, project.posterSecond ?? 1)} sizes="(max-width: 639px) calc(100vw - 40px), 440px" alt="" width="540" height="960" />
-            {ready && !closing && <CloudinaryVideo key={project.id} src={project.videoSrc} posterSrc={poster} title={project.title} videoMode={videoMode} copy={copy.detail} />}
+            {ready && !closing && <VideoHandoff key={project.id} src={project.videoSrc} posterSrc={poster} title={project.title} videoMode={videoMode} copy={copy.detail} />}
           </div>
         </div>
         <div className="detail-copy">

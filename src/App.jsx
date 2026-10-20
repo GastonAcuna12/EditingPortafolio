@@ -13,6 +13,7 @@ import { FeaturedClients } from "./components/FeaturedClients"
 import { About } from "./components/About"
 import { Playground } from "./components/Playground"
 import { Contact } from "./components/Contact"
+import { CustomCursor } from "./components/CustomCursor"
 
 export default function App() {
   const [language, setLanguage] = useState("en")
@@ -33,6 +34,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
+      <CustomCursor />
       <a className="skip-link" href="#work">{copy.nav.skip}</a>
       <SiteNav language={language} onLanguageChange={setLanguage} copy={copy.nav} hasLab={lab.length > 0} />
       <main>
@@ -42,7 +44,7 @@ export default function App() {
         <About copy={copy.about} />
         <Playground projects={lab} onOpen={openProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />
       </main>
-      <Contact copy={copy.contact} />
+      <Contact copy={copy.contact} role={copy.hero.role} />
       {selectedProject && <ProjectDetail project={selectedProject} index={selectedIndex} total={allProjects.length} origin={selection.origin} closing={selection.closing} onClosed={finishClose} onClose={closeProject} onStep={stepProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy} language={language} onLanguageChange={setLanguage} />}
     </MotionConfig>
   )

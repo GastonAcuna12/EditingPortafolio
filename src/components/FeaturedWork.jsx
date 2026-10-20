@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { ArrowUpRight, Play } from "lucide-react"
 import { Reveal } from "./Reveal"
 import { ProjectPoster } from "./ProjectPoster"
+import { resolveEase, timing } from "../lib/motion"
 
 export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
   const reduced = useReducedMotion()
@@ -13,7 +14,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
     closing: "(max-width: 639px) 112px, (max-width: 1199px) 27vw, 390px",
   }
   return (
-    <section id="work" className="work-section shell" aria-labelledby="work-title">
+    <motion.section id="work" className="work-section shell" aria-labelledby="work-title" viewport={{ once: true, amount: 0 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.entered = "true" }}>
       <Reveal className="work-heading">
         <div><p className="eyebrow">{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
         <p>{copy.description}</p>
@@ -22,21 +23,21 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
         {projects.map((project, index) => {
           const slot = slots[index] || "closing"
           return (
-            <motion.article className={`project project--${slot}`} key={project.id} initial={reduced ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.06 }} transition={{ duration: 0.48, delay: slot === "pair" ? (index - 1) * 0.07 : 0, ease: [0.22, 1, 0.36, 1] }}>
-              <button type="button" className="project-open" data-project-id={project.id} onClick={(event) => onOpen(project.id, event.currentTarget)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
+            <article className={`project project--${slot}`} key={project.id}>
+              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => onOpen(project.id, event.currentTarget)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
                 <ProjectPoster project={project} videoMode={videoMode} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
-                <span className="project-caption"><span>
+                <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
                   <span className="project-title">{project.title}</span>
                   <span className="project-category">{project.category}</span>
                   {(slot === "lead" || slot === "interlude") && <span className="project-summary">{project.intro}</span>}
                   <span className="project-action"><Play size={14} aria-hidden="true" /><span>{copy.open}</span></span>
-                </span><ArrowUpRight className="project-arrow" size={22} aria-hidden="true" /></span>
+                </span><ArrowUpRight className="project-arrow" size={22} aria-hidden="true" /></motion.span>
               </button>
-            </motion.article>
+            </article>
           )
         })}
       </div>
-    </section>
+    </motion.section>
   )
 }

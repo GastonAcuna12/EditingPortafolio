@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "motion/react"
+import { timing, resolveEase } from "../lib/motion"
 
 export function Reveal({ children, className = "", delay = 0 }) {
   const reduced = useReducedMotion()
@@ -8,7 +9,7 @@ export function Reveal({ children, className = "", delay = 0 }) {
       initial={reduced ? false : { opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.35, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: timing.secondary / 1000, delay: reduced ? 0 : delay, ease: resolveEase }}
     >
       {children}
     </motion.div>

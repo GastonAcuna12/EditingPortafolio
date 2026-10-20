@@ -1,0 +1,86 @@
+.contact-section { padding-top: clamp(72px, 8vw, 116px); background: #0a0a0a; }
+.contact-content { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 80px); align-items: end; }
+.contact-heading { min-width: 0; }
+.contact-heading .eyebrow { margin-bottom: 32px; }
+.contact-section h2 { font-size: clamp(54px, 6vw, 86px); line-height: 1.08; letter-spacing: -.035em; }
+.contact-section h2 > span { display: block; width: fit-content; white-space: nowrap; }
+.contact-section h2 > span:last-child { color: var(--accent); }
+.contact-body { min-width: 0; padding-bottom: 5px; }
+.contact-body > p { max-width: 310px; color: var(--muted); font-size: 17px; line-height: 1.65; }
+.contact-links { margin-top: 36px; }
+.email-row { display: flex; align-items: center; gap: 8px; }
+.contact-section .email-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: clamp(19px, 1.65vw, 24px); min-width: 0; }
+.email-link svg { width: 19px; }
+.copy-email { color: var(--muted); }
+.copy-email:hover, .copy-email:focus-visible, .copy-email[data-copied="true"] { color: var(--accent); }
+.social-links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 12px; }
+.social-links a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-size: 15px; color: var(--muted); }
+.contact-links a { position: relative; transition: color 140ms ease, transform 180ms var(--ease-resolve); }
+.contact-links a::after { content: ""; position: absolute; inset: auto 0 5px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 180ms var(--ease-resolve); }
+.contact-links a:hover, .contact-links a:focus-visible { color: var(--accent); transform: translateX(2px); }
+.contact-links a:hover::after, .contact-links a:focus-visible::after { transform: scaleX(1); }
+.footer-credits { margin-top: clamp(80px, 9vw, 130px); }
+.footer-cut { height: 1px; background: #69655b; }
+.footer-line { position: relative; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 80px); align-items: start; padding-block: 26px 32px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.footer-role { max-width: calc(100% - 120px); }
+.footer-author, .footer-role { display: grid; gap: 4px; }
+.footer-author > span:first-child { color: var(--paper); font-size: 16px; }
+.footer-stop { color: var(--accent); }
+.footer-line > a { position: absolute; right: 0; top: 16px; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; }
+.footer-line > a:hover { color: var(--paper); }
+.copy-feedback { position: fixed; z-index: 40; bottom: 24px; left: 50%; transform: translate(-50%, 8px); opacity: 0; pointer-events: none; color: var(--accent); background: #0a0a0a; padding: 10px 16px; font-size: 15px; transition: opacity 160ms ease, transform 160ms var(--ease-resolve); }
+.copy-feedback.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .contact-section:not([data-entered="true"]) h2 > span:first-child { transform: translateX(-10px); }
+  .contact-section:not([data-entered="true"]) h2 > span:last-child { transform: translateX(14px); }
+  .contact-section:not([data-entered="true"]) .contact-body,
+  .contact-section:not([data-entered="true"]) .footer-line { opacity: 0; }
+  .contact-section:not([data-entered="true"]) .footer-cut { transform: scaleX(0); }
+  .contact-section[data-entered="true"] h2 > span:first-child { animation: contact-lock-first 540ms var(--ease-resolve) both; }
+  .contact-section[data-entered="true"] h2 > span:last-child { animation: contact-lock-last 560ms 40ms var(--ease-resolve) both; }
+  .contact-section[data-entered="true"] .contact-body { animation: contact-appear 260ms 220ms ease both; }
+  .contact-section[data-entered="true"] .footer-cut { transform-origin: left; animation: contact-cut 600ms 160ms var(--ease-resolve) both; }
+  .contact-section[data-entered="true"] .footer-line { animation: contact-appear 240ms 560ms ease both; }
+}
+@keyframes contact-lock-first { from { transform: translateX(-10px); } to { transform: translateX(0); } }
+@keyframes contact-lock-last { from { transform: translateX(14px); } to { transform: translateX(0); } }
+@keyframes contact-cut { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes contact-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 899px) {
+  .contact-content { grid-template-columns: 1fr; gap: 40px; }
+  .contact-section h2 { font-size: clamp(46px, 8vw, 70px); }
+  .contact-body { max-width: 460px; }
+  .footer-credits { margin-top: 72px; }
+  .footer-line { grid-template-columns: 1fr 1fr; }
+  .footer-role { max-width: none; }
+  .footer-line > a { position: static; grid-column: 2; justify-self: start; }
+}
+@media (max-width: 639px) {
+  .contact-section { padding-top: 52px; }
+  .contact-heading .eyebrow { margin-bottom: 26px; }
+  .contact-section h2 { font-size: clamp(32px, 9vw, 44px); line-height: 1.13; letter-spacing: -.035em; }
+  .contact-content { gap: 32px; }
+  .contact-body > p { font-size: 16px; max-width: 300px; }
+  .contact-links { margin-top: 26px; }
+  .contact-section .email-link { font-size: 18px; gap: 8px; }
+  .email-row { gap: 4px; }
+  .social-links { margin-top: 8px; }
+  .footer-credits { margin-top: 56px; }
+  .footer-line { grid-template-columns: 1fr auto; row-gap: 18px; padding-block: 24px; font-size: 12px; }
+  .footer-author { grid-column: 1 / -1; }
+  .footer-role { grid-column: 1; }
+  .footer-role > span:first-child { max-width: 190px; }
+  .footer-line > a { grid-column: 2; grid-row: 2; align-self: end; font-size: 12px; gap: 5px; }
+}
+@media (max-width: 359px) {
+  .contact-section .email-link { font-size: 16px; }
+  .email-link svg { display: none; }
+  .footer-line { column-gap: 12px; }
+  .footer-role > span:first-child { max-width: 154px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-links a, .contact-links a::after { transition: none; }
+  .contact-links a:hover, .contact-links a:focus-visible { transform: none; }
+  .copy-feedback, .copy-feedback.is-visible { transform: translateX(-50%); transition: opacity 100ms ease; }
+}

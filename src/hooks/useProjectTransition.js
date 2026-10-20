@@ -1,10 +1,11 @@
 import { useLayoutEffect, useRef, useState } from "react"
 import { useReducedMotion } from "motion/react"
+import { ease, timing } from "../lib/motion"
 
-const easing = "cubic-bezier(.22,1,.36,1)"
+const easing = ease.resolve
 
 function visible(rect) {
-  return rect && rect.width > 0 && rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth
+  return rect && rect.width > 0 && rect.height > 0 && rect.top + rect.height > 0 && rect.top < window.innerHeight && rect.left + rect.width > 0 && rect.left < window.innerWidth
 }
 
 function flyPoster(image, from, to, duration) {
@@ -21,6 +22,7 @@ export function useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRe
   const [ready, setReady] = useState(false)
   const reduced = useReducedMotion()
   const initialOrigin = useRef(origin)
+  const initialProjectId = useRef(projectId)
   const animations = useRef([])
 
   useLayoutEffect(() => {
@@ -45,13 +47,17 @@ export function useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRe
     const frame = frameRef.current
     const from = initialOrigin.current?.rect
     const to = frame.getBoundingClientRect()
-    const shared = !reduced && from && visible(to)
-    const duration = reduced ? 0 : shared ? 620 : 220
+    const shared = !reduced && visible(from) && visible(to)
+    const mobile = window.matchMedia("(max-width: 639px), (pointer: coarse)").matches
+    const duration = reduced ? timing.reduced : shared ? mobile ? timing.mobileFlight : timing.flight : timing.ui
     frame.style.opacity = shared ? "0" : "1"
+    const source = document.querySelector(`[data-project-id="${CSS.escape(initialProjectId.current)}"] .project-cover`)
+    const sourceVisibility = source?.style.visibility || ""
+    if (shared && source) source.style.visibility = "hidden"
     const entering = [
-      backdropRef.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration, easing, fill: "both" }),
-      surfaceRef.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration: reduced ? 0 : 320, delay: shared ? 180 : 0, easing, fill: "both" }),
+      backdropRef.current.animate([{ opacity: 0 }, { opacity: 0.35, offset: 0.18 }, { opacity: 1 }], { duration, easing: ease.swift, fill: "both" }),
     ]
+    if (!shared) entering.push(surfaceRef.current.animate([{ opacity: 0 }, { opacity: 1 }], { duration, easing, fill: "both" }))
     if (shared) entering.push(flyPoster(flight, from, to, duration))
     animations.current = entering
     // Resize invalidates the measured destination; settle into the responsive frame.
@@ -62,12 +68,15 @@ export function useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRe
       window.removeEventListener("resize", settle)
       frame.style.opacity = "1"
       flight.style.visibility = "hidden"
+      if (source) source.style.visibility = sourceVisibility
       setReady(true)
+      entering.forEach((animation) => { animation.commitStyles(); animation.cancel() })
     }).catch(() => {})
     return () => {
       disposed = true
       window.removeEventListener("resize", settle)
       entering.forEach((animation) => animation.cancel())
+      if (source) source.style.visibility = sourceVisibility
     }
   }, [reduced, backdropRef, surfaceRef, frameRef, flightRef])
 
@@ -81,7 +90,7 @@ export function useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRe
     const target = document.querySelector(`[data-project-id="${CSS.escape(projectId)}"] .project-cover`)
     const to = target?.getBoundingClientRect()
     const shared = !reduced && ready && visible(from) && visible(to)
-    const duration = reduced ? 0 : shared ? 420 : 220
+    const duration = reduced ? timing.reduced : shared ? timing.close : timing.ui
     flight.style.visibility = "hidden"
     frame.style.opacity = shared ? "0" : "1"
     const leaving = [

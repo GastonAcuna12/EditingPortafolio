@@ -7,7 +7,8 @@ export function About({ copy }) {
     <section id="about" className="about-section shell" aria-labelledby="about-title">
       <motion.div className="about-heading" viewport={{ once: true, amount: 0.2 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.revealed = "true" }}>
         <p className="eyebrow">{copy.label}</p>
-        <h2 id="about-title"><span className="about-title-mask"><span>{copy.lines[0]}</span></span>{" "}<span className="about-title-mask"><span>{copy.lines[1]}</span></span><em>{copy.lines[2]}</em></h2>
+        <h2 id="about-title"><span className="about-title-mask"><span>{copy.lines[0]}</span></span>{" "}<span className="about-title-mask"><span>{copy.lines[1]}</span></span></h2>
+        <p className="about-accent"><em>{copy.lines[2]}</em></p>
       </motion.div>
       <Reveal className="about-story">
         <p className="about-intro">{copy.intro}</p>
