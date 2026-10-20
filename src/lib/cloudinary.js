@@ -46,3 +46,12 @@ export function getCloudinaryPosterSrcSet(src, second = 0) {
   if (!getCloudinaryVideoPoster(src)) return undefined
   return [360, 540, 720, 1080].map((width) => `${getCloudinaryVideoPoster(src, "desktop", second, width)} ${width}w`).join(", ")
 }
+
+// Short silent clip for hover previews: starts on the curated poster frame, so the still comes alive.
+export function getCloudinaryPreview(src, second = 0, length = 6) {
+  if (!src || !src.includes("res.cloudinary.com") || !src.includes("/video/upload/")) return null
+  const [prefix] = src.split("/video/upload/")
+  const publicPath = getCloudinaryPublicVideoPath(src)
+  if (!publicPath) return null
+  return `${prefix}/video/upload/so_${second},eo_${Math.round((second + length) * 100) / 100},f_mp4,q_auto:eco,w_540,ac_none/${publicPath}`
+}
