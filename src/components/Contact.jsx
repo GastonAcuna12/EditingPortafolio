@@ -35,7 +35,7 @@ export function Contact({ copy, role }) {
         </div>
       </div>
       <div ref={endRef} className="footer-end" aria-hidden="true">
-        <motion.p style={reduced ? undefined : { opacity, filter, y }}>Gastón Acuña<span>.</span></motion.p>
+        <motion.p style={reduced ? undefined : { opacity, filter, y }}><span className="footer-end-line">Gastón</span> <span className="footer-end-line">Acuña<span className="footer-end-stop">.</span></span></motion.p>
       </div>
     </motion.footer>
   )

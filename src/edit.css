@@ -152,7 +152,7 @@ body { padding-bottom: var(--timeline-h); }
 /* End card: the name comes into focus and the bottom of the frame fades out. */
 .footer-end { position: relative; overflow: hidden; padding-top: clamp(24px, 4vw, 56px); }
 .footer-end p { width: fit-content; margin-inline: auto; font: 600 min(12.4vw, 196px)/.82 var(--display); letter-spacing: -.045em; color: var(--paper); white-space: nowrap; will-change: opacity, filter, transform; }
-.footer-end p span { color: var(--accent); }
+.footer-end-stop { color: var(--accent); }
 .footer-end::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to bottom, #0a0a0a00, #0a0a0a 92%); pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   .timeline { transition: none; }
@@ -174,4 +174,12 @@ body { padding-bottom: var(--timeline-h); }
   .work-gallery .project--pair .project-category { font-size: 13px; margin-top: 4px; }
   .work-gallery .project--closing .project-title { font-size: 14px; line-height: 1.3; }
   .work-gallery .project--pair .project-action, .work-gallery .project--closing .project-action, .work-gallery .project--closing .project-category { display: none; }
+}
+
+/* On a phone the name stacks on two lines so it keeps its weight. */
+@media (max-width: 639px) {
+  .footer-end { padding-top: 40px; }
+  .footer-end p { width: auto; margin-inline: 20px; font-size: 27vw; line-height: .84; letter-spacing: -.05em; }
+  .footer-end-line { display: block; }
+  .footer-end::after { inset: 62% 0 0; }
 }
