@@ -1,6 +1,6 @@
 // Visit counts with GoatCounter: no cookies, no personal data, so no consent banner.
 // Set the site code once the GoatCounter account exists (https://<code>.goatcounter.com).
-const GOATCOUNTER_CODE = ""
+const GOATCOUNTER_CODE = "gastonaar"
 
 let loaded = false
 
