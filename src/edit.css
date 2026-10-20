@@ -75,9 +75,12 @@
 .timeline-clip span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .timeline-clip:hover { color: var(--paper); }
 .timeline-clip[data-active="true"] { color: var(--paper); }
-.timeline-track::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); }
-.timeline-track::after { content: ""; position: absolute; left: 0; top: 0; height: 1px; width: calc(var(--progress) * 100%); background: var(--accent); }
-.timeline-playhead { position: absolute; top: 0; bottom: 0; left: calc(var(--progress) * 100%); width: 1px; background: var(--accent); pointer-events: none; }
+/* What has played fills with the accent, like rendered footage on a timeline. */
+.timeline-track { border-top: 1px solid var(--line); }
+.timeline-track::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--progress) * 100%); background: #d6c7a147; pointer-events: none; }
+.timeline-track::after { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: calc(var(--progress) * 100%); background: var(--accent); pointer-events: none; }
+.timeline-clip[data-played="true"] { color: #b8ab88; }
+.timeline-playhead { position: absolute; top: -1px; bottom: 0; left: calc(var(--progress) * 100%); width: 2px; margin-left: -1px; background: var(--paper); pointer-events: none; }
 body { padding-bottom: var(--timeline-h); }
 .copy-feedback { bottom: calc(var(--timeline-h) + 16px); }
 
