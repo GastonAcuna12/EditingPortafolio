@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react"
 import { timing } from "../lib/motion"
 
 // One sampled silhouette of the actual Hero glyphs, replaced by live text.
-export function RasterReveal({ children, className = "", duration = timing.heroRaster }) {
+export function RasterReveal({ children, className = "", duration = timing.heroRaster, beatWord }) {
   const ref = useRef(null)
   useEffect(() => {
     const node = ref.current
@@ -73,8 +73,11 @@ export function RasterReveal({ children, className = "", duration = timing.heroR
     start()
     return () => { disposed = true; finish(); reduced.removeEventListener("change", preferenceChange); window.removeEventListener("resize", finish) }
   }, [children, duration])
+  // Optionally isolate one word so it can carry its own beat; the sampled silhouette still uses the whole line.
+  const at = beatWord ? children.indexOf(beatWord) : -1
+  const content = at < 0 ? children : <>{children.slice(0, at)}<span className="beat-word">{beatWord}</span>{children.slice(at + beatWord.length)}</>
   return <span ref={ref} className={"raster-reveal " + className}>
-    <span className="raster-content">{children}</span>
+    <span className="raster-content">{content}</span>
     <span className="raster-pixels" aria-hidden="true" />
   </span>
 }

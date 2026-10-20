@@ -8,7 +8,7 @@ import { resolveEase, timing } from "../lib/motion"
 export function Hero({ copy, projects, videoMode, onOpen }) {
   const reduced = useReducedMotion()
   const titleRef = useRef(null)
-  // Each cut on the monitor lands as a beat on the headline: the line "clicks".
+  // Each cut on the monitor lands as a beat on one word: "clicks".
   const onCut = useCallback(() => {
     const title = titleRef.current
     if (title) title.dataset.beat = title.dataset.beat === "a" ? "b" : "a"
@@ -20,7 +20,7 @@ export function Hero({ copy, projects, videoMode, onOpen }) {
         <h1 id="hero-title" ref={titleRef}>
           {copy.lines.map((line, index) => (
             <span className="line-mask" key={index}>
-              {index === 1 ? <RasterReveal className="hero-italic" duration={timing.heroRaster}>{line}</RasterReveal> : <motion.span initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .3 }}>{line}</motion.span>}
+              {index === 1 ? <RasterReveal className="hero-italic" duration={timing.heroRaster} beatWord={copy.beatWord}>{line}</RasterReveal> : <motion.span initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .3 }}>{line}</motion.span>}
             </span>
           ))}
         </h1>

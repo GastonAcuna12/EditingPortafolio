@@ -125,9 +125,10 @@ body { padding-bottom: var(--timeline-h); }
 .sound-toggle { min-height: 36px; padding: 0; color: var(--muted); font: 400 12px/1 "DM Sans", sans-serif; white-space: nowrap; }
 .sound-toggle:hover, .sound-toggle[data-on="true"] { color: var(--paper); }
 
-/* Each reel cut is a beat on the headline: one quick jump cut. */
-.hero h1[data-beat="a"] .hero-italic { animation: beat-a 140ms steps(2, jump-none) both; }
-.hero h1[data-beat="b"] .hero-italic { animation: beat-b 140ms steps(2, jump-none) both; }
+/* Each reel cut is a beat on the word "clicks": one quick jump cut. */
+.beat-word { display: inline-block; }
+.hero h1[data-beat="a"] .beat-word { animation: beat-a 140ms steps(2, jump-none) both; }
+.hero h1[data-beat="b"] .beat-word { animation: beat-b 140ms steps(2, jump-none) both; }
 @keyframes beat-a { 0% { transform: translateX(3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
 @keyframes beat-b { 0% { transform: translateX(-3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
 
@@ -143,7 +144,7 @@ body { padding-bottom: var(--timeline-h); }
 @media (max-width: 639px) {
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero h1[data-beat] .hero-italic { animation: none; }
+  .hero h1[data-beat] .beat-word { animation: none; }
   .detail-cut { display: none; }
 }
 
