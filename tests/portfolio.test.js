@@ -31,7 +31,7 @@ test("Cloudinary URLs preserve each public ID and use device-specific MP4 varian
     assert.ok(desktop.includes("/f_mp4,q_auto,w_720/"))
     assert.ok(mobile.includes("/f_mp4,q_auto:eco,w_540/"))
     assert.ok(!desktop.includes("q_auto/f_auto"))
-    assert.match(getCloudinaryVideoPoster(project.videoSrc, "mobile", 1), /\/so_1,f_jpg,q_auto:eco,w_360\/.+\.jpg$/)
+    assert.match(getCloudinaryVideoPoster(project.videoSrc, "mobile", 1), /\/so_1,f_auto,q_auto:eco,w_360\/.+\.jpg$/)
   }
 })
 
@@ -43,7 +43,7 @@ test("curated posters have responsive widths without duplicate transformations",
     for (const [index, width] of [360, 540, 720, 1080].entries()) {
       const [url, descriptor] = candidates[index].split(" ")
       assert.equal(descriptor, `${width}w`)
-      assert.ok(url.includes(`/so_${project.posterSecond},f_jpg,q_auto:eco,w_${width}/`))
+      assert.ok(url.includes(`/so_${project.posterSecond},f_auto,q_auto:eco,w_${width}/`))
       assert.equal(url.split("/video/upload/").length, 2)
       assert.ok(url.endsWith(project.videoSrc.split("/").at(-1).replace(/\.mp4$/, ".jpg")))
       assert.ok(!url.includes("q_auto/f_auto"))

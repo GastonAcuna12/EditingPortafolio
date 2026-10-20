@@ -16,9 +16,12 @@ import { Contact } from "./components/Contact"
 import { CustomCursor } from "./components/CustomCursor"
 import { TimelineBar } from "./components/TimelineBar"
 import { play } from "./lib/sound"
+import { readLanguage, saveLanguage } from "./lib/language"
+import { startAnalytics, track } from "./lib/analytics"
 
 export default function App() {
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguageState] = useState(readLanguage)
+  const setLanguage = (next) => { saveLanguage(next); setLanguageState(next) }
   const isCompact = useCompactLayout()
   const copy = translations[language]
   const localize = (project) => ({
@@ -30,9 +33,9 @@ export default function App() {
   const allProjects = [...work, ...lab]
   const navigation = useProjectNavigation(allProjects)
   const { selection, finishClose } = navigation
-  const openProject = (id, trigger) => { play("whoosh"); navigation.openProject(id, trigger) }
+  const openProject = (id, trigger) => { play("whoosh"); track(`project/${id}`); navigation.openProject(id, trigger) }
   const closeProject = () => { if (selection && !selection.closing) play("whoosh"); navigation.closeProject() }
-  const stepProject = (direction) => { play("cut"); navigation.stepProject(direction) }
+  const stepProject = (direction) => { play("cut"); track(`step/${direction > 0 ? "next" : "previous"}`); navigation.stepProject(direction) }
   const selectedIndex = allProjects.findIndex((project) => project.id === selection?.id)
   const selectedProject = allProjects[selectedIndex]
 
@@ -44,6 +47,7 @@ export default function App() {
   ], [copy])
 
   useEffect(() => { document.documentElement.lang = language }, [language])
+  useEffect(() => { startAnalytics() }, [])
 
   return (
     <MotionConfig reducedMotion="user">

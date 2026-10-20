@@ -39,7 +39,7 @@ export function getCloudinaryVideoPoster(src, mode = "desktop", second = 0, requ
   const posterPath = publicPath.replace(/\.(mp4|mov|webm)(\?.*)?$/i, ".jpg$2")
   const width = `w_${requestedWidth || (mode === "mobile" ? 360 : 540)}`
 
-  return `${prefix}/video/upload/so_${second},f_jpg,q_auto:eco,${width}/${posterPath}`
+  return `${prefix}/video/upload/so_${second},f_auto,q_auto:eco,${width}/${posterPath}`
 }
 
 export function getCloudinaryPosterSrcSet(src, second = 0) {

@@ -35,3 +35,12 @@ test("hover previews are short silent clips from the curated frame", () => {
   assert.ok(url.includes("/so_5,eo_10,f_mp4,q_auto:eco,w_540,ac_none/"))
   assert.ok(url.endsWith(projects[2].videoSrc.split("/").at(-1)))
 })
+
+test("language follows the visitor's choice, then the browser, then English", async () => {
+  const { initialLanguage } = await import("../src/lib/language.js")
+  assert.equal(initialLanguage(null, ["es-PY", "en"]), "es")
+  assert.equal(initialLanguage(null, ["pt-BR", "en-US"]), "en")
+  assert.equal(initialLanguage(null, ["de"]), "en")
+  assert.equal(initialLanguage("en", ["es-AR"]), "en")
+  assert.equal(initialLanguage("fr", ["es"]), "es")
+})

@@ -20,9 +20,9 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
   const slots = ["lead", "pair", "pair", "interlude", "closing", "closing", "closing"]
   const imageSizes = {
     lead: "(max-width: 639px) calc(100vw - 40px), (max-width: 1199px) 46vw, 540px",
-    pair: "(max-width: 639px) calc(100vw - 64px), (max-width: 1199px) 37vw, 410px",
+    pair: "(max-width: 639px) calc(50vw - 27px), (max-width: 1199px) 37vw, 410px",
     interlude: "(max-width: 639px) calc(100vw - 40px), (max-width: 1199px) 43vw, 450px",
-    closing: "(max-width: 639px) 112px, (max-width: 1199px) 27vw, 390px",
+    closing: "(max-width: 639px) calc(33vw - 22px), (max-width: 1199px) 27vw, 390px",
   }
   return (
     <motion.section id="work" className="work-section shell" aria-labelledby="work-title" viewport={{ once: true, amount: 0 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.entered = "true" }}>
