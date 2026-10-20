@@ -111,10 +111,18 @@ export function TimelineBar({ sections, copy }) {
       <span className="timeline-tc" aria-hidden="true">{formatTimecode(position / FPS)}</span>
       <div className="timeline-track" ref={trackRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={endScrub} onPointerCancel={endScrub}>
         {layout.clips.map((clip) => (
-          <button key={clip.id} type="button" className="timeline-clip" data-active={current?.id === clip.id} data-played={head >= clip.end} style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }} onClick={() => jump(clip.id)} onPointerEnter={() => play("tick")} aria-current={current?.id === clip.id ? "location" : undefined}>
+          <button key={clip.id} type="button" className="timeline-clip" data-active={current?.id === clip.id} style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }} onClick={() => jump(clip.id)} onPointerEnter={() => play("tick")} aria-current={current?.id === clip.id ? "location" : undefined}>
             <span>{clip.label}</span>
           </button>
         ))}
+        {/* The played part: a solid accent copy of the clips, revealed up to the playhead, so labels flip to dark. */}
+        <div className="timeline-fill" aria-hidden="true">
+          {layout.clips.map((clip) => (
+            <span key={clip.id} className="timeline-clip" style={{ left: `${clip.start / layout.height * 100}%`, width: `${(clip.end - clip.start) / layout.height * 100}%` }}>
+              <span>{clip.label}</span>
+            </span>
+          ))}
+        </div>
         <span className="timeline-playhead" aria-hidden="true"><span className="timeline-grip" /></span>
       </div>
       <button type="button" className="sound-toggle" data-on={soundOn} onClick={toggleSound} aria-pressed={soundOn} aria-label={copy.sound} title={copy.sound}>
