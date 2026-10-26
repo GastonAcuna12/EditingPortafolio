@@ -11,7 +11,7 @@ function TriptychPanel({ projects, videoMode, index, active, masterRef }) {
   const cuts = useMemo(() => reelCuts.map((_, position) => ({ ...reelCuts[(position + index * 2) % reelCuts.length], length: 1.15 })), [index])
   const url = useMemo(() => buildReelUrl(projects, videoMode, cuts), [projects, videoMode, cuts])
   const first = projects.find((item) => item.id === cuts[0].id)
-  const poster = first && getCloudinaryVideoPoster(first.videoSrc, videoMode, cuts[0].in)
+  const poster = first && getCloudinaryVideoPoster(first.videoSrc, videoMode, first.posterSecond ?? cuts[0].in, 900)
 
   useEffect(() => {
     if (!active || !videoRef.current || typeof IntersectionObserver === "undefined") return
