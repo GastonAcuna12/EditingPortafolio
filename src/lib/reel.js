@@ -23,12 +23,12 @@ function versionedPath(src) {
   return match ? match[1] : rest.split("/").at(-1)
 }
 
-export function buildReelUrl(projects, mode = "desktop", cuts = reelCuts) {
+export function buildReelUrl(projects, mode = "desktop", cuts = reelCuts, effect = "") {
   const byId = new Map(projects.map((project) => [project.id, project]))
   const usable = cuts.filter((cut) => byId.get(cut.id)?.videoSrc?.includes("res.cloudinary.com"))
   if (!usable.length) return null
   const size = mode === "mobile" ? "w_360,h_640" : "w_540,h_960"
-  const look = `${size},c_fill,q_auto:eco,ac_none`
+  const look = `${size},c_fill,q_auto:eco,ac_none${effect ? `,${effect}` : ""}`
   const [first, ...rest] = usable
   const firstSrc = byId.get(first.id).videoSrc
   const [prefix] = firstSrc.split("/video/upload/")

@@ -4,7 +4,6 @@ import { copy as translations } from "./data/copy"
 import { featuredClients, localizeProject, playgroundProjects, projects } from "./data/portfolio"
 import { getProjectNotes } from "./data/projectNotes"
 import { useCompactLayout } from "./hooks/useCompactLayout"
-import { useSmoothScroll } from "./hooks/useSmoothScroll"
 import { useProjectNavigation } from "./hooks/useProjectNavigation"
 import { SiteNav } from "./components/SiteNav"
 import { Hero } from "./components/Hero"
@@ -36,7 +35,6 @@ export default function App() {
   const allProjects = [...work, ...lab]
   const navigation = useProjectNavigation(allProjects)
   const { selection, finishClose } = navigation
-  useSmoothScroll(Boolean(selection))
   const openProject = (id, trigger) => { play("whoosh"); track(`project/${id}`); navigation.openProject(id, trigger) }
   const closeProject = () => { if (selection && !selection.closing) play("whoosh"); navigation.closeProject() }
   const stepProject = (direction) => { play("cut"); track(`step/${direction > 0 ? "next" : "previous"}`); navigation.stepProject(direction) }

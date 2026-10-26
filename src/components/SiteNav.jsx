@@ -40,8 +40,7 @@ export function SiteNav({ language, onLanguageChange, copy, hasLab }) {
     setOpen(false)
     requestAnimationFrame(() => {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      if (reduced || window.matchMedia("(pointer: coarse)").matches) target.scrollIntoView({ behavior: "instant", block: "start" })
-      else window.dispatchEvent(new CustomEvent("portfolio:scroll", { detail: target }))
+      target.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" })
       window.history.pushState(null, "", href)
     })
   }
