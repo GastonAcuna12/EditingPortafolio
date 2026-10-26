@@ -36,10 +36,10 @@ h1, h2, h3 { font-weight: 650; font-variation-settings: "wdth" 100, "wght" 650; 
 .hero-bottom .text-link { color: var(--paper); border-color: var(--paper); font-weight: 700; white-space: nowrap; }
 .hero-bottom .text-link:hover { color: var(--accent); }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-word { animation: word-cut 10ms steps(1, end) both; animation-delay: calc(.15s + var(--word) * .19s); }
-  .hero-italic { animation: word-cut 10ms steps(1, end) both; animation-delay: .62s; }
+  .hero-main { animation: hero-rise 900ms cubic-bezier(.2, .7, .2, 1) both; animation-delay: .1s; }
+  .hero-italic { animation: hero-rise 900ms cubic-bezier(.2, .7, .2, 1) both; animation-delay: .28s; }
 }
-@keyframes word-cut { from { visibility: hidden; } to { visibility: visible; } }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
 
 .work-section { padding-block: clamp(90px, 10vw, 160px) clamp(105px, 11vw, 170px); border: 0; }
@@ -116,37 +116,6 @@ h1, h2, h3 { font-weight: 650; font-variation-settings: "wdth" 100, "wght" 650; 
   .footer-end p { font-size: 13vw; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-word, .hero-italic { animation: none; }
+  .hero-main, .hero-italic { animation: none; }
 }
 
-/* Work as an edit bay: a calm list of titles beside one big program monitor. */
-.bay { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 34%); gap: clamp(32px, 5vw, 88px); align-items: start; }
-.bay-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-.bay-row { border-bottom: 1px solid var(--line); }
-.bay-open { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto 18px; gap: 18px; align-items: baseline; width: 100%; padding: clamp(18px, 1.9vw, 26px) 0; text-align: left; color: var(--muted); transition: color 160ms ease; }
-.bay-thumb { display: none; }
-.bay-index, .bay-cat { font: 500 11px/1.4 var(--mono); letter-spacing: .03em; }
-.bay-title { min-width: 0; font: 600 clamp(22px, 2.5vw, 40px)/1.05 var(--display); letter-spacing: -.03em; color: #7d7a73; transition: color 160ms ease, transform 220ms cubic-bezier(.2, .7, .2, 1); }
-.bay-arrow { align-self: center; opacity: 0; transition: opacity 160ms ease, transform 200ms ease; }
-.bay-row[data-active="true"] .bay-title { color: var(--accent); transform: translateX(8px); }
-.bay-row[data-active="true"] .bay-arrow { opacity: 1; color: var(--accent); }
-.bay-row[data-active="true"] .bay-index { color: var(--accent); }
-.bay-open:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
-.bay-monitor { position: sticky; top: 104px; display: grid; gap: 16px; }
-.bay-screen { display: block; width: 100%; padding: 0; border: 1px solid #e8dcc026; border-radius: 4px; overflow: hidden; background: #141414; cursor: pointer; }
-.bay-screen .project-cover { width: 100%; aspect-ratio: 9 / 16; max-height: calc(100svh - 230px); }
-.bay-screen .project-watch, .bay-screen .project-crops { display: none; }
-.bay-caption { display: grid; gap: 8px; }
-.bay-slate { color: var(--muted); font: 500 11px/1.4 var(--mono); }
-.bay-caption p { margin: 0; color: #c9c6be; font-size: 15px; line-height: 1.5; max-width: 42ch; }
-@media (max-width: 860px) {
-  .bay { grid-template-columns: 1fr; }
-  .bay-monitor { display: none; }
-  .bay-open { grid-template-columns: 64px minmax(0, 1fr) 18px; grid-template-areas: "thumb index arrow" "thumb title arrow" "thumb cat arrow"; gap: 4px 16px; align-items: center; padding: 14px 0; }
-  .bay-thumb { grid-area: thumb; display: block; overflow: hidden; border-radius: 3px; }
-  .bay-thumb .project-cover { aspect-ratio: 9 / 16; }
-  .bay-thumb .project-watch, .bay-thumb .project-crops, .bay-thumb .project-tc { display: none; }
-  .bay-index { grid-area: index; } .bay-title { grid-area: title; font-size: clamp(20px, 5.6vw, 28px); } .bay-cat { grid-area: cat; } .bay-arrow { grid-area: arrow; opacity: 1; }
-  .bay-row[data-active="true"] .bay-title { transform: none; color: var(--paper); }
-}
-@media (prefers-reduced-motion: reduce) { .bay-title, .bay-arrow, .bay-open { transition: none; } }

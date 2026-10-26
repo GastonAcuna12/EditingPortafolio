@@ -1,53 +1,66 @@
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight } from "lucide-react"
+import { motion, useReducedMotion } from "motion/react"
+import { ArrowUpRight, Play } from "lucide-react"
+import { Reveal } from "./Reveal"
 import { ProjectPoster } from "./ProjectPoster"
+import { resolveEase, timing } from "../lib/motion"
 import { play } from "../lib/sound"
 
-export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy, selectedId }) {
+export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
+  const reduced = useReducedMotion()
   const [hovered, setHovered] = useState(null)
-  const [pinned, setPinned] = useState(null)
   const [canHover, setCanHover] = useState(false)
-  const timer = useRef(null)
-
+  const previewTimer = useRef(null)
+  useEffect(() => () => clearTimeout(previewTimer.current), [])
+  const startPreview = (id) => {
+    clearTimeout(previewTimer.current)
+    onPreload?.()
+    previewTimer.current = setTimeout(() => setHovered(id), 150)
+  }
+  const stopPreview = (id) => {
+    clearTimeout(previewTimer.current)
+    setHovered((current) => current === id ? null : current)
+  }
   useEffect(() => {
-    const query = matchMedia("(hover: hover) and (pointer: fine)")
+    const query = window.matchMedia("(hover: hover) and (pointer: fine)")
     const update = () => setCanHover(query.matches)
     update()
     query.addEventListener("change", update)
     return () => query.removeEventListener("change", update)
   }, [])
-  useEffect(() => () => clearTimeout(timer.current), [])
-  const [active, setActive] = useState(projects[0]?.id)
-  const current = projects.find((project) => project.id === active) || projects[0]
-  const point = (id) => {
-    setActive(id)
-    clearTimeout(timer.current)
-    onPreload?.()
-    timer.current = setTimeout(() => setHovered(id), 150)
+  const slots = ["lead", "pair", "pair", "interlude", "closing", "closing", "closing"]
+  const imageSizes = {
+    lead: "(max-width: 639px) calc(100vw - 40px), (max-width: 1199px) 46vw, 540px",
+    pair: "(max-width: 639px) calc(50vw - 27px), (max-width: 1199px) 37vw, 410px",
+    interlude: "(max-width: 639px) calc(100vw - 40px), (max-width: 1199px) 43vw, 450px",
+    closing: "(max-width: 639px) calc(33vw - 22px), (max-width: 1199px) 27vw, 390px",
   }
-  const stop = () => { clearTimeout(timer.current); setHovered(null) }
-  const open = (id, element) => { setPinned(id); stop(); onOpen(id, element) }
-  // An editor's bay: a clean list of titles beside one big program monitor.
-  return <section id="work" className="work-section shell" aria-labelledby="work-title">
-    <div className="work-heading"><p className="eyebrow"><span className="section-index" aria-hidden="true">SEC 02</span>{copy.label}</p><h2 id="work-title">{copy.title}</h2><p>{copy.description}</p></div>
-    <div className="bay">
-      <ol className="bay-list" onPointerLeave={stop}>
-        {projects.map((project, index) => <li key={project.id} className="bay-row" data-active={current?.id === project.id || (pinned === project.id && selectedId === project.id)}>
-          <button type="button" className="bay-open project-open" data-cursor="project" data-project-id={project.id} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog" onClick={(event) => open(project.id, event.currentTarget)} onPointerEnter={() => { if (canHover) { point(project.id); play("tick") } }} onFocus={() => point(project.id)} onBlur={stop}>
-            <span className="bay-thumb"><ProjectPoster project={project} videoMode={videoMode} eager={index === 0} label={copy.open} sizes="96px" /></span>
-            <span className="bay-index">{String(index + 1).padStart(2, "0")}</span>
-            <span className="bay-title">{project.title}</span>
-            <span className="bay-cat">{project.category}</span>
-            <ArrowUpRight className="bay-arrow" size={18} aria-hidden="true" />
-          </button>
-        </li>)}
-      </ol>
-      {current && <div className="bay-monitor" aria-hidden="true">
-        <button type="button" className="bay-screen" tabIndex={-1} onClick={(event) => open(current.id, event.currentTarget)}>
-          <ProjectPoster key={current.id} project={current} videoMode={videoMode} previewing={canHover && hovered === current.id} eager label={copy.open} sizes="(max-width: 1200px) 34vw, 420px" />
-        </button>
-        <div className="bay-caption"><span className="bay-slate">{current.format} · {current.role}</span><p>{current.intro}</p></div>
-      </div>}
-    </div>
-  </section>
+  return (
+    <motion.section id="work" className="work-section shell" aria-labelledby="work-title" viewport={{ once: true, amount: 0 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.entered = "true" }}>
+      <Reveal className="work-heading">
+        <div><p className="eyebrow"><span className="section-index" aria-hidden="true">SEC 02</span>{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
+        <p>{copy.description}</p>
+      </Reveal>
+      <div className="work-gallery">
+        {projects.map((project, index) => {
+          const slot = slots[index] || "closing"
+          return (
+            <article className={`project project--${slot}`} key={project.id}>
+              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { stopPreview(project.id); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { onPreload?.(); if (canHover) { startPreview(project.id); play("tick") } }} onPointerLeave={() => stopPreview(project.id)} onFocus={() => startPreview(project.id)} onBlur={() => stopPreview(project.id)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
+                <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
+                <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
+                  {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
+                  <span className="project-title">{project.title}</span>
+                  {(slot === "lead" || slot === "interlude") ? <span className="project-category">{project.category}</span> : <span className="project-slate">{project.format} · {project.role}</span>}
+                  {(slot === "lead" || slot === "interlude") && <span className="project-summary">{project.intro}</span>}
+                  {(slot === "lead" || slot === "interlude") && <span className="project-meta"><span><span className="project-meta-label">{copy.role}</span>{project.role}</span><span><span className="project-meta-label">{copy.format}</span>{project.format}</span></span>}
+                  <span className="project-action"><Play size={14} aria-hidden="true" /><span>{copy.open}</span></span>
+                </span><ArrowUpRight className="project-arrow" size={22} aria-hidden="true" /></motion.span>
+              </button>
+            </article>
+          )
+        })}
+      </div>
+    </motion.section>
+  )
 }
