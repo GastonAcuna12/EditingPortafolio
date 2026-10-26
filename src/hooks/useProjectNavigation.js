@@ -27,7 +27,7 @@ export function useProjectNavigation(projects) {
     const cover = trigger?.querySelector(".project-cover")
     const image = cover?.querySelector("img")
     const rect = cover?.getBoundingClientRect()
-    const origin = image?.complete && image.naturalWidth && rect
+    const origin = image?.complete && image.naturalWidth && rect && getComputedStyle(cover).visibility !== "hidden"
       ? { rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height }, src: image.currentSrc }
       : null
     returnFocus.current = trigger

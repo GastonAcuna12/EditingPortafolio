@@ -89,7 +89,7 @@ export function useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRe
     const from = frame.getBoundingClientRect()
     const target = document.querySelector(`[data-project-id="${CSS.escape(projectId)}"] .project-cover`)
     const to = target?.getBoundingClientRect()
-    const shared = !reduced && ready && visible(from) && visible(to)
+    const shared = !reduced && ready && target && getComputedStyle(target).visibility !== "hidden" && visible(from) && visible(to)
     const duration = reduced ? timing.reduced : shared ? timing.close : timing.ui
     flight.style.visibility = "hidden"
     frame.style.opacity = shared ? "0" : "1"

@@ -4,9 +4,11 @@ import { copy as translations } from "./data/copy"
 import { featuredClients, localizeProject, playgroundProjects, projects } from "./data/portfolio"
 import { getProjectNotes } from "./data/projectNotes"
 import { useCompactLayout } from "./hooks/useCompactLayout"
+import { useSmoothScroll } from "./hooks/useSmoothScroll"
 import { useProjectNavigation } from "./hooks/useProjectNavigation"
 import { SiteNav } from "./components/SiteNav"
 import { Hero } from "./components/Hero"
+import { DisciplineStrip } from "./components/DisciplineStrip"
 import { FeaturedWork } from "./components/FeaturedWork"
 import { FeaturedClients } from "./components/FeaturedClients"
 import { About } from "./components/About"
@@ -35,6 +37,7 @@ export default function App() {
   const allProjects = [...work, ...lab]
   const navigation = useProjectNavigation(allProjects)
   const { selection, finishClose } = navigation
+  useSmoothScroll(Boolean(selection))
   const openProject = (id, trigger) => { play("whoosh"); track(`project/${id}`); navigation.openProject(id, trigger) }
   const closeProject = () => { if (selection && !selection.closing) play("whoosh"); navigation.closeProject() }
   const stepProject = (direction) => { play("cut"); track(`step/${direction > 0 ? "next" : "previous"}`); navigation.stepProject(direction) }
@@ -57,8 +60,9 @@ export default function App() {
       <a className="skip-link" href="#work">{copy.nav.skip}</a>
       <SiteNav language={language} onLanguageChange={setLanguage} copy={copy.nav} hasLab={lab.length > 0} />
       <main>
-        <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} onOpen={openProject} onPreload={loadProjectDetail} />
-        <FeaturedWork projects={work} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} />
+        <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} />
+        <DisciplineStrip copy={copy.disciplines} />
+        <FeaturedWork projects={work} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} selectedId={selection?.id} />
         <FeaturedClients clients={featuredClients} copy={copy.clients} />
         <About copy={copy.about} />
         <Playground projects={lab} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />

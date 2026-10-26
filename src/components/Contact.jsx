@@ -1,20 +1,11 @@
 import { ArrowUp, ArrowUpRight, Check, Copy } from "lucide-react"
-import { useRef } from "react"
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
+import { motion } from "motion/react"
 import { contact } from "../data/portfolio"
 import { useCopyEmail } from "../hooks/useCopyEmail"
 import "./Contact.css"
 
 export function Contact({ copy, role }) {
   const { copied, copyEmail } = useCopyEmail()
-  const endRef = useRef(null)
-  const reduced = useReducedMotion()
-  // The last frame of the page: the name pulls into focus as you arrive, then the bottom dissolves to black.
-  const { scrollYProgress } = useScroll({ target: endRef, offset: ["start end", "end end"] })
-  const clamp = (value) => Math.min(1, Math.max(0, value))
-  const opacity = useTransform(scrollYProgress, (value) => clamp(value / .85))
-  const filter = useTransform(scrollYProgress, (value) => `blur(${(1 - clamp(value / .9)) * 14}px)`)
-  const y = useTransform(scrollYProgress, (value) => (1 - clamp(value)) * 48)
   return (
     <motion.footer id="contact" className="contact-section" aria-labelledby="contact-title" viewport={{ once: true, amount: .2 }} onViewportEnter={entry => { if (entry) entry.target.dataset.entered = "true" }}>
       <div className="contact-content shell">
@@ -34,8 +25,8 @@ export function Contact({ copy, role }) {
           <a href="#top">{copy.back}<ArrowUp size={16} aria-hidden="true" /></a>
         </div>
       </div>
-      <div ref={endRef} className="footer-end" aria-hidden="true">
-        <motion.p style={reduced ? undefined : { opacity, filter, y }}><span className="footer-end-line">Gastón</span> <span className="footer-end-line">Acuña<span className="footer-end-stop">.</span></span></motion.p>
+      <div className="footer-end" aria-hidden="true">
+        <p><span className="footer-end-line">Gastón</span> <span className="footer-end-line">Acuña<span className="footer-end-stop">.</span></span></p>
       </div>
     </motion.footer>
   )

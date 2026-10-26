@@ -15,8 +15,16 @@ function Languages({ language, onChange, label }) {
 
 export function SiteNav({ language, onLanguageChange, copy, hasLab }) {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const links = [{ href: "#work", label: copy.work }, { href: "#about", label: copy.about }]
   if (hasLab) links.push({ href: "#lab", label: copy.lab })
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 24)
+    update()
+    window.addEventListener("scroll", update, { passive: true })
+    return () => window.removeEventListener("scroll", update)
+  }, [])
 
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 900px)")
@@ -32,13 +40,14 @@ export function SiteNav({ language, onLanguageChange, copy, hasLab }) {
     setOpen(false)
     requestAnimationFrame(() => {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      target.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" })
+      if (reduced || window.matchMedia("(pointer: coarse)").matches) target.scrollIntoView({ behavior: "instant", block: "start" })
+      else window.dispatchEvent(new CustomEvent("portfolio:scroll", { detail: target }))
       window.history.pushState(null, "", href)
     })
   }
 
   return (
-    <header className="site-header">
+    <header className="site-header" data-scrolled={scrolled || open}>
       <nav className="shell nav-inner" aria-label={copy.label}>
         <a className="wordmark" href="#top" onClick={(event) => navigate(event, "#top")}>Gastón Acuña<span aria-hidden="true">.</span></a>
         <div className="desktop-nav">

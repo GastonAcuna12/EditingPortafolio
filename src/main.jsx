@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import './edit.css'
 import App from './App.jsx'
+import './guau.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

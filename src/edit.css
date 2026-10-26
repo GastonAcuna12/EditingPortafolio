@@ -2,7 +2,7 @@
    Readouts use a mono face so numbers never jitter while they run. */
 :root {
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --rec: #e5484d;
+  --rec: var(--accent);
   --timeline-h: 40px;
 }
 
