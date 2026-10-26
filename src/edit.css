@@ -183,3 +183,45 @@ body { padding-bottom: var(--timeline-h); }
   .footer-end-line { display: block; }
   .footer-end::after { inset: 62% 0 0; }
 }
+
+/* A small slate label follows the same sequence as the page timeline. */
+.section-index { display: inline-block; margin-right: 16px; color: var(--accent); font: 500 10px/1 var(--mono); letter-spacing: .09em; vertical-align: 1px; }
+.contact-italic { font-family: var(--serif); font-style: italic; font-weight: 600; letter-spacing: -.045em; }
+
+/* The selected frame stays present while the full poster loads. */
+.project-cover { isolation: isolate; background: #24231f; }
+.project-placeholder, .project-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.project-placeholder { filter: blur(12px); transform: scale(1.06); }
+.project-poster { opacity: 0; transition: opacity 180ms ease; }
+.project-poster[data-loaded="true"] { opacity: 1; }
+.poster-fallback { position: absolute; inset: 0; color: var(--muted); font-size: 18px; text-align: center; }
+
+.project-slate { display: block; margin-top: 8px; color: var(--muted); font: 400 11px/1.5 var(--mono); letter-spacing: .01em; }
+.project-crops { position: absolute; inset: 14px; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 160ms ease; }
+.project-crops i { position: absolute; width: 17px; height: 17px; border-color: var(--accent); border-style: solid; border-width: 0; }
+.project-crops i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.project-crops i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.project-crops i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.project-crops i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.project-open:is(:hover, :focus-visible) .project-crops { opacity: 1; }
+
+/* Keep the whole 9:16 frame visible while trimming the hero's spare scroll. */
+@media (min-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 290px); gap: 48px; padding-bottom: 42px; }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 250px); gap: 36px; }
+}
+@media (min-width: 640px) and (max-width: 899px) {
+  .hero { gap: 26px; }
+  .hero-monitor { width: min(100%, 270px); }
+}
+@media (max-width: 639px) {
+  .hero { gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-poster, .project-crops { transition: none; }
+}
+@media (min-width: 640px) and (prefers-reduced-motion: no-preference) {
+  body::after { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .03; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='96' height='96' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); }
+}

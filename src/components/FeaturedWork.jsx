@@ -27,7 +27,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
   return (
     <motion.section id="work" className="work-section shell" aria-labelledby="work-title" viewport={{ once: true, amount: 0 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.entered = "true" }}>
       <Reveal className="work-heading">
-        <div><p className="eyebrow">{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
+        <div><p className="eyebrow"><span className="section-index" aria-hidden="true">SEC 02</span>{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
         <p>{copy.description}</p>
       </Reveal>
       <div className="work-gallery">
@@ -40,7 +40,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
                   <span className="project-title">{project.title}</span>
-                  <span className="project-category">{project.category}</span>
+                  {(slot === "lead" || slot === "interlude") ? <span className="project-category">{project.category}</span> : <span className="project-slate">{project.format} · {project.role}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-summary">{project.intro}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-meta"><span><span className="project-meta-label">{copy.role}</span>{project.role}</span><span><span className="project-meta-label">{copy.format}</span>{project.format}</span></span>}
                   <span className="project-action"><Play size={14} aria-hidden="true" /><span>{copy.open}</span></span>
