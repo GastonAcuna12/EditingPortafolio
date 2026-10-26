@@ -107,7 +107,7 @@ export function TimelineBar({ sections, copy }) {
   }
 
   return (
-    <nav className="timeline" data-ended={ended} aria-label={copy.label} style={{ "--progress": head / layout.height }}>
+    <nav className="timeline" data-ended={ended} aria-hidden={ended} inert={ended} aria-label={copy.label} style={{ "--progress": head / layout.height }}>
       <span className="timeline-tc" aria-hidden="true">{formatTimecode(position / FPS)}</span>
       <div className="timeline-track" ref={trackRef} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={endScrub} onPointerCancel={endScrub}>
         {layout.clips.map((clip) => (

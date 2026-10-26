@@ -1,7 +1,7 @@
 import test from "node:test"
 import assert from "node:assert/strict"
 import { projects, localizeProject, featuredClients, playgroundProjects } from "../src/data/portfolio.js"
-import { getOptimizedCloudinaryVideo, getCloudinaryVideoPoster, getCloudinaryPosterSrcSet } from "../src/lib/cloudinary.js"
+import { getOptimizedCloudinaryVideo, getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, getCloudinaryVp9Video, ENABLE_VP9_SOURCE } from "../src/lib/cloudinary.js"
 import { getProjectNotes } from "../src/data/projectNotes.js"
 import { copy } from "../src/data/copy.js"
 
@@ -17,6 +17,9 @@ test("all seven existing projects have stable identities and bilingual content",
       assert.ok(translated.title && translated.description)
       const notes = getProjectNotes(project.id, language)
       assert.ok(notes.context && notes.approach && notes.role && notes.intro)
+      assert.equal(translated.category, notes.category)
+      assert.equal(translated.description, notes.context)
+      assert.doesNotMatch(`${translated.category} ${translated.description}`, /premium|high-performance|mobile-first|alto rendimiento/i)
       assert.equal(translated.posterSecond, project.posterSecond)
     }
   }
@@ -32,6 +35,16 @@ test("Cloudinary URLs preserve each public ID and use device-specific MP4 varian
     assert.ok(mobile.includes("/f_mp4,q_auto:eco,w_540/"))
     assert.ok(!desktop.includes("q_auto/f_auto"))
     assert.match(getCloudinaryVideoPoster(project.videoSrc, "mobile", 1), /\/so_1,f_auto,q_auto:eco,w_360\/.+\.jpg$/)
+  }
+})
+
+test("VP9 source is on and derives a webm next to each MP4", () => {
+  assert.equal(ENABLE_VP9_SOURCE, true)
+  assert.equal(getCloudinaryVp9Video("/video.mp4"), null)
+  for (const project of projects) {
+    const variant = getCloudinaryVp9Video(project.videoSrc, "mobile")
+    assert.ok(variant.includes("/f_webm,vc_vp9,q_auto:eco,w_540/"))
+    assert.ok(variant.endsWith(project.videoSrc.split("/").at(-1).replace(/\.mp4$/, ".webm")))
   }
 })
 

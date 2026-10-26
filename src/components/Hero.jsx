@@ -5,7 +5,7 @@ import { RasterReveal } from "./RasterReveal"
 import { HeroReel } from "./HeroReel"
 import { resolveEase, timing } from "../lib/motion"
 
-export function Hero({ copy, projects, videoMode, onOpen }) {
+export function Hero({ copy, projects, videoMode, onOpen, onPreload }) {
   const reduced = useReducedMotion()
   const titleRef = useRef(null)
   // Each cut on the monitor lands as a beat on one word: "clicks".
@@ -30,7 +30,7 @@ export function Hero({ copy, projects, videoMode, onOpen }) {
         </motion.div>
       </div>
       <motion.div className="hero-monitor" initial={reduced ? false : { opacity: 0, clipPath: "inset(0 0 100% 0)" }} animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }} transition={{ duration: .62, delay: reduced ? 0 : .18, ease: resolveEase }}>
-        <HeroReel projects={projects} videoMode={videoMode} copy={copy} onOpen={onOpen} onCut={reduced ? undefined : onCut} />
+        <HeroReel projects={projects} videoMode={videoMode} copy={copy} onOpen={onOpen} onPreload={onPreload} onCut={reduced ? undefined : onCut} />
       </motion.div>
     </section>
   )

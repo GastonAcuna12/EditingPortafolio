@@ -24,8 +24,8 @@ export const projects = [
       "en": {
         "title": "Performance Motion Cut",
         "eyebrow": "9:16 / MOTION",
-        "category": "High-Performance Motion",
-        "description": "High-performance vertical motion piece built around sharp pacing, clean visual hierarchy and strong mobile-first delivery.",
+        "category": "Motion / Short-form",
+        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
         "tags": [
           "Motion",
           "Performance",
@@ -35,8 +35,8 @@ export const projects = [
       "es": {
         "title": "Performance Motion Cut",
         "eyebrow": "9:16 / MOTION",
-        "category": "Motion de Alto Rendimiento",
-        "description": "Pieza vertical de motion de alto rendimiento, construida sobre ritmo preciso, jerarquía visual limpia y entrega mobile-first.",
+        "category": "Motion / Short-form",
+        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
         "tags": [
           "Motion",
           "Performance",
@@ -59,8 +59,8 @@ export const projects = [
       "en": {
         "title": "Authority Motion Ad",
         "eyebrow": "9:16 / MOTION AD",
-        "category": "High-End Motion Ad",
-        "description": "Authoritative high-end motion ad with strong pacing, confident visual hierarchy and premium post-production feel.",
+        "category": "Motion / Advertising",
+        "description": "A vertical ad using a car, location graphics and a strong typographic voice.",
         "tags": [
           "Motion Ad",
           "Authority",
@@ -70,8 +70,8 @@ export const projects = [
       "es": {
         "title": "Authority Motion Ad",
         "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion Ad High-End",
-        "description": "Motion ad high-end y autoritativo, con ritmo firme, jerarquía visual clara y sensación premium de postproducción.",
+        "category": "Motion / Publicidad",
+        "description": "Un ad vertical con un auto, gráficos de ubicación y una voz tipográfica marcada.",
         "tags": [
           "Motion Ad",
           "Authority",
@@ -94,8 +94,8 @@ export const projects = [
       "en": {
         "title": "Top iPhone",
         "eyebrow": "9:16 / SHORT-FORM",
-        "category": "Social / Mobile Cutdown",
-        "description": "Short-form 9:16 edit for social feeds, with pacing, callouts and mobile-first framing.",
+        "category": "Editing / Social",
+        "description": "A short-form iPhone ranking made for social feeds.",
         "tags": [
           "9:16",
           "Short-Form",
@@ -105,8 +105,8 @@ export const projects = [
       "es": {
         "title": "Top iPhone",
         "eyebrow": "9:16 / SHORT-FORM",
-        "category": "Social / Mobile Cutdown",
-        "description": "Edit 9:16 para feeds sociales, con ritmo, callouts y encuadre mobile-first.",
+        "category": "Edición / Social",
+        "description": "Un ranking de iPhone en formato short-form para feeds sociales.",
         "tags": [
           "9:16",
           "Short-Form",
@@ -129,8 +129,8 @@ export const projects = [
       "en": {
         "title": "Gorilón Event Cutdown",
         "eyebrow": "9:16 / TIKTOK",
-        "category": "TikTok / Creator Event",
-        "description": "High-performing TikTok cutdown built for a creator event, focused on pacing, retention and mobile-first delivery.",
+        "category": "Creator event / TikTok",
+        "description": "A TikTok piece for a creator event, combining on-camera footage, gameplay and graphic segments.",
         "tags": [
           "TikTok",
           "Creator Event",
@@ -140,8 +140,8 @@ export const projects = [
       "es": {
         "title": "Gorilón Event Cutdown",
         "eyebrow": "9:16 / TIKTOK",
-        "category": "TikTok / Evento Creator",
-        "description": "Cutdown de TikTok de alto rendimiento para un evento creator, enfocado en ritmo, retención y entrega mobile-first.",
+        "category": "Evento creator / TikTok",
+        "description": "Una pieza de TikTok para un evento creator, con material a cámara, gameplay y segmentos gráficos.",
         "tags": [
           "TikTok",
           "Creator Event",
@@ -164,8 +164,8 @@ export const projects = [
       "en": {
         "title": "Which Is Stronger",
         "eyebrow": "9:16 / MOTION AD",
-        "category": "High-End Motion Ad",
-        "description": "High-end vertical motion ad with a sharp concept, premium visual rhythm and a clear hook-driven structure.",
+        "category": "Motion / Advertising",
+        "description": "A vertical game ad built around one question: which is stronger?",
         "tags": [
           "Motion Ad",
           "High-End",
@@ -175,8 +175,8 @@ export const projects = [
       "es": {
         "title": "Which Is Stronger",
         "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion Ad High-End",
-        "description": "Motion ad vertical high-end con concepto claro, ritmo visual premium y estructura guiada por hook.",
+        "category": "Motion / Publicidad",
+        "description": "Un ad vertical de juego construido alrededor de una pregunta: ¿qué es más fuerte?",
         "tags": [
           "Motion Ad",
           "High-End",
@@ -199,8 +199,8 @@ export const projects = [
       "en": {
         "title": "The Guest Rush",
         "eyebrow": "9:16 / HIGH-END AD",
-        "category": "3D Camera Motion Ad",
-        "description": "High-end vertical ad built with 3D camera movement, sharp pacing and a premium motion finish for mobile-first delivery.",
+        "category": "3D camera / Motion ad",
+        "description": "A vertical game ad that starts in the characters' world and moves into the game board.",
         "tags": [
           "High-End Ad",
           "3D Camera",
@@ -210,8 +210,8 @@ export const projects = [
       "es": {
         "title": "The Guest Rush",
         "eyebrow": "9:16 / HIGH-END AD",
-        "category": "Motion Ad con Cámara 3D",
-        "description": "Ad vertical high-end con movimiento de cámara 3D, ritmo preciso y un acabado motion premium para entrega mobile-first.",
+        "category": "Cámara 3D / Motion ad",
+        "description": "Un ad vertical que empieza en el mundo de los personajes y pasa al tablero del juego.",
         "tags": [
           "High-End Ad",
           "3D Camera",
@@ -234,8 +234,8 @@ export const projects = [
       "en": {
         "title": "Seasonal Motion Campaign",
         "eyebrow": "9:16 / SEASONAL AD",
-        "category": "Conceptual Campaign Motion",
-        "description": "Seasonal vertical motion ad shaped around mood, graphic rhythm and polished campaign delivery.",
+        "category": "Seasonal campaign / Motion",
+        "description": "A seasonal piece presented as a conversation inside a phone interface.",
         "tags": [
           "Seasonal",
           "Motion",
@@ -245,8 +245,8 @@ export const projects = [
       "es": {
         "title": "Seasonal Motion Campaign",
         "eyebrow": "9:16 / SEASONAL AD",
-        "category": "Motion Conceptual de Campaña",
-        "description": "Motion ad vertical de temporada, trabajado alrededor de mood, ritmo gráfico y entrega pulida para campaña.",
+        "category": "Campaña estacional / Motion",
+        "description": "Una pieza de temporada presentada como una conversación dentro de la interfaz de un teléfono.",
         "tags": [
           "Seasonal",
           "Motion",

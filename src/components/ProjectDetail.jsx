@@ -51,7 +51,7 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
       </div>
       <div className="detail-navigation">
         <button type="button" className="text-link" disabled={!ready || closing} onClick={() => onStep(-1)}><ArrowLeft size={20} aria-hidden="true" /><span>{copy.detail.previous}</span></button>
-        <span className="detail-position" aria-live="polite">{index + 1} / {total}</span>
+        <span className="detail-position" aria-live="polite"><span className="visually-hidden">{project.title}, </span>{index + 1} / {total}</span>
         <button type="button" className="text-link" disabled={!ready || closing} onClick={() => onStep(1)}><span>{copy.detail.next}</span><ArrowRight size={20} aria-hidden="true" /></button>
       </div>
       </div>

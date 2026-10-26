@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { lazy, Suspense, useEffect, useMemo, useState } from "react"
 import { MotionConfig } from "motion/react"
 import { copy as translations } from "./data/copy"
 import { featuredClients, localizeProject, playgroundProjects, projects } from "./data/portfolio"
@@ -8,7 +8,6 @@ import { useProjectNavigation } from "./hooks/useProjectNavigation"
 import { SiteNav } from "./components/SiteNav"
 import { Hero } from "./components/Hero"
 import { FeaturedWork } from "./components/FeaturedWork"
-import { ProjectDetail } from "./components/ProjectDetail"
 import { FeaturedClients } from "./components/FeaturedClients"
 import { About } from "./components/About"
 import { Playground } from "./components/Playground"
@@ -18,6 +17,9 @@ import { TimelineBar } from "./components/TimelineBar"
 import { play } from "./lib/sound"
 import { readLanguage, saveLanguage } from "./lib/language"
 import { startAnalytics, track } from "./lib/analytics"
+
+const loadProjectDetail = () => import("./components/ProjectDetail")
+const ProjectDetail = lazy(() => loadProjectDetail().then((module) => ({ default: module.ProjectDetail })))
 
 export default function App() {
   const [language, setLanguageState] = useState(readLanguage)
@@ -55,15 +57,15 @@ export default function App() {
       <a className="skip-link" href="#work">{copy.nav.skip}</a>
       <SiteNav language={language} onLanguageChange={setLanguage} copy={copy.nav} hasLab={lab.length > 0} />
       <main>
-        <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} onOpen={openProject} />
-        <FeaturedWork projects={work} onOpen={openProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} />
+        <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} onOpen={openProject} onPreload={loadProjectDetail} />
+        <FeaturedWork projects={work} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} />
         <FeaturedClients clients={featuredClients} copy={copy.clients} />
         <About copy={copy.about} />
-        <Playground projects={lab} onOpen={openProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />
+        <Playground projects={lab} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />
       </main>
       <Contact copy={copy.contact} role={copy.hero.role} />
       <TimelineBar sections={timelineSections} copy={copy.timeline} />
-      {selectedProject && <ProjectDetail project={selectedProject} index={selectedIndex} total={allProjects.length} origin={selection.origin} closing={selection.closing} onClosed={finishClose} onClose={closeProject} onStep={stepProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy} language={language} onLanguageChange={setLanguage} />}
+      {selectedProject && <Suspense fallback={null}><ProjectDetail project={selectedProject} index={selectedIndex} total={allProjects.length} origin={selection.origin} closing={selection.closing} onClosed={finishClose} onClose={closeProject} onStep={stepProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy} language={language} onLanguageChange={setLanguage} /></Suspense>}
     </MotionConfig>
   )
 }

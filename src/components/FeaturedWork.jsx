@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { ArrowUpRight, Play } from "lucide-react"
 import { Reveal } from "./Reveal"
@@ -6,10 +6,21 @@ import { ProjectPoster } from "./ProjectPoster"
 import { resolveEase, timing } from "../lib/motion"
 import { play } from "../lib/sound"
 
-export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
+export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
   const reduced = useReducedMotion()
   const [hovered, setHovered] = useState(null)
   const [canHover, setCanHover] = useState(false)
+  const previewTimer = useRef(null)
+  useEffect(() => () => clearTimeout(previewTimer.current), [])
+  const startPreview = (id) => {
+    clearTimeout(previewTimer.current)
+    onPreload?.()
+    previewTimer.current = setTimeout(() => setHovered(id), 150)
+  }
+  const stopPreview = (id) => {
+    clearTimeout(previewTimer.current)
+    setHovered((current) => current === id ? null : current)
+  }
   useEffect(() => {
     const query = window.matchMedia("(hover: hover) and (pointer: fine)")
     const update = () => setCanHover(query.matches)
@@ -35,7 +46,7 @@ export function FeaturedWork({ projects, onOpen, videoMode, copy }) {
           const slot = slots[index] || "closing"
           return (
             <article className={`project project--${slot}`} key={project.id}>
-              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { setHovered(null); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { if (canHover) { setHovered(project.id); play("tick") } }} onPointerLeave={() => setHovered((current) => current === project.id ? null : current)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
+              <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { stopPreview(project.id); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { onPreload?.(); if (canHover) { startPreview(project.id); play("tick") } }} onPointerLeave={() => stopPreview(project.id)} onFocus={() => startPreview(project.id)} onBlur={() => stopPreview(project.id)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
                 <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}

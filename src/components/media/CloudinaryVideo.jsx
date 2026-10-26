@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Maximize, Pause, Play, Volume2, VolumeX } from "lucide-react"
-import { getCloudinaryVideoPoster, getOptimizedCloudinaryVideo } from "../../lib/cloudinary"
+import { ENABLE_VP9_SOURCE, getCloudinaryVideoPoster, getCloudinaryVp9Video, getOptimizedCloudinaryVideo } from "../../lib/cloudinary"
 import { FPS, formatTimecode, frameNumber } from "../../lib/timecode"
 
 function stopVideo(video, reset = true) {
@@ -150,6 +150,7 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
         onError={() => setFailed(true)}
         onLoadedData={() => setFailed(false)}
       >
+        {ENABLE_VP9_SOURCE && <source src={getCloudinaryVp9Video(src, videoMode)} type="video/webm" />}
         <source src={videoSrc} type="video/mp4" onError={() => { if (videoSrc === src) setFailed(true) }} />
         {videoSrc !== src ? <source src={src} type="video/mp4" onError={() => setFailed(true)} /> : null}
       </video>
