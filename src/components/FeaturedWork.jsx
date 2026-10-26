@@ -29,6 +29,19 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
     return () => query.removeEventListener("change", update)
   }, [])
   const slots = ["lead", "pair", "pair", "interlude", "closing", "closing", "closing"]
+  // The two big pieces play on their own while they are on screen, so the page feels alive without a hover.
+  const [onScreen, setOnScreen] = useState(() => new Set())
+  const watched = useRef(new Map())
+  useEffect(() => {
+    if (reduced || typeof IntersectionObserver === "undefined") return
+    const observer = new IntersectionObserver((entries) => setOnScreen((current) => {
+      const next = new Set(current)
+      entries.forEach((entry) => { const id = entry.target.dataset.projectId; if (entry.isIntersecting) next.add(id); else next.delete(id) })
+      return next
+    }), { threshold: .55 })
+    watched.current.forEach((node) => observer.observe(node))
+    return () => observer.disconnect()
+  }, [reduced])
   const imageSizes = {
     lead: "(max-width: 639px) calc(100vw - 40px), (max-width: 1199px) 46vw, 540px",
     pair: "(max-width: 639px) calc(50vw - 27px), (max-width: 1199px) 37vw, 410px",
@@ -45,9 +58,9 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
         {projects.map((project, index) => {
           const slot = slots[index] || "closing"
           return (
-            <article className={`project project--${slot}`} key={project.id}>
+            <article className={`project project--${slot}`} key={project.id} data-project-id={project.id} ref={(node) => { if (slot !== "lead" && slot !== "interlude") return; if (node) watched.current.set(project.id, node); else watched.current.delete(project.id) }}>
               <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { stopPreview(project.id); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { onPreload?.(); if (canHover) { startPreview(project.id); play("tick") } }} onPointerLeave={() => stopPreview(project.id)} onFocus={() => startPreview(project.id)} onBlur={() => stopPreview(project.id)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
-                <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
+                <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id || onScreen.has(project.id)} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
                   <span className="project-title">{project.title}</span>
