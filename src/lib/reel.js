@@ -28,7 +28,8 @@ export function buildReelUrl(projects, mode = "desktop", cuts = reelCuts, effect
   const usable = cuts.filter((cut) => byId.get(cut.id)?.videoSrc?.includes("res.cloudinary.com"))
   if (!usable.length) return null
   const size = mode === "mobile" ? "w_360,h_640" : "w_540,h_960"
-  const look = `${size},c_fill,q_auto:eco,ac_none${effect ? `,${effect}` : ""}`
+  // The effect goes on the finished splice: inside each spliced layer Cloudinary drops it.
+  const look = `${size},c_fill,q_auto:eco,ac_none`
   const [first, ...rest] = usable
   const firstSrc = byId.get(first.id).videoSrc
   const [prefix] = firstSrc.split("/video/upload/")
@@ -36,7 +37,7 @@ export function buildReelUrl(projects, mode = "desktop", cuts = reelCuts, effect
     const id = publicId(byId.get(cut.id).videoSrc)
     return `l_video:${id},so_${cut.in},eo_${round(cut.in + cut.length)},${look},fl_splice/fl_layer_apply`
   })
-  return [`${prefix}/video/upload/so_${first.in},eo_${round(first.in + first.length)},${look}`, ...layers, `f_mp4,vc_h264:baseline:3.1/${versionedPath(firstSrc)}`].join("/")
+  return [`${prefix}/video/upload/so_${first.in},eo_${round(first.in + first.length)},${look}`, ...layers, `${effect ? `${effect},` : ""}f_mp4,vc_h264:baseline:3.1/${versionedPath(firstSrc)}`].join("/")
 }
 
 export function reelDuration(cuts = reelCuts) {

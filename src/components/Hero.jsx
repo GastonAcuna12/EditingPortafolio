@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useReducedMotion } from "motion/react"
-import { ArrowDown } from "lucide-react"
 import { buildReelUrl, reelCuts } from "../lib/reel"
 import { getCloudinaryVideoPoster } from "../lib/cloudinary"
 
@@ -9,9 +8,11 @@ function TriptychPanel({ projects, videoMode, index, active, masterRef }) {
   const [visible, setVisible] = useState(false)
   const [failed, setFailed] = useState(false)
   const cuts = useMemo(() => reelCuts.map((_, position) => ({ ...reelCuts[(position + index * 2) % reelCuts.length], length: 1.15 })), [index])
-  const url = useMemo(() => buildReelUrl(projects, "mobile", cuts, "e_grayscale"), [projects, cuts])
+  // Cloudinary ignores e_grayscale on video; full desaturation on the finished splice does the job.
+  const url = useMemo(() => buildReelUrl(projects, "mobile", cuts, "e_saturation:-100"), [projects, cuts])
   const first = projects.find((item) => item.id === cuts[0].id)
-  const poster = first && getCloudinaryVideoPoster(first.videoSrc, videoMode, first.posterSecond ?? cuts[0].in, 900)
+  // The still shows before the reel loads, so it is grayscale too and the panel never flashes color.
+  const poster = first && getCloudinaryVideoPoster(first.videoSrc, videoMode, first.posterSecond ?? cuts[0].in, 900)?.replace("/video/upload/", "/video/upload/e_grayscale,")
 
   useEffect(() => {
     if (!active || !videoRef.current || typeof IntersectionObserver === "undefined") return
@@ -54,8 +55,10 @@ export function Hero({ copy, projects, videoMode }) {
       {panels.map((index) => <TriptychPanel key={index} projects={projects} videoMode={videoMode} index={index} active={!reduced} masterRef={masterRef} />)}
     </div>
     <div className="hero-stage shell">
-      <h1 id="hero-title"><span className="hero-main">{copy.lines[0].split(" ").map((word, index) => <span className="hero-word" key={index} style={{ "--word": index }}>{word}</span>)}</span><span className="hero-italic">{copy.lines[1]}</span></h1>
-      <div className="hero-bottom"><span>{copy.role}<br />{copy.city}</span><span>{copy.availability}</span><a className="text-link" href="#work">{copy.cta}<ArrowDown size={19} aria-hidden="true" /></a></div>
+      <div className="hero-credits">
+        <div className="hero-credit"><p>{copy.place}</p><h1 id="hero-title">Gastón Acuña</h1></div>
+        <div className="hero-credit"><p>{copy.proof}</p><p className="hero-role">{copy.role}</p></div>
+      </div>
     </div>
   </section>
 }

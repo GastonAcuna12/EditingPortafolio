@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Maximize, Pause, Play, Volume2, VolumeX } from "lucide-react"
 import { ENABLE_VP9_SOURCE, getCloudinaryVideoPoster, getCloudinaryVp9Video, getOptimizedCloudinaryVideo } from "../../lib/cloudinary"
-import { FPS, formatTimecode, frameNumber } from "../../lib/timecode"
+import { FPS } from "../../lib/timecode"
+
+function clock(seconds) {
+  const total = Math.max(0, Math.floor(seconds || 0))
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`
+}
 
 function stopVideo(video, reset = true) {
   video.pause()
@@ -11,7 +16,7 @@ function stopVideo(video, reset = true) {
   }
 }
 
-// An editor's viewer: SMPTE timecode, frame counter, scrub and J/K/L transport.
+// A quiet viewer: play, scrub, sound and fullscreen. Keyboard transport (J/K/L, arrows) works without being advertised.
 export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", isActive = true, copy }) {
   const videoRef = useRef(null)
   const playerRef = useRef(null)
@@ -161,20 +166,18 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
           </button>
           <div className="player-chrome">
             <div className="player-scrub" style={{ "--progress": progress, "--buffered": buffered }}>
-              <input type="range" min="0" max={duration || 0} step={1 / FPS} value={Math.min(time, duration || 0)} onChange={(event) => seek(Number(event.target.value))} aria-label={copy.scrub} aria-valuetext={formatTimecode(time)} />
+              <input type="range" min="0" max={duration || 0} step={1 / FPS} value={Math.min(time, duration || 0)} onChange={(event) => seek(Number(event.target.value))} aria-label={copy.scrub} aria-valuetext={clock(time)} />
             </div>
             <div className="player-row">
-              <button type="button" className="player-button" onClick={toggle} aria-label={playing ? copy.pause : copy.play} title={`${playing ? copy.pause : copy.play} (K)`}>
+              <button type="button" className="player-button" onClick={toggle} aria-label={playing ? copy.pause : copy.play} title={playing ? copy.pause : copy.play}>
                 {playing ? <Pause size={17} fill="currentColor" aria-hidden="true" /> : <Play size={17} fill="currentColor" aria-hidden="true" />}
               </button>
-              <span className="player-tc" aria-hidden="true"><span>{formatTimecode(time)}</span><span className="player-tc-total"> / {formatTimecode(duration)}</span></span>
-              <span className="player-frame" aria-hidden="true">FR {frameNumber(time)}</span>
+              <span className="player-tc" aria-hidden="true">{clock(time)}<span className="player-tc-total"> / {clock(duration)}</span></span>
               <span className="player-spacer" />
-              <span className="player-keys" aria-hidden="true">J K L</span>
-              <button type="button" className="player-button" onClick={toggleMute} aria-label={muted ? copy.unmute : copy.mute} title={`${muted ? copy.unmute : copy.mute} (M)`}>
+              <button type="button" className="player-button" onClick={toggleMute} aria-label={muted ? copy.unmute : copy.mute} title={muted ? copy.unmute : copy.mute}>
                 {muted ? <VolumeX size={17} aria-hidden="true" /> : <Volume2 size={17} aria-hidden="true" />}
               </button>
-              <button type="button" className="player-button" onClick={fullscreen} aria-label={copy.fullscreen} title={`${copy.fullscreen} (F)`}>
+              <button type="button" className="player-button" onClick={fullscreen} aria-label={copy.fullscreen} title={copy.fullscreen}>
                 <Maximize size={16} aria-hidden="true" />
               </button>
             </div>

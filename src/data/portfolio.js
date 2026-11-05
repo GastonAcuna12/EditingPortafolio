@@ -5,7 +5,112 @@ export const contact = {
 }
 
 // Only confirmed client names and personal work belong in these collections.
-export const featuredClients = []
+// Confirmed by Gastón (2026-11-05): he edited pieces for every brand here, directly or through Airtraffic.
+// ratio: logo width / height after trimming; scale: optical size so wide wordmarks and square marks weigh the same.
+export const featuredClients = [
+  {
+    "name": "Supercell",
+    "logo": "supercell.svg",
+    "ratio": 1.23,
+    "scale": 1.55
+  },
+  {
+    "name": "Niantic",
+    "logo": "niantic.svg",
+    "ratio": 0.84,
+    "scale": 1.9
+  },
+  {
+    "name": "EA",
+    "logo": "ea.svg",
+    "ratio": 2.055,
+    "scale": 1.31
+  },
+  {
+    "name": "Blizzard",
+    "logo": "blizzard.svg",
+    "ratio": 1.923,
+    "scale": 1.35
+  },
+  {
+    "name": "Sony",
+    "logo": "sony.svg",
+    "ratio": 5.659,
+    "scale": 0.79
+  },
+  {
+    "name": "2K",
+    "logo": "2k.svg",
+    "ratio": 1,
+    "scale": 1.55
+  },
+  {
+    "name": "WB Games",
+    "logo": "wbgames.svg",
+    "ratio": 1.083,
+    "scale": 1.55
+  },
+  {
+    "name": "Zynga",
+    "logo": "zynga.svg",
+    "ratio": 1.091,
+    "scale": 1.55
+  },
+  {
+    "name": "Kabam",
+    "logo": "kabam.svg",
+    "ratio": 3.934,
+    "scale": 0.94
+  },
+  {
+    "name": "Eight Sleep",
+    "logo": "eightsleep.png",
+    "ratio": 2.472,
+    "scale": 1.19
+  },
+  {
+    "name": "TubeScience",
+    "logo": "tubescience.png",
+    "ratio": 10.986,
+    "scale": 0.6
+  },
+  {
+    "name": "Toast",
+    "logo": "toast.svg",
+    "ratio": 3.871,
+    "scale": 0.95
+  },
+  {
+    "name": "Papaya",
+    "logo": "papaya.svg",
+    "ratio": 5.237,
+    "scale": 0.82
+  },
+  {
+    "name": "Fortis",
+    "logo": "fortis.svg",
+    "ratio": 4.629,
+    "scale": 0.87
+  },
+  {
+    "name": "Appvertiser",
+    "logo": "appvertiser.png",
+    "ratio": 5.191,
+    "scale": 0.82
+  },
+  {
+    "name": "Airtraffic",
+    "logo": "airtraffic.png",
+    "ratio": 4.218,
+    "scale": 0.91
+  },
+  {
+    "name": "Alarmas",
+    "logo": "alarmas.svg",
+    "ratio": 3.046,
+    "scale": 1.07
+  }
+]
 export const playgroundProjects = []
 
 // Original media URLs are stored once, independently of language or presentation.

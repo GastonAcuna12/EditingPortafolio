@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ArrowUpRight, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 
 function Languages({ language, onChange, label }) {
   return (
@@ -51,7 +51,7 @@ export function SiteNav({ language, onLanguageChange, copy, hasLab }) {
         <a className="wordmark" href="#top" onClick={(event) => navigate(event, "#top")}>Gastón Acuña<span aria-hidden="true">.</span></a>
         <div className="desktop-nav">
           {links.map((link) => <a key={link.href} href={link.href} onClick={(event) => navigate(event, link.href)}>{link.label}</a>)}
-          <a className="nav-contact" href="#contact" onClick={(event) => navigate(event, "#contact")}>{copy.contact}<ArrowUpRight size={17} aria-hidden="true" /></a>
+          <a className="nav-contact" href="#contact" onClick={(event) => navigate(event, "#contact")}>{copy.contact}</a>
           <Languages language={language} onChange={onLanguageChange} label={copy.language} />
         </div>
         <button className="menu-toggle icon-button" type="button" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? copy.close : copy.menu} onClick={() => setOpen(!open)}>
@@ -60,7 +60,7 @@ export function SiteNav({ language, onLanguageChange, copy, hasLab }) {
       </nav>
       {open && (
         <div id="mobile-nav" className="mobile-nav shell" onKeyDown={(event) => { if (event.key === "Escape") { setOpen(false); document.querySelector(".menu-toggle")?.focus() } }}>
-          {[...links, { href: "#contact", label: copy.contact }].map((link) => <a key={link.href} href={link.href} onClick={(event) => navigate(event, link.href)}>{link.label}<ArrowUpRight size={18} aria-hidden="true" /></a>)}
+          {[...links, { href: "#contact", label: copy.contact }].map((link) => <a key={link.href} href={link.href} onClick={(event) => navigate(event, link.href)}>{link.label}</a>)}
           <Languages language={language} onChange={onLanguageChange} label={copy.language} />
         </div>
       )}

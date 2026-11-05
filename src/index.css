@@ -10,7 +10,7 @@
   --accent: #d6c7a1;
   --line: #30302e;
   --display: "Space Grotesk", "DM Sans", sans-serif;
-  --serif: "Playfair Display", Georgia, serif;
+  --serif: var(--display); /* one family: no separate serif */
   --ease-swift: cubic-bezier(.2,0,0,1);
   --ease-resolve: cubic-bezier(.22,1,.36,1);
   --ease-travel: cubic-bezier(.76,0,.24,1);
@@ -58,14 +58,9 @@ svg { flex-shrink: 0; }
 
 .hero { padding-block: 44px 64px; }
 .hero-role { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
-.hero h1 { font-size: 104px; line-height: 1.08; }
 .line-mask { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
 .line-mask > span { display: block; }
-.hero .hero-italic { font-family: var(--serif); color: var(--accent); font-style: italic; font-weight: 600; }
 .hero .raster-reveal { width: fit-content; max-width: 100%; padding-right: .06em; }
-.hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; margin-top: 38px; }
-.hero-bottom p { max-width: 440px; font-size: 18px; color: var(--muted); }
-.hero-bottom .text-link { flex-shrink: 0; }
 
 .work-section { position: relative; padding-top: 32px; padding-bottom: 110px; border-top: 1px solid var(--line); }
 .work-section::before { content: ""; position: absolute; inset: -1px 0 auto; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; opacity: .55; pointer-events: none; }
@@ -132,9 +127,26 @@ svg { flex-shrink: 0; }
 .about-story .about-intro { font-size: 24px; color: var(--paper); line-height: 1.5; }
 .about-signoff { color: var(--paper); padding-top: 10px; }
 .about-story .text-link { margin-top: 22px; color: var(--paper); }
-.clients-section, .lab-section { padding-block: 80px 110px; border-top: 1px solid var(--line); }
-.clients-section h2, .lab-section h2 { font-size: 42px; max-width: 740px; }
-.client-names { display: flex; flex-wrap: wrap; gap: 32px 64px; list-style: none; margin: 54px 0 0; padding: 0; font: 34px var(--display); }
+.lab-section { padding-block: 80px 110px; border-top: 1px solid var(--line); }
+.lab-section h2 { font-size: 42px; max-width: 740px; }
+/* Clients: a quiet credit roll of logos, all in one tone, constant speed. */
+.clients-section { padding-block: 72px 88px; border-top: 1px solid var(--line); overflow: hidden; }
+.clients-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 36px; }
+.clients-head .eyebrow { margin: 0; font: inherit; font-size: 14px; letter-spacing: 0; }
+.clients-marquee { display: flex; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+.clients-track { display: flex; flex: none; animation: clients-run 70s linear infinite; }
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+.clients-run { display: flex; flex: none; align-items: center; gap: clamp(56px, 6vw, 104px); margin: 0; padding: 0 clamp(28px, 3vw, 52px); list-style: none; }
+.clients-run li { display: flex; align-items: center; }
+.clients-section { --logo-h: clamp(26px, 2.6vw, 38px); }
+.client-logo { display: block; height: calc(var(--logo-h) * var(--scale)); aspect-ratio: var(--ratio); background: var(--paper); opacity: .82; -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
+@keyframes clients-run { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .clients-marquee { mask-image: none; }
+  .clients-track { animation: none; flex-wrap: wrap; padding-inline: 20px; }
+  .clients-run { flex-wrap: wrap; row-gap: 28px; }
+  .clients-run[aria-hidden] { display: none; }
+}
 .lab-section > div > p:last-child { margin-top: 20px; color: var(--muted); }
 .lab-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 36px; margin-top: 48px; }
 
@@ -209,11 +221,9 @@ svg { flex-shrink: 0; }
 
 @media (min-width: 1600px) {
   .hero { padding-top: 56px; padding-bottom: 76px; }
-  .hero h1 { font-size: 118px; }
 }
 @media (max-width: 1199px) {
   .shell { width: calc(100% - 80px); }
-  .hero h1 { font-size: 84px; }
   .work-heading h2 { font-size: 38px; }
   .work-heading { gap: 32px; }
   .work-gallery { column-gap: 24px; row-gap: 88px; }
@@ -237,7 +247,6 @@ svg { flex-shrink: 0; }
   .mobile-nav > a { display: flex; align-items: center; justify-content: space-between; min-height: 52px; font-size: 19px; }
   .mobile-nav .languages { justify-content: flex-start; margin-top: 12px; }
   .hero { padding-top: 56px; padding-bottom: 76px; }
-  .hero h1 { font-size: 70px; }
   .work-heading { display: block; }
   .work-heading > p { margin-top: 18px; max-width: 400px; }
   .about-section { grid-template-columns: 1fr; gap: 36px; }
@@ -258,11 +267,6 @@ svg { flex-shrink: 0; }
   .wordmark { font-size: 21px; }
   .hero { padding-block: 30px 42px; }
   .hero-role { font-size: 14px; margin-bottom: 28px; max-width: 240px; }
-  .hero h1 { font-size: 42px; line-height: 1.16; }
-  .hero .hero-italic { font-size: 40px; }
-  .hero-bottom { display: block; margin-top: 26px; }
-  .hero-bottom p { font-size: 17px; max-width: 330px; }
-  .hero-bottom .text-link { margin-top: 20px; }
   .work-section { padding-block: 28px 72px; }
   .work-heading { margin-bottom: 24px; }
   .work-heading h2 { font-size: 31px; }
@@ -297,9 +301,10 @@ svg { flex-shrink: 0; }
   .about-story { padding-top: 0; }
   .about-story { font-size: 17px; gap: 22px; }
   .about-story .about-intro { font-size: 21px; }
-  .clients-section, .lab-section { padding-block: 60px; }
-  .clients-section h2, .lab-section h2 { font-size: 32px; }
-  .client-names { font-size: 26px; gap: 24px; }
+  .lab-section { padding-block: 60px; }
+  .lab-section h2 { font-size: 32px; }
+  .clients-section { padding-block: 56px 64px; }
+  .clients-head { flex-direction: column; gap: 6px; margin-bottom: 28px; }
   .lab-gallery { grid-template-columns: 1fr; }
   .detail-surface { padding-inline: 20px; }
   .detail-toolbar { height: 72px; }
@@ -318,16 +323,12 @@ svg { flex-shrink: 0; }
   .detail-navigation .text-link span { max-width: 90px; }
 }
 @media (max-width: 374px) {
-  .hero h1 { font-size: 37px; }
-  .hero .hero-italic { font-size: 32px; }
   .about-heading h2 { font-size: 30px; }
   .about-heading em { font-size: 23px; }
   .detail-toolbar .wordmark { font-size: 16px; }
 }
 @media (min-width: 640px) and (max-height: 820px) {
   .hero { padding-block: 28px 44px; }
-  .hero h1 { font-size: 76px; }
-  .hero-bottom { margin-top: 24px; }
   .work-section { padding-top: 28px; }
   .work-heading { margin-bottom: 32px; }
   .work-heading h2 { font-size: 36px; }

@@ -1,9 +1,8 @@
-/* The editing-room layer: program monitor, viewer, hover previews and the page timeline.
+/* The editing-room layer: program monitor, viewer, and hover previews.
    Readouts use a mono face so numbers never jitter while they run. */
 :root {
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --mono: "DM Sans", sans-serif; /* one family: no separate mono */
   --rec: var(--accent);
-  --timeline-h: 40px;
 }
 
 /* Hero: copy on the left, program monitor on the right. */
@@ -30,8 +29,6 @@
 /* Gallery: the poster comes alive on hover with a short silent clip. */
 .project-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity 120ms var(--ease-swift); pointer-events: none; }
 .project-preview[data-live="true"] { opacity: 1; }
-.project-tc { position: absolute; top: 14px; right: 14px; padding: 4px 6px; font: 500 11px/1 var(--mono); letter-spacing: .03em; color: var(--paper); background: #0a0a0acc; border-radius: 2px; opacity: 0; transition: opacity 120ms var(--ease-swift); font-variant-numeric: tabular-nums; }
-.project-tc[data-live="true"] { opacity: 1; }
 .project-meta { display: flex; flex-wrap: wrap; gap: 18px 40px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); max-width: 420px; font-size: 15px; color: var(--paper); }
 .project-meta > span { display: grid; gap: 6px; }
 .project-meta-label { color: var(--muted); font-size: 13px; }
@@ -58,31 +55,12 @@
 .player-row { display: flex; align-items: center; gap: 10px; margin-top: 2px; }
 .player-button { width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; color: var(--paper); border-radius: 2px; }
 .player-button:hover { color: var(--accent); }
-.player-tc { font: 500 12px/1 var(--mono); color: var(--paper); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.player-tc { font: 400 13px/1 "DM Sans", sans-serif; color: var(--paper); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .player-tc-total { color: #9c9a94; }
-.player-frame { font: 500 11px/1 var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .player-spacer { flex: 1; }
-.player-keys { white-space: nowrap; font: 500 10px/1 var(--mono); letter-spacing: .12em; color: #8e8c86; padding: 4px 6px; border: 1px solid #ffffff2b; border-radius: 2px; }
 .video-player:fullscreen { background: #000; }
 .video-player:fullscreen video { width: 100%; height: 100%; }
 
-/* Page timeline: sections read as clips, scroll position is the playhead. Kept quiet on purpose. */
-.timeline { position: fixed; z-index: 25; inset: auto 0 0; height: var(--timeline-h); display: flex; align-items: center; gap: 20px; padding-inline: 28px; background: #0a0a0a; font: 500 11px/1 var(--mono); color: var(--muted); transition: opacity 600ms var(--ease-resolve), transform 600ms var(--ease-resolve); }
-.timeline[data-ended="true"] { opacity: 0; transform: translateY(100%); pointer-events: none; }
-.timeline-tc { min-width: 88px; color: var(--paper); font-variant-numeric: tabular-nums; }
-.timeline-track { position: relative; flex: 1; height: 100%; }
-.timeline-clip { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 0 0 10px; overflow: hidden; color: #77756f; background: none; border-left: 1px solid var(--line); font: 400 12px/1 "DM Sans", sans-serif; text-align: left; transition: color 200ms var(--ease-swift); }
-.timeline-clip:first-child { border-left: 0; padding-left: 0; }
-.timeline-clip span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.timeline-clip:hover { color: var(--paper); }
-.timeline-clip[data-active="true"] { color: var(--paper); }
-/* What has played is solid accent, like rendered footage on a timeline; labels underneath turn dark. */
-.timeline-track { border-top: 1px solid var(--line); }
-.timeline-fill { position: absolute; inset: -1px 0 0; background: var(--accent); clip-path: inset(0 calc(100% - var(--progress) * 100%) 0 0); pointer-events: none; }
-.timeline-fill .timeline-clip { top: 1px; color: #14120e; border-left-color: #14120e33; font-weight: 500; }
-.timeline-playhead { position: absolute; top: -1px; bottom: 0; left: calc(var(--progress) * 100%); width: 2px; margin-left: -1px; background: var(--paper); pointer-events: none; }
-body { padding-bottom: var(--timeline-h); }
-.copy-feedback { bottom: calc(var(--timeline-h) + 16px); }
 
 /* Lead and About fill their columns instead of leaving dead space. */
 @media (min-width: 900px) {
@@ -95,15 +73,9 @@ body { padding-bottom: var(--timeline-h); }
 @media (max-width: 899px) {
   .hero { grid-template-columns: 1fr; gap: 44px; }
   .hero-monitor { width: min(100%, 300px); }
-  .timeline-clip { font-size: 11px; }
 }
 @media (max-width: 639px) {
-  :root { --timeline-h: 38px; }
-  .timeline { gap: 12px; padding-inline: 16px; }
-  .timeline-tc { min-width: 0; }
-  .timeline-clip span { display: none; }
   .project-meta { margin-top: 20px; padding-top: 16px; gap: 14px 28px; }
-  .player-keys, .player-frame { display: none; }
 }
 @media (min-width: 640px) and (max-height: 820px) {
   .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 270px); }
@@ -111,17 +83,13 @@ body { padding-bottom: var(--timeline-h); }
 @media (hover: none), (pointer: coarse) {
   .player-chrome { opacity: 1; }
   .video-player[data-started="false"] .player-chrome { opacity: 0; }
-  .player-keys { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reel[data-playing="true"] .reel-dot { animation: none; }
-  .project-preview, .project-tc, .player-chrome, .player-big-play, .timeline-clip { transition: none; }
+  .project-preview, .player-chrome, .player-big-play { transition: none; }
 }
 
 /* The headline shares the row with the monitor, so it scales with the viewport. */
-@media (min-width: 900px) {
-  .hero h1 { font-size: min(104px, 7.2vw); }
-}
 
 /* Sound: off by default, plain text toggle. */
 .sound-toggle { min-height: 36px; padding: 0; color: var(--muted); font: 400 12px/1 "DM Sans", sans-serif; white-space: nowrap; }
@@ -129,8 +97,6 @@ body { padding-bottom: var(--timeline-h); }
 
 /* Each reel cut is a beat on the word "clicks": one quick jump cut. */
 .beat-word { display: inline-block; }
-.hero h1[data-beat="a"] .beat-word { animation: beat-a 140ms steps(2, jump-none) both; }
-.hero h1[data-beat="b"] .beat-word { animation: beat-b 140ms steps(2, jump-none) both; }
 @keyframes beat-a { 0% { transform: translateX(3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
 @keyframes beat-b { 0% { transform: translateX(-3px); filter: brightness(1.45); } 100% { transform: none; filter: none; } }
 
@@ -138,26 +104,11 @@ body { padding-bottom: var(--timeline-h); }
 .detail-cut { position: fixed; inset: 0; z-index: 4; background: var(--accent); pointer-events: none; animation: whip 380ms var(--ease-travel) both; }
 @keyframes whip { 0% { clip-path: inset(0 100% 0 0); } 45% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 100%); } }
 
-/* The playhead can be grabbed. */
-.timeline-track { cursor: ew-resize; touch-action: none; }
-.timeline-track[data-scrubbing="true"] .timeline-playhead { background: var(--accent); }
-.timeline-grip { position: absolute; top: 0; left: -6px; width: 12px; height: 100%; }
 
-@media (max-width: 639px) {
-}
 @media (prefers-reduced-motion: reduce) {
-  .hero h1[data-beat] .beat-word { animation: none; }
   .detail-cut { display: none; }
 }
 
-/* End card: the name comes into focus and the bottom of the frame fades out. */
-.footer-end { position: relative; overflow: hidden; padding-top: clamp(24px, 4vw, 56px); }
-.footer-end p { width: fit-content; margin-inline: auto; font: 600 min(12.4vw, 196px)/.82 var(--display); letter-spacing: -.045em; color: var(--paper); white-space: nowrap; will-change: opacity, filter, transform; }
-.footer-end-stop { color: var(--accent); }
-.footer-end::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to bottom, #0a0a0a00, #0a0a0a 92%); pointer-events: none; }
-@media (prefers-reduced-motion: reduce) {
-  .timeline { transition: none; }
-}
 
 /* Phone: the gallery keeps the desktop rhythm in a compact grid instead of a long list,
    and the monitor spans the width in a shorter crop so the hero stays one screen. */
@@ -177,16 +128,7 @@ body { padding-bottom: var(--timeline-h); }
   .work-gallery .project--pair .project-action, .work-gallery .project--closing .project-action, .work-gallery .project--closing .project-category { display: none; }
 }
 
-/* On a phone the name stacks on two lines so it keeps its weight. */
-@media (max-width: 639px) {
-  .footer-end { padding-top: 40px; }
-  .footer-end p { width: auto; margin-inline: 20px; font-size: 27vw; line-height: .84; letter-spacing: -.05em; }
-  .footer-end-line { display: block; }
-  .footer-end::after { inset: 62% 0 0; }
-}
 
-/* A small slate label follows the same sequence as the page timeline. */
-.section-index { display: inline-block; margin-right: 16px; color: var(--accent); font: 500 10px/1 var(--mono); letter-spacing: .09em; vertical-align: 1px; }
 .contact-italic { font-family: var(--serif); font-style: italic; font-weight: 600; letter-spacing: -.045em; }
 
 /* The selected frame stays present while the full poster loads. */
@@ -198,13 +140,6 @@ body { padding-bottom: var(--timeline-h); }
 .poster-fallback { position: absolute; inset: 0; color: var(--muted); font-size: 18px; text-align: center; }
 
 .project-slate { display: block; margin-top: 8px; color: var(--muted); font: 400 11px/1.5 var(--mono); letter-spacing: .01em; }
-.project-crops { position: absolute; inset: 14px; z-index: 3; pointer-events: none; opacity: 0; transition: opacity 160ms ease; }
-.project-crops i { position: absolute; width: 17px; height: 17px; border-color: var(--accent); border-style: solid; border-width: 0; }
-.project-crops i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
-.project-crops i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
-.project-crops i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
-.project-crops i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
-.project-open:is(:hover, :focus-visible) .project-crops { opacity: 1; }
 
 /* Keep the whole 9:16 frame visible while trimming the hero's spare scroll. */
 @media (min-width: 900px) {
@@ -221,5 +156,5 @@ body { padding-bottom: var(--timeline-h); }
   .hero { gap: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .project-poster, .project-crops { transition: none; }
+  .project-poster { transition: none; }
 }

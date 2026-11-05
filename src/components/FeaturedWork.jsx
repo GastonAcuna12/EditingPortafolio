@@ -51,7 +51,7 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
   return (
     <motion.section id="work" className="work-section shell" aria-labelledby="work-title" viewport={{ once: true, amount: 0 }} onViewportEnter={(entry) => { if (entry) entry.target.dataset.entered = "true" }}>
       <Reveal className="work-heading">
-        <div><p className="eyebrow"><span className="section-index" aria-hidden="true">SEC 02</span>{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
+        <div><p className="eyebrow">{copy.label}</p><h2 id="work-title">{copy.title}</h2></div>
         <p>{copy.description}</p>
       </Reveal>
       <div className="work-gallery">

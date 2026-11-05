@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import { MotionConfig } from "motion/react"
 import { copy as translations } from "./data/copy"
 import { featuredClients, localizeProject, playgroundProjects, projects } from "./data/portfolio"
@@ -13,7 +13,6 @@ import { About } from "./components/About"
 import { Playground } from "./components/Playground"
 import { Contact } from "./components/Contact"
 import { CustomCursor } from "./components/CustomCursor"
-import { TimelineBar } from "./components/TimelineBar"
 import { play } from "./lib/sound"
 import { readLanguage, saveLanguage } from "./lib/language"
 import { startAnalytics, track } from "./lib/analytics"
@@ -41,12 +40,6 @@ export default function App() {
   const selectedIndex = allProjects.findIndex((project) => project.id === selection?.id)
   const selectedProject = allProjects[selectedIndex]
 
-  const timelineSections = useMemo(() => [
-    { id: "top", label: copy.timeline.intro },
-    { id: "work", label: copy.nav.work },
-    { id: "about", label: copy.nav.about },
-    { id: "contact", label: copy.timeline.contact },
-  ], [copy])
 
   useEffect(() => { document.documentElement.lang = language }, [language])
   useEffect(() => { startAnalytics() }, [])
@@ -64,7 +57,6 @@ export default function App() {
         <Playground projects={lab} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />
       </main>
       <Contact copy={copy.contact} role={copy.hero.role} />
-      <TimelineBar sections={timelineSections} copy={copy.timeline} />
       {selectedProject && <Suspense fallback={null}><ProjectDetail project={selectedProject} index={selectedIndex} total={allProjects.length} origin={selection.origin} closing={selection.closing} onClosed={finishClose} onClose={closeProject} onStep={stepProject} videoMode={isCompact ? "mobile" : "desktop"} copy={copy} language={language} onLanguageChange={setLanguage} /></Suspense>}
     </MotionConfig>
   )
