@@ -21,7 +21,7 @@ npm test
 npm run build
 ```
 
-Pushing to `main` deploys to GitHub Pages on gaston.mov (`.github/workflows/deploy.yml`, `public/CNAME`).
+Vercel builds every push (tests first, see `vercel.json`). `main` is production on gaston.mov; other branches get preview deployments.
 
 ## Content and architecture
 
