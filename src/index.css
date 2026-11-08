@@ -133,16 +133,16 @@ svg { flex-shrink: 0; }
 .clients-section { padding-block: 72px 88px; border-top: 1px solid var(--line); overflow: hidden; }
 .clients-head { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 36px; }
 .clients-head .eyebrow { margin: 0; font: inherit; font-size: 14px; letter-spacing: 0; }
-.clients-marquee { display: flex; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
-.clients-track { display: flex; flex: none; animation: clients-run 70s linear infinite; }
-.clients-marquee:hover .clients-track { animation-play-state: paused; }
+/* Moved by FeaturedClients (cruise, hover to stop, press and drag, flick). pan-y keeps page scroll on touch. */
+.clients-marquee { display: flex; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.clients-marquee[data-dragging="true"] { cursor: grabbing; }
+.clients-track { display: flex; flex: none; will-change: transform; }
 .clients-run { display: flex; flex: none; align-items: center; gap: clamp(56px, 6vw, 104px); margin: 0; padding: 0 clamp(28px, 3vw, 52px); list-style: none; }
 .clients-run li { display: flex; align-items: center; }
 .clients-section { --logo-h: clamp(26px, 2.6vw, 38px); }
 .client-logo { display: block; height: calc(var(--logo-h) * var(--scale)); aspect-ratio: var(--ratio); background: var(--paper); opacity: .82; -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat; }
-@keyframes clients-run { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
-  .clients-marquee { mask-image: none; }
+  .clients-marquee { mask-image: none; cursor: auto; }
   .clients-track { animation: none; flex-wrap: wrap; padding-inline: 20px; }
   .clients-run { flex-wrap: wrap; row-gap: 28px; }
   .clients-run[aria-hidden] { display: none; }
