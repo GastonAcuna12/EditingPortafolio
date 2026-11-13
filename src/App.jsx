@@ -52,7 +52,7 @@ export default function App() {
       <a className="skip-link" href="#work">{copy.nav.skip}</a>
       <SiteNav language={language} onLanguageChange={setLanguage} copy={copy.nav} hasLab={lab.length > 0} />
       <main>
-        <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} />
+        <Hero copy={copy.hero} projects={[...work, ...more]} videoMode={isCompact ? "mobile" : "desktop"} />
         <FeaturedWork projects={work} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} selectedId={selection?.id} />
         <MoreWork projects={more} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={{ ...copy.more, open: copy.work.open }} />
         <FeaturedClients clients={featuredClients} copy={copy.clients} />

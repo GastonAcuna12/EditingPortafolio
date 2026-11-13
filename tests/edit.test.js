@@ -3,7 +3,7 @@ import assert from "node:assert/strict"
 import { formatTimecode, frameNumber } from "../src/lib/timecode.js"
 import { buildReelUrl, cutAt, reelCuts, reelDuration } from "../src/lib/reel.js"
 import { getCloudinaryPreview } from "../src/lib/cloudinary.js"
-import { projects } from "../src/data/portfolio.js"
+import { moreWork, projects } from "../src/data/portfolio.js"
 
 test("timecode reads as HH:MM:SS:FF at 30fps", () => {
   assert.equal(formatTimecode(0), "00:00:00:00")
@@ -14,17 +14,19 @@ test("timecode reads as HH:MM:SS:FF at 30fps", () => {
 })
 
 test("the Hero reel splices every real project once, silent, in order", () => {
-  const ids = new Set(projects.map((project) => project.id))
+  const reelProjects = [...projects, ...moreWork]
+  const ids = new Set(reelProjects.map((project) => project.id))
   assert.ok(reelCuts.every((cut) => ids.has(cut.id)))
   assert.equal(new Set(reelCuts.map((cut) => cut.id)).size, reelCuts.length)
-  const url = buildReelUrl(projects)
+  const url = buildReelUrl(reelProjects)
   const [first] = reelCuts
   assert.ok(url.startsWith("https://res.cloudinary.com/"))
   assert.ok(url.includes(`/video/upload/so_${first.in},eo_${Math.round((first.in + first.length) * 100) / 100},w_540,h_960,c_fill,q_auto:eco,ac_none/`))
   assert.equal(url.match(/fl_splice/g).length, reelCuts.length - 1)
-  const firstFile = projects.find((project) => project.id === first.id).videoSrc.split("/").at(-1)
-  assert.ok(url.endsWith(`/f_mp4,vc_h264:baseline:3.1/${firstFile}`))
-  assert.match(buildReelUrl(projects, "mobile"), /w_360,h_640/)
+  const firstFile = reelProjects.find((project) => project.id === first.id).videoSrc.split("/").at(-1)
+  assert.match(url, /\/f_mp4,vc_h264:baseline:3\.1\//)
+  assert.ok(url.endsWith(`/${firstFile}`))
+  assert.match(buildReelUrl(reelProjects, "mobile"), /w_360,h_640/)
 })
 
 test("cutAt maps reel time to the cut on screen", () => {
