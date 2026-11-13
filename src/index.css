@@ -395,3 +395,22 @@ svg { flex-shrink: 0; }
 .more-item:is(:hover, :focus-visible) .more-title { color: var(--accent); }
 @media (max-width: 1199px) { .more-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 639px) { .more-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; } .more-work { padding-bottom: 64px; } }
+
+/* Formats: the frame follows the chosen ratio; "All" lays every size side by side at one height. */
+.detail-media-frame { aspect-ratio: var(--ar, 9 / 16); }
+.detail-media-frame .video-player video { aspect-ratio: var(--ar, 9 / 16); }
+/* Same weight as the wide rule above and later, so "All" keeps its natural height. */
+.detail-layout .detail-media-frame[data-set] { aspect-ratio: auto; background: none; container-type: inline-size; }
+.format-switch { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.format-switch button { min-height: 32px; padding: 0 12px; font: 400 13px/1 var(--mono); color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; }
+.format-switch button:hover { color: var(--paper); }
+.format-switch button[aria-pressed="true"] { color: #0a0a0a; background: var(--paper); border-color: var(--paper); }
+/* Height chosen so the four true-ratio frames (9:16 + 16:9 + 1:1 + 4:5 = 4.14 heights wide) fill the row. */
+.format-set { --set-h: min(56svh, calc((100cqw - 48px) / 4.14)); display: flex; align-items: flex-end; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.format-set li { display: flex; flex-direction: column; align-items: flex-start; }
+.format-set video { display: block; height: var(--set-h); width: auto; aspect-ratio: var(--ar); object-fit: contain; background: #141414; border-radius: 2px; }
+.format-set span { padding-top: 8px; font-size: 12px; color: var(--muted); }
+.project-formats { display: block; margin-top: 2px; font-size: 12px; color: var(--accent); }
+@media (max-width: 899px) {
+  .format-set { --set-h: 150px; flex-wrap: wrap; row-gap: 20px; }
+}

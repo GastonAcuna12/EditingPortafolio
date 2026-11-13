@@ -186,10 +186,15 @@ export const projects = [
         ]
       }
     },
-    "client": "Twilight Towers"
+    "client": "Twilight Towers",
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1920x1080_pqjfhi.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1080_acnlgx.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1350_sxhey4.mp4"
+    }
   },
   {
-    "id": "julian-motion-performance",
+    "id": "performance-motion-cut",
     "posterSecond": 1,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
     "format": "9:16",
@@ -277,6 +282,11 @@ export const projects = [
         "category": "Sketch de personaje / UGC",
         "description": "Un nigromante atiende una línea de ayuda y responde dudas de jugadores sobre cooldowns, daño y equipo."
       }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1920x1080_kvxgwy.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1080_g6iwzl.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1350_qgbjxa.mp4"
     }
   },
   {
@@ -333,6 +343,11 @@ export const projects = [
         "category": "Pantalla dividida / UGC",
         "description": "Un partido de tenis y un tablero de Words With Friends corren en paralelo, hasta que el tablero empieza a escribir el partido."
       }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1920x1080_uwjblp.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1080_avrlh3.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1350_jeqkvb.mp4"
     }
   },
   {
@@ -388,6 +403,11 @@ export const projects = [
         "category": "Composición / UGC",
         "description": "Una creadora muestra su tienda como si fuera su departamento, metida dentro del mundo del juego."
       }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_shop-titans_1920x1080_c0csea.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_shop-titans_1080x1080_gostsn.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_shop-titans_1080x1350_mv9bwp.mp4"
     }
   },
   {
@@ -408,6 +428,11 @@ export const projects = [
         "category": "UGC / Lanzamiento",
         "description": "Un creador que jugó el original en 2009 vuelve por Replanted y sus modos nuevos."
       }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1920x1080_v53qdp.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1080_k3np1u.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1350_dogspy.mp4"
     }
   }
 ]

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
 import { VideoHandoff } from "./VideoHandoff"
+import { FormatSet } from "./FormatSet"
+import { RATIOS } from "../lib/formats"
 import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, isWideProject } from "../lib/cloudinary"
 import { useProjectTransition } from "../hooks/useProjectTransition"
 
@@ -12,8 +14,14 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
   const surfaceRef = useRef(null)
   const backdropRef = useRef(null)
   const ready = useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRef, backdropRef, origin, projectId: project.id, closing, onClosed })
-  const wide = isWideProject(project)
-  const poster = getCloudinaryVideoPoster(project.videoSrc, videoMode, project.posterSecond ?? 1, wide ? 1280 : undefined)
+  // Pieces delivered in several sizes can switch between them, or show them all at once.
+  const formats = project.sizes ? [[project.format, project.videoSrc], ...Object.entries(project.sizes)] : null
+  const [viewState, setViewState] = useState({ id: project.id, view: project.format })
+  const view = viewState.id === project.id ? viewState.view : project.format
+  const setView = (next) => setViewState({ id: project.id, view: next })
+  const source = formats?.find(([ratio]) => ratio === view)?.[1] || project.videoSrc
+  const wide = view === "all" || view === "16:9" || isWideProject(project)
+  const poster = getCloudinaryVideoPoster(source, videoMode, project.posterSecond ?? 1, wide ? 1280 : undefined)
   const [firstId] = useState(project.id)
 
   useEffect(() => { dialogRef.current.scrollTop = 0 }, [project.id])
@@ -41,10 +49,15 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
           <p className="detail-summary">{project.intro || project.context}</p>
         </div>
         <div className="detail-video">
-          <div ref={frameRef} className="detail-media-frame">
-            <img className="detail-poster" src={poster} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, project.posterSecond ?? 1, wide)} sizes={wide ? "(max-width: 639px) calc(100vw - 40px), min(100vw - 112px, 1260px)" : "(max-width: 639px) calc(100vw - 40px), 440px"} alt="" width={wide ? 1280 : 540} height={wide ? 720 : 960} />
-            {ready && !closing && <VideoHandoff key={project.id} src={project.videoSrc} posterSrc={poster} title={project.title} videoMode={videoMode} wide={wide} copy={copy.detail} />}
+          <div ref={frameRef} className="detail-media-frame" data-set={view === "all" || undefined} style={{ "--ar": RATIOS[view] || RATIOS[project.format] }}>
+            {view === "all" ? <FormatSet formats={formats} posterSecond={project.posterSecond ?? 1} videoMode={videoMode} label={copy.detail.allFormats} /> : <>
+            <img className="detail-poster" src={poster} srcSet={getCloudinaryPosterSrcSet(source, project.posterSecond ?? 1, wide)} sizes={wide ? "(max-width: 639px) calc(100vw - 40px), min(100vw - 112px, 1260px)" : "(max-width: 639px) calc(100vw - 40px), 440px"} alt="" width={wide ? 1280 : 540} height={wide ? 720 : 960} />
+            {ready && !closing && <VideoHandoff key={`${project.id}-${view}`} src={source} posterSrc={poster} title={project.title} videoMode={videoMode} wide={wide} copy={copy.detail} />}
+            </>}
           </div>
+          {formats && <div className="format-switch" role="group" aria-label={copy.detail.formats}>
+            {[...formats.map(([ratio]) => ratio), "all"].map((ratio) => <button key={ratio} type="button" aria-pressed={view === ratio} disabled={!ready || closing} onClick={() => setView(ratio)}>{ratio === "all" ? copy.detail.allFormats : ratio}</button>)}
+          </div>}
         </div>
         <div className="detail-copy">
           {[[copy.detail.context, project.context || project.description], [copy.detail.approach, project.approach], [copy.detail.outcome, project.outcome]].filter(([, value]) => value).map(([label, value]) => <div className="detail-paragraph" key={label}><h3>{label}</h3><p>{value}</p></div>)}

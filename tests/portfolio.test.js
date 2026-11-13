@@ -97,3 +97,14 @@ test("more work pieces are hosted on Cloudinary, bilingual and never repeat a fe
     for (const language of ["en", "es"]) assert.ok(localizeProject(project, language).title)
   }
 })
+
+test("extra sizes use known ratios, live on Cloudinary and never repeat the main format", async () => {
+  const { RATIOS } = await import("../src/lib/formats.js")
+  for (const project of [...projects, ...moreWork].filter((item) => item.sizes)) {
+    for (const [ratio, src] of Object.entries(project.sizes)) {
+      assert.ok(RATIOS[ratio], `${project.id}: unknown ratio ${ratio}`)
+      assert.notEqual(ratio, project.format)
+      assert.match(src, /^https:\/\/res\.cloudinary\.com\/.+\.mp4$/)
+    }
+  }
+})

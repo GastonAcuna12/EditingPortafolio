@@ -67,6 +67,7 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   <span className="project-title">{project.title}</span>
                   {(slot === "lead" || slot === "interlude") ? <span className="project-category">{project.client || project.category}</span> : <span className="project-slate">{project.client || project.category}</span>}
+                  {project.sizes && <span className="project-formats">{copy.formats}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-summary">{project.intro}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-meta"><span><span className="project-meta-label">{copy.role}</span>{project.role}</span><span><span className="project-meta-label">{copy.format}</span>{project.format}</span></span>}
                   <span className="project-action"><Play size={14} aria-hidden="true" /><span>{copy.open}</span></span>

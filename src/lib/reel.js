@@ -2,7 +2,7 @@
 // Each cut: project id, in-point and length in seconds. Varied lengths keep the rhythm alive.
 // Gastón prefers the motion pieces here (2026-11-13); cuts may come from featured or more work.
 export const reelCuts = [
-  { id: "julian-motion-performance", in: 1, length: 1.2 },
+  { id: "performance-motion-cut", in: 1, length: 1.2 },
   { id: "gorilon-event", in: 8, length: 0.9 },
   { id: "top-iphone", in: 5, length: 1 },
   { id: "which-is-stronger-motion-ad", in: 2.6, length: 1.1 },

@@ -21,6 +21,9 @@ function projectPages() {
         await mkdir(directory, { recursive: true })
         await writeFile(join(directory, 'index.html'), renderProjectPage(index, project))
       }
+      // The sitemap follows the data, so every share page is listed and nothing stale is.
+      const pages = ['https://gaston.mov/', ...[...projects, ...moreWork].map((project) => `https://gaston.mov/work/${project.id}/`)]
+      await writeFile(join(outputDirectory, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((url) => `  <url><loc>${url}</loc></url>`).join('\n')}\n</urlset>\n`)
     },
   }
 }
