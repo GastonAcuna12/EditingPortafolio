@@ -7,7 +7,7 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => (
 export function projectPageData(project) {
   return {
     title: `${project.copy.en.title} · Gastón Acuña`,
-    description: project.copy.en.description,
+    description: project.copy.en.description || `${project.copy.en.title}${project.client ? ` for ${project.client}` : ""}. Edited by Gastón Acuña.`,
     image: getCloudinarySharePoster(project.videoSrc, project.posterSecond ?? 1),
     url: `https://gaston.mov/work/${project.id}/`,
   }

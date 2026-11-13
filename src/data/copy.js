@@ -14,6 +14,7 @@ export const copy = {
     work: { moreTitle: "Have something in mind?", moreCta: "Let's talk", label: "Work", title: "Selected work", description: "Motion ads, short-form edits and a good sense of rhythm.", open: "Watch", featured: "Featured project", role: "Role", format: "Format" },
     detail: { close: "Close project", role: "Role", format: "Format", year: "Year", client: "Client", context: "The piece", approach: "My approach", outcome: "Outcome", next: "Next project", previous: "Previous project", position: "Project", loading: "Loading video", error: "This video couldn't load. Try the original file.", retry: "Retry video", original: "Open original video", related: "More work", play: "Play", pause: "Pause", mute: "Mute", unmute: "Unmute", fullscreen: "Fullscreen", scrub: "Timeline" },
     clients: { label: "Clients" },
+    more: { label: "More work" },
     about: {
       label: "A little about me",
       lines: ["Editing", "since 13."],
@@ -43,6 +44,7 @@ export const copy = {
     work: { moreTitle: "¿Tenés algo en mente?", moreCta: "Hablemos", label: "Trabajos", title: "Trabajos seleccionados", description: "Motion ads, edits short-form y mucho sentido del ritmo.", open: "Ver", featured: "Proyecto destacado", role: "Rol", format: "Formato" },
     detail: { close: "Cerrar proyecto", role: "Rol", format: "Formato", year: "Año", client: "Cliente", context: "La pieza", approach: "Mi enfoque", outcome: "Resultado", next: "Siguiente proyecto", previous: "Proyecto anterior", position: "Proyecto", loading: "Cargando video", error: "No se pudo cargar el video. Probá con el archivo original.", retry: "Reintentar video", original: "Abrir video original", related: "Más trabajos", play: "Reproducir", pause: "Pausar", mute: "Silenciar", unmute: "Activar sonido", fullscreen: "Pantalla completa", scrub: "Línea de tiempo" },
     clients: { label: "Clientes" },
+    more: { label: "Más trabajos" },
     about: {
       label: "Un poco sobre mí",
       lines: ["Edito desde", "los 13."],

@@ -18,9 +18,12 @@ test("the Hero reel splices every real project once, silent, in order", () => {
   assert.ok(reelCuts.every((cut) => ids.has(cut.id)))
   assert.equal(new Set(reelCuts.map((cut) => cut.id)).size, reelCuts.length)
   const url = buildReelUrl(projects)
-  assert.match(url, /^https:\/\/res\.cloudinary\.com\/.+\/video\/upload\/so_1,eo_2\.2,w_540,h_960,c_fill,q_auto:eco,ac_none\//)
+  const [first] = reelCuts
+  assert.ok(url.startsWith("https://res.cloudinary.com/"))
+  assert.ok(url.includes(`/video/upload/so_${first.in},eo_${Math.round((first.in + first.length) * 100) / 100},w_540,h_960,c_fill,q_auto:eco,ac_none/`))
   assert.equal(url.match(/fl_splice/g).length, reelCuts.length - 1)
-  assert.ok(url.endsWith("/f_mp4,vc_h264:baseline:3.1/v1779289607/JulianPort_y8itgt.mp4"))
+  const firstFile = projects.find((project) => project.id === first.id).videoSrc.split("/").at(-1)
+  assert.ok(url.endsWith(`/f_mp4,vc_h264:baseline:3.1/${firstFile}`))
   assert.match(buildReelUrl(projects, "mobile"), /w_360,h_640/)
 })
 

@@ -1,13 +1,13 @@
 import test from "node:test"
 import assert from "node:assert/strict"
-import { projects, localizeProject, featuredClients, playgroundProjects } from "../src/data/portfolio.js"
+import { projects, moreWork, localizeProject, featuredClients, playgroundProjects } from "../src/data/portfolio.js"
 import { getOptimizedCloudinaryVideo, getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, getCloudinaryVp9Video, ENABLE_VP9_SOURCE } from "../src/lib/cloudinary.js"
 import { getProjectNotes } from "../src/data/projectNotes.js"
 import { copy } from "../src/data/copy.js"
 
-test("all eight projects have stable identities and bilingual content", () => {
-  assert.equal(projects.length, 8)
-  assert.equal(new Set(projects.map((project) => project.id)).size, 8)
+test("all ten featured projects have stable identities and bilingual content", () => {
+  assert.equal(projects.length, 10)
+  assert.equal(new Set(projects.map((project) => project.id)).size, 10)
   for (const project of projects) {
     assert.match(project.videoSrc, /^https:\/\/res\.cloudinary\.com\/.+\.mp4$/)
     for (const language of ["en", "es"]) {
@@ -86,4 +86,14 @@ test("only confirmed clients are published, and experiments stay unpublished", (
   const confirmed = ["Supercell","Niantic","EA","Blizzard","Sony","2K","WB Games","Zynga","Kabam","Eight Sleep","TubeScience","Toast","Papaya","Fortis","Appvertiser","Airtraffic","Alarmas"]
   assert.deepEqual(featuredClients.map((client) => client.name), confirmed)
   assert.deepEqual(playgroundProjects, [])
+})
+
+test("more work pieces are hosted on Cloudinary, bilingual and never repeat a featured id", () => {
+  const featured = new Set(projects.map((project) => project.id))
+  assert.equal(new Set(moreWork.map((project) => project.id)).size, moreWork.length)
+  for (const project of moreWork) {
+    assert.ok(!featured.has(project.id))
+    assert.match(project.videoSrc, /^https:\/\/res\.cloudinary\.com\/.+\.mp4$/)
+    for (const language of ["en", "es"]) assert.ok(localizeProject(project, language).title)
+  }
 })

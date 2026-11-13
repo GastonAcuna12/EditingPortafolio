@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react"
 import { MotionConfig } from "motion/react"
 import { copy as translations } from "./data/copy"
-import { featuredClients, localizeProject, playgroundProjects, projects } from "./data/portfolio"
+import { featuredClients, localizeProject, moreWork, playgroundProjects, projects } from "./data/portfolio"
 import { getProjectNotes } from "./data/projectNotes"
 import { useCompactLayout } from "./hooks/useCompactLayout"
 import { useProjectNavigation } from "./hooks/useProjectNavigation"
@@ -9,6 +9,7 @@ import { SiteNav } from "./components/SiteNav"
 import { Hero } from "./components/Hero"
 import { FeaturedWork } from "./components/FeaturedWork"
 import { FeaturedClients } from "./components/FeaturedClients"
+import { MoreWork } from "./components/MoreWork"
 import { About } from "./components/About"
 import { Playground } from "./components/Playground"
 import { Contact } from "./components/Contact"
@@ -30,8 +31,9 @@ export default function App() {
     ...getProjectNotes(project.id, language),
   })
   const work = projects.map(localize)
+  const more = moreWork.map(localize)
   const lab = playgroundProjects.map(localize)
-  const allProjects = [...work, ...lab]
+  const allProjects = [...work, ...more, ...lab]
   const navigation = useProjectNavigation(allProjects)
   const { selection, finishClose } = navigation
   const openProject = (id, trigger) => { play("whoosh"); track(`project/${id}`); navigation.openProject(id, trigger) }
@@ -52,6 +54,7 @@ export default function App() {
       <main>
         <Hero copy={copy.hero} projects={work} videoMode={isCompact ? "mobile" : "desktop"} />
         <FeaturedWork projects={work} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.work} selectedId={selection?.id} />
+        <MoreWork projects={more} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={{ ...copy.more, open: copy.work.open }} />
         <FeaturedClients clients={featuredClients} copy={copy.clients} />
         <About copy={copy.about} />
         <Playground projects={lab} onOpen={openProject} onPreload={loadProjectDetail} videoMode={isCompact ? "mobile" : "desktop"} copy={copy.lab} watchLabel={copy.work.open} />

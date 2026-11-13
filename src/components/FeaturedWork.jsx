@@ -29,7 +29,8 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
     query.addEventListener("change", update)
     return () => query.removeEventListener("change", update)
   }, [])
-  const slots = ["lead", "pair", "pair", "interlude", "closing", "closing", "closing"]
+  // Lead (wide), a pair, one large piece with text, then rows of three.
+  const slots = ["lead", "pair", "pair", "interlude"]
   // The two big pieces play on their own while they are on screen, so the page feels alive without a hover.
   const [onScreen, setOnScreen] = useState(() => new Set())
   const watched = useRef(new Map())
@@ -64,9 +65,8 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
               <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { stopPreview(project.id); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { onPreload?.(); if (canHover) { startPreview(project.id); play("tick") } }} onPointerLeave={() => stopPreview(project.id)} onFocus={() => startPreview(project.id)} onBlur={() => stopPreview(project.id)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
                 <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id || onScreen.has(project.id)} eager={index === 0} label={copy.open} sizes={wide ? "(max-width: 639px) calc(100vw - 40px), min(100vw - 112px, 1260px)" : imageSizes[slot]} />
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
-                  {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
                   <span className="project-title">{project.title}</span>
-                  {(slot === "lead" || slot === "interlude") ? <span className="project-category">{project.category}</span> : <span className="project-slate">{project.format} · {project.role}</span>}
+                  {(slot === "lead" || slot === "interlude") ? <span className="project-category">{project.client || project.category}</span> : <span className="project-slate">{project.client || project.category}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-summary">{project.intro}</span>}
                   {(slot === "lead" || slot === "interlude") && <span className="project-meta"><span><span className="project-meta-label">{copy.role}</span>{project.role}</span><span><span className="project-meta-label">{copy.format}</span>{project.format}</span></span>}
                   <span className="project-action"><Play size={14} aria-hidden="true" /><span>{copy.open}</span></span>
