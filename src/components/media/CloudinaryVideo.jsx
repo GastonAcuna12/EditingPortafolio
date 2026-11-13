@@ -4,6 +4,7 @@ import { ENABLE_VP9_SOURCE, getCloudinaryVideoPoster, getCloudinaryVp9Video, get
 import { FPS } from "../../lib/timecode"
 
 function clock(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00"
   const total = Math.max(0, Math.floor(seconds || 0))
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`
 }
@@ -17,7 +18,7 @@ function stopVideo(video, reset = true) {
 }
 
 // A quiet viewer: play, scrub, sound and fullscreen. Keyboard transport (J/K/L, arrows) works without being advertised.
-export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", isActive = true, copy }) {
+export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", isActive = true, wide = false, copy }) {
   const videoRef = useRef(null)
   const playerRef = useRef(null)
   const [failed, setFailed] = useState(false)
@@ -28,8 +29,8 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
   const [duration, setDuration] = useState(0)
   const [buffered, setBuffered] = useState(0)
   const [muted, setMuted] = useState(false)
-  const videoSrc = getOptimizedCloudinaryVideo(src, videoMode)
-  const poster = posterSrc || getCloudinaryVideoPoster(src, videoMode, 1)
+  const videoSrc = getOptimizedCloudinaryVideo(src, videoMode, wide)
+  const poster = posterSrc || getCloudinaryVideoPoster(src, videoMode, 1, wide ? 1280 : undefined)
 
   useEffect(() => {
     const video = videoRef.current
@@ -147,7 +148,9 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
         onTimeUpdate={(event) => setTime(event.currentTarget.currentTime)}
-        onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+        onLoadedMetadata={(event) => setDuration(Number.isFinite(event.currentTarget.duration) ? event.currentTarget.duration : 0)}
+        // A transcode Cloudinary makes on first request can arrive without a duration; take it once it is known.
+        onDurationChange={(event) => { if (Number.isFinite(event.currentTarget.duration)) setDuration(event.currentTarget.duration) }}
         onProgress={(event) => {
           const video = event.currentTarget
           if (video.buffered.length && video.duration) setBuffered(video.buffered.end(video.buffered.length - 1) / video.duration)
@@ -155,7 +158,7 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
         onError={() => setFailed(true)}
         onLoadedData={() => setFailed(false)}
       >
-        {ENABLE_VP9_SOURCE && <source src={getCloudinaryVp9Video(src, videoMode)} type="video/webm" />}
+        {ENABLE_VP9_SOURCE && <source src={getCloudinaryVp9Video(src, videoMode, wide)} type="video/webm" />}
         <source src={videoSrc} type="video/mp4" onError={() => { if (videoSrc === src) setFailed(true) }} />
         {videoSrc !== src ? <source src={src} type="video/mp4" onError={() => setFailed(true)} /> : null}
       </video>
@@ -172,7 +175,7 @@ export function CloudinaryVideo({ src, posterSrc, title, videoMode = "desktop", 
               <button type="button" className="player-button" onClick={toggle} aria-label={playing ? copy.pause : copy.play} title={playing ? copy.pause : copy.play}>
                 {playing ? <Pause size={17} fill="currentColor" aria-hidden="true" /> : <Play size={17} fill="currentColor" aria-hidden="true" />}
               </button>
-              <span className="player-tc" aria-hidden="true">{clock(time)}<span className="player-tc-total"> / {clock(duration)}</span></span>
+              <span className="player-tc" aria-hidden="true">{clock(time)}{duration > 0 && <span className="player-tc-total"> / {clock(duration)}</span>}</span>
               <span className="player-spacer" />
               <button type="button" className="player-button" onClick={toggleMute} aria-label={muted ? copy.unmute : copy.mute} title={muted ? copy.unmute : copy.mute}>
                 {muted ? <VolumeX size={17} aria-hidden="true" /> : <Volume2 size={17} aria-hidden="true" />}

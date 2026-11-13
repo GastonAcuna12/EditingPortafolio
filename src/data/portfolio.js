@@ -116,6 +116,42 @@ export const playgroundProjects = []
 // Original media URLs are stored once, independently of language or presentation.
 export const projects = [
   {
+    "id": "linear-cycles-spec",
+    "posterSecond": 1.8,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794581537/Linear_Cycles_Opening_kd7g9t.mp4",
+    "format": "16:9",
+    "year": "2026",
+    "tags": [
+      "Motion",
+      "SaaS",
+      "16:9"
+    ],
+    "copy": {
+      "en": {
+        "title": "Linear Cycles",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / Product launch",
+        "description": "A 10-second spec opening for Cycles, Linear's recurring sprints, made in Linear's own visual language: clean type, simple layouts and quiet motion.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      },
+      "es": {
+        "title": "Linear Cycles",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / Lanzamiento de producto",
+        "description": "Una apertura spec de 10 segundos para Cycles, los sprints recurrentes de Linear, hecha en el lenguaje visual de Linear: tipografía limpia, layouts simples y motion sutil.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      }
+    }
+  },
+  {
     "id": "julian-motion-performance",
     "posterSecond": 1,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",

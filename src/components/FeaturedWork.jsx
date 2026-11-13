@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { ArrowUpRight, Play } from "lucide-react"
 import { Reveal } from "./Reveal"
 import { ProjectPoster } from "./ProjectPoster"
+import { isWideProject } from "../lib/cloudinary"
 import { resolveEase, timing } from "../lib/motion"
 import { play } from "../lib/sound"
 
@@ -57,10 +58,11 @@ export function FeaturedWork({ projects, onOpen, onPreload, videoMode, copy }) {
       <div className="work-gallery">
         {projects.map((project, index) => {
           const slot = slots[index] || "closing"
+          const wide = isWideProject(project)
           return (
-            <article className={`project project--${slot}`} key={project.id} data-project-id={project.id} ref={(node) => { if (slot !== "lead" && slot !== "interlude") return; if (node) watched.current.set(project.id, node); else watched.current.delete(project.id) }}>
+            <article className={`project project--${slot}${wide ? " project--wide" : ""}`} key={project.id} data-project-id={project.id} ref={(node) => { if (slot !== "lead" && slot !== "interlude") return; if (node) watched.current.set(project.id, node); else watched.current.delete(project.id) }}>
               <button type="button" className="project-open" data-cursor="project" data-project-id={project.id} onClick={(event) => { stopPreview(project.id); onOpen(project.id, event.currentTarget) }} onPointerEnter={() => { onPreload?.(); if (canHover) { startPreview(project.id); play("tick") } }} onPointerLeave={() => stopPreview(project.id)} onFocus={() => startPreview(project.id)} onBlur={() => stopPreview(project.id)} aria-label={`${copy.open} ${project.title}`} aria-haspopup="dialog">
-                <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id || onScreen.has(project.id)} eager={index === 0} label={copy.open} sizes={imageSizes[slot]} />
+                <ProjectPoster project={project} videoMode={videoMode} previewing={hovered === project.id || onScreen.has(project.id)} eager={index === 0} label={copy.open} sizes={wide ? "(max-width: 639px) calc(100vw - 40px), min(100vw - 112px, 1260px)" : imageSizes[slot]} />
                 <motion.span className="project-caption" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .06 }} transition={{ duration: timing.ui / 1000, delay: reduced ? 0 : slot === "lead" || slot === "interlude" ? .12 : slot === "pair" ? (index - 1) * .07 : .04, ease: resolveEase }}><span>
                   {slot === "lead" && <span className="project-featured">{copy.featured}</span>}
                   <span className="project-title">{project.title}</span>

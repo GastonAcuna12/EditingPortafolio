@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
 import { VideoHandoff } from "./VideoHandoff"
-import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet } from "../lib/cloudinary"
+import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, isWideProject } from "../lib/cloudinary"
 import { useProjectTransition } from "../hooks/useProjectTransition"
 
 export function ProjectDetail({ project, index, total, origin, closing, onClosed, onClose, onStep, videoMode, copy, language, onLanguageChange }) {
@@ -12,7 +12,8 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
   const surfaceRef = useRef(null)
   const backdropRef = useRef(null)
   const ready = useProjectTransition({ dialogRef, frameRef, flightRef, surfaceRef, backdropRef, origin, projectId: project.id, closing, onClosed })
-  const poster = getCloudinaryVideoPoster(project.videoSrc, videoMode, project.posterSecond ?? 1)
+  const wide = isWideProject(project)
+  const poster = getCloudinaryVideoPoster(project.videoSrc, videoMode, project.posterSecond ?? 1, wide ? 1280 : undefined)
   const [firstId] = useState(project.id)
 
   useEffect(() => { dialogRef.current.scrollTop = 0 }, [project.id])
@@ -31,7 +32,7 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
           <button type="button" autoFocus className="icon-button" onClick={onClose} disabled={closing} aria-label={copy.detail.close} title={copy.detail.close}><X size={24} /></button>
         </div>
       </div>
-      <div className="detail-layout">
+      <div className="detail-layout" data-wide={wide || undefined}>
         <div className="detail-heading"><p className="eyebrow">{project.category}</p><h2 id="detail-title">{project.title}</h2></div>
         <div className="detail-intro">
           <dl className="detail-meta">
@@ -41,8 +42,8 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
         </div>
         <div className="detail-video">
           <div ref={frameRef} className="detail-media-frame">
-            <img className="detail-poster" src={poster} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, project.posterSecond ?? 1)} sizes="(max-width: 639px) calc(100vw - 40px), 440px" alt="" width="540" height="960" />
-            {ready && !closing && <VideoHandoff key={project.id} src={project.videoSrc} posterSrc={poster} title={project.title} videoMode={videoMode} copy={copy.detail} />}
+            <img className="detail-poster" src={poster} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, project.posterSecond ?? 1, wide)} sizes={wide ? "(max-width: 639px) calc(100vw - 40px), min(100vw - 112px, 1260px)" : "(max-width: 639px) calc(100vw - 40px), 440px"} alt="" width={wide ? 1280 : 540} height={wide ? 720 : 960} />
+            {ready && !closing && <VideoHandoff key={project.id} src={project.videoSrc} posterSrc={poster} title={project.title} videoMode={videoMode} wide={wide} copy={copy.detail} />}
           </div>
         </div>
         <div className="detail-copy">

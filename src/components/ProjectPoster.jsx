@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useReducedMotion } from "motion/react"
 import { Play } from "lucide-react"
-import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, getCloudinaryPreview } from "../lib/cloudinary"
+import { getCloudinaryVideoPoster, getCloudinaryPosterSrcSet, getCloudinaryPreview, isWideProject } from "../lib/cloudinary"
 
 function HoverPreview({ project }) {
   const ref = useRef(null)
@@ -13,7 +13,7 @@ function HoverPreview({ project }) {
     return () => video?.pause()
   }, [])
   return (
-    <video ref={ref} className="project-preview" data-live={live} src={getCloudinaryPreview(project.videoSrc, start, 5)} muted loop playsInline autoPlay preload="auto" aria-hidden="true" tabIndex={-1} onPlaying={() => setLive(true)} />
+    <video ref={ref} className="project-preview" data-live={live} src={getCloudinaryPreview(project.videoSrc, start, 5, isWideProject(project) ? 1280 : 540)} muted loop playsInline autoPlay preload="auto" aria-hidden="true" tabIndex={-1} onPlaying={() => setLive(true)} />
   )
 }
 
@@ -23,8 +23,9 @@ export function ProjectPoster({ project, videoMode, eager = false, label, previe
   const [placeholderLoaded, setPlaceholderLoaded] = useState(false)
   const reduced = useReducedMotion()
   const second = project.posterSecond ?? 1
+  const wide = isWideProject(project)
   const placeholder = getCloudinaryVideoPoster(project.videoSrc, videoMode, second, 24)
-  const image = !failed && <img className="project-poster" data-loaded={loaded} src={getCloudinaryVideoPoster(project.videoSrc, videoMode, second)} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, second)} sizes={sizes} alt="" width="540" height="960" loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+  const image = !failed && <img className="project-poster" data-loaded={loaded} src={getCloudinaryVideoPoster(project.videoSrc, videoMode, second, wide ? 1280 : undefined)} srcSet={getCloudinaryPosterSrcSet(project.videoSrc, second, wide)} sizes={sizes} alt="" width={wide ? 1280 : 540} height={wide ? 720 : 960} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
   return (
     <div className="project-cover">
       {!loaded && !placeholderLoaded && <span className="poster-fallback">{project.title}</span>}

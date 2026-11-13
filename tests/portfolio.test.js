@@ -5,9 +5,9 @@ import { getOptimizedCloudinaryVideo, getCloudinaryVideoPoster, getCloudinaryPos
 import { getProjectNotes } from "../src/data/projectNotes.js"
 import { copy } from "../src/data/copy.js"
 
-test("all seven existing projects have stable identities and bilingual content", () => {
-  assert.equal(projects.length, 7)
-  assert.equal(new Set(projects.map((project) => project.id)).size, 7)
+test("all eight projects have stable identities and bilingual content", () => {
+  assert.equal(projects.length, 8)
+  assert.equal(new Set(projects.map((project) => project.id)).size, 8)
   for (const project of projects) {
     assert.match(project.videoSrc, /^https:\/\/res\.cloudinary\.com\/.+\.mp4$/)
     for (const language of ["en", "es"]) {
