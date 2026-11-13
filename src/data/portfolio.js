@@ -189,22 +189,37 @@ export const projects = [
     "client": "Twilight Towers"
   },
   {
-    "id": "marvel-snap-hellcow-origin",
-    "posterSecond": 1.5,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_MarvelSnap_HellcowOrigin_nzqfmb.mp4",
+    "id": "julian-motion-performance",
+    "posterSecond": 1,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
     "format": "9:16",
-    "client": "Marvel Snap",
-    "year": "2025",
+    "tags": [
+      "Motion",
+      "Performance",
+      "9:16"
+    ],
     "copy": {
       "en": {
-        "title": "Hellcow Origin",
-        "category": "Card reveal / Motion ad",
-        "description": "A Marvel Snap ad built around one card: Hellcow, her ability and the deck she belongs in."
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
       },
       "es": {
-        "title": "Hellcow Origin",
-        "category": "Revelación de carta / Motion ad",
-        "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
       }
     }
   },
@@ -400,37 +415,22 @@ export const projects = [
 // More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
 export const moreWork = [
   {
-    "id": "julian-motion-performance",
-    "posterSecond": 1,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
+    "id": "marvel-snap-hellcow-origin",
+    "posterSecond": 1.5,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_MarvelSnap_HellcowOrigin_nzqfmb.mp4",
     "format": "9:16",
-    "tags": [
-      "Motion",
-      "Performance",
-      "9:16"
-    ],
+    "client": "Marvel Snap",
+    "year": "2025",
     "copy": {
       "en": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
-        "tags": [
-          "Motion",
-          "Performance",
-          "9:16"
-        ]
+        "title": "Hellcow Origin",
+        "category": "Card reveal / Motion ad",
+        "description": "A Marvel Snap ad built around one card: Hellcow, her ability and the deck she belongs in."
       },
       "es": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
-        "tags": [
-          "Motion",
-          "Performance",
-          "9:16"
-        ]
+        "title": "Hellcow Origin",
+        "category": "Revelación de carta / Motion ad",
+        "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
       }
     }
   },
