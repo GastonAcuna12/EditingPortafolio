@@ -235,6 +235,43 @@ export const projects = [
     }
   },
   {
+    "id": "tally-form-that-follows",
+    "posterSecond": 13,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794772242/Spec_Tally_FormThatFollows_vyquwc.mp4",
+    "format": "16:9",
+    "year": "2026",
+    "tags": [
+      "Motion",
+      "SaaS",
+      "16:9"
+    ],
+    "copy": {
+      "en": {
+        "title": "A Form That Follows",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / SaaS explainer",
+        "description": "A 26-second spec ad for Tally. A designer applies for a design role and the form asks about sales experience. One toggle rebuilds it, and only the questions that apply stay.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      },
+      "es": {
+        "title": "A Form That Follows",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / Explainer SaaS",
+        "description": "Un ad spec de 26 segundos para Tally. Un diseñador se postula a un rol de diseño y el form le pregunta por su experiencia en ventas. Un toggle lo rearma y quedan solo las preguntas que aplican.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      }
+    },
+    "client": "Spec"
+  },
+  {
     "id": "the-guest-rush-3d-ad",
     "posterSecond": 1,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779379990/DM_TheGuestRush_V1_30s_21_05_Demeter_EN_Vid_1080x1920_nohir4.mp4",
@@ -296,6 +333,31 @@ export const projects = [
     }
   },
   {
+    "id": "words-with-friends-tennis",
+    "posterSecond": 13,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_WordsWithFriends_Tennis_ltgwyl.mp4",
+    "format": "9:16",
+    "client": "Words With Friends",
+    "year": "2026",
+    "copy": {
+      "en": {
+        "title": "Game, Set, Word",
+        "category": "Split screen / UGC",
+        "description": "A tennis match and a Words With Friends board play side by side, until the board starts spelling the match."
+      },
+      "es": {
+        "title": "Game, Set, Word",
+        "category": "Pantalla dividida / UGC",
+        "description": "Un partido de tenis y un tablero de Words With Friends corren en paralelo, hasta que el tablero empieza a escribir el partido."
+      }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1920x1080_uwjblp.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1080_avrlh3.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1350_jeqkvb.mp4"
+    }
+  },
+  {
     "id": "semana-santa-motion-ad",
     "posterSecond": 3,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074796/Motion_SemanaSanta_zu22d8.mp4",
@@ -330,66 +392,6 @@ export const projects = [
       }
     },
     "client": "Alarmas"
-  },
-  {
-    "id": "words-with-friends-tennis",
-    "posterSecond": 13,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_WordsWithFriends_Tennis_ltgwyl.mp4",
-    "format": "9:16",
-    "client": "Words With Friends",
-    "year": "2026",
-    "copy": {
-      "en": {
-        "title": "Game, Set, Word",
-        "category": "Split screen / UGC",
-        "description": "A tennis match and a Words With Friends board play side by side, until the board starts spelling the match."
-      },
-      "es": {
-        "title": "Game, Set, Word",
-        "category": "Pantalla dividida / UGC",
-        "description": "Un partido de tenis y un tablero de Words With Friends corren en paralelo, hasta que el tablero empieza a escribir el partido."
-      }
-    },
-    "sizes": {
-      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1920x1080_uwjblp.mp4",
-      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1080_avrlh3.mp4",
-      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1350_jeqkvb.mp4"
-    }
-  },
-  {
-    "id": "authoritative-motion-ad",
-    "posterSecond": 8,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074774/MOTION_41_xsii0z.mp4",
-    "format": "9:16",
-    "tags": [
-      "Motion Ad",
-      "Authority",
-      "Premium"
-    ],
-    "copy": {
-      "en": {
-        "title": "Authority Motion Ad",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Advertising",
-        "description": "A vertical ad using a car, location graphics and a strong typographic voice.",
-        "tags": [
-          "Motion Ad",
-          "Authority",
-          "Premium"
-        ]
-      },
-      "es": {
-        "title": "Authority Motion Ad",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Publicidad",
-        "description": "Un ad vertical con un auto, gráficos de ubicación y una voz tipográfica marcada.",
-        "tags": [
-          "Motion Ad",
-          "Authority",
-          "Premium"
-        ]
-      }
-    }
   },
   {
     "id": "shop-titans-apartment-tour",
@@ -462,6 +464,41 @@ export const moreWork = [
         "title": "Hellcow Origin",
         "category": "Revelación de carta / Motion ad",
         "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
+      }
+    }
+  },
+  {
+    "id": "authoritative-motion-ad",
+    "posterSecond": 8,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074774/MOTION_41_xsii0z.mp4",
+    "format": "9:16",
+    "tags": [
+      "Motion Ad",
+      "Authority",
+      "Premium"
+    ],
+    "copy": {
+      "en": {
+        "title": "Authority Motion Ad",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Advertising",
+        "description": "A vertical ad using a car, location graphics and a strong typographic voice.",
+        "tags": [
+          "Motion Ad",
+          "Authority",
+          "Premium"
+        ]
+      },
+      "es": {
+        "title": "Authority Motion Ad",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Publicidad",
+        "description": "Un ad vertical con un auto, gráficos de ubicación y una voz tipográfica marcada.",
+        "tags": [
+          "Motion Ad",
+          "Authority",
+          "Premium"
+        ]
       }
     }
   },

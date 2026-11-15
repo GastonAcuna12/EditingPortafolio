@@ -369,6 +369,8 @@ svg { flex-shrink: 0; }
 .project--lead.project--wide .project-featured, .project--lead.project--wide .project-title, .project--lead.project--wide .project-category { grid-column: 1; }
 .project--lead.project--wide .project-summary, .project--lead.project--wide .project-meta, .project--lead.project--wide .project-action { grid-column: 2; justify-self: start; }
 .project--lead.project--wide .project-summary { margin-top: 0; }
+/* In the interlude a wide piece takes the larger column and the text sits beside it. */
+.project--interlude.project--wide .project-open { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 72px; }
 .detail-layout[data-wide] { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto auto; max-width: 1260px; gap: 36px 72px; }
 .detail-layout[data-wide] .detail-video { grid-column: 1 / -1; grid-row: 1; width: min(100%, calc((100svh - 148px) * 1.7778)); max-width: none; justify-self: center; }
 .detail-layout[data-wide] .detail-heading { grid-column: 1; grid-row: 2; padding-top: 0; align-self: start; }
@@ -378,6 +380,7 @@ svg { flex-shrink: 0; }
 @media (max-width: 899px) {
   .project--lead.project--wide .project-caption > span { grid-template-columns: minmax(0, 1fr); }
   .project--lead.project--wide .project-caption > span > * { grid-column: 1; }
+  .project--interlude.project--wide .project-open { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; }
   .detail-layout[data-wide] { grid-template-columns: minmax(0, 1fr); }
   .detail-layout[data-wide] .detail-heading, .detail-layout[data-wide] .detail-intro, .detail-layout[data-wide] .detail-copy { grid-column: 1; grid-row: auto; }
   .detail-layout[data-wide] .detail-video { width: 100%; max-width: none; }
