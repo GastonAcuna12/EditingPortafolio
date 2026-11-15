@@ -18,10 +18,11 @@ export const copy = {
     about: {
       label: "A little about me",
       lines: ["Editing", "since 13."],
-      intro: "I'm Gastón Acuña, a motion designer and editor from Paraguay. For six years I've worked with agencies like Airtraffic and Appvertiser, on pieces for Supercell, EA, Niantic, Eight Sleep and TubeScience.",
+      intro: "I'm Gastón, from Paraguay, and for the last six years it's been my job, as an editor and motion designer. I've worked for agencies like Airtraffic, Appvertiser, TubeScience and Missio, on pieces for EA, Zynga, Warner Bros. Games, Blizzard, Supercell and 2K.",
       paragraphs: [
         "Most of what I make are vertical ads for games, apps and SaaS: animated type, motion over gameplay and UGC edits, from brief to delivery.",
         "I care about keeping people watching. But the edit has to have a point of view, too. Rhythm, a well-placed pause, a transition that belongs there. That's the part I love figuring out.",
+        "When I'm not editing, I study Systems Analysis and build my own apps. I built this site too.",
       ],
       signoff: "Raw footage. A few ideas. Something worth watching.",
       link: "Let's make something",
@@ -48,10 +49,11 @@ export const copy = {
     about: {
       label: "Un poco sobre mí",
       lines: ["Edito desde", "los 13."],
-      intro: "Soy Gastón Acuña, motion designer y editor de Paraguay. Hace seis años que trabajo con agencias como Airtraffic y Appvertiser, en piezas para Supercell, EA, Niantic, Eight Sleep y TubeScience.",
+      intro: "Soy Gastón, de Paraguay, y hace seis años que es mi trabajo, como editor y motion designer. Trabajé para agencias como Airtraffic, Appvertiser, TubeScience y Missio, en piezas para EA, Zynga, Warner Bros. Games, Blizzard, Supercell y 2K.",
       paragraphs: [
         "Casi todo lo que hago son anuncios verticales para juegos, apps y SaaS: tipografía animada, motion sobre gameplay y edición de UGC, del brief a la entrega.",
         "Me importa mantener a alguien mirando, pero también que la pieza tenga una mirada propia. El ritmo, una pausa justa, una transición que tenga sentido. Eso es lo que más disfruto resolver.",
+        "Cuando no estoy editando, estudio Análisis de Sistemas y programo mis propias apps. Este sitio también lo armé yo.",
       ],
       signoff: "Material crudo. Algunas ideas. Algo que vale la pena mirar.",
       link: "Hagamos algo juntos",
