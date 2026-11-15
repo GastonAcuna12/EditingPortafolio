@@ -75,6 +75,12 @@ export const featuredClients = [
     "scale": 0.6
   },
   {
+    "name": "Missio",
+    "logo": "missio.svg",
+    "ratio": 4.406,
+    "scale": 0.9
+  },
+  {
     "name": "Toast",
     "logo": "toast.svg",
     "ratio": 3.871,

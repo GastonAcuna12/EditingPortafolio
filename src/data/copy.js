@@ -22,7 +22,6 @@ export const copy = {
       paragraphs: [
         "Most of what I make are vertical ads for games, apps and SaaS: animated type, motion over gameplay and UGC edits, from brief to delivery.",
         "I care about keeping people watching. But the edit has to have a point of view, too. Rhythm, a well-placed pause, a transition that belongs there. That's the part I love figuring out.",
-        "When I'm not editing, I study Systems Analysis and build my own apps. I built this site too.",
       ],
       signoff: "Raw footage. A few ideas. Something worth watching.",
       link: "Let's make something",
@@ -53,7 +52,6 @@ export const copy = {
       paragraphs: [
         "Casi todo lo que hago son anuncios verticales para juegos, apps y SaaS: tipografía animada, motion sobre gameplay y edición de UGC, del brief a la entrega.",
         "Me importa mantener a alguien mirando, pero también que la pieza tenga una mirada propia. El ritmo, una pausa justa, una transición que tenga sentido. Eso es lo que más disfruto resolver.",
-        "Cuando no estoy editando, estudio Análisis de Sistemas y programo mis propias apps. Este sitio también lo armé yo.",
       ],
       signoff: "Material crudo. Algunas ideas. Algo que vale la pena mirar.",
       link: "Hagamos algo juntos",

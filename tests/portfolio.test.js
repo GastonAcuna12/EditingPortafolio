@@ -83,7 +83,7 @@ test("interface translations have matching structure", () => {
 })
 
 test("only confirmed clients are published, and experiments stay unpublished", () => {
-  const confirmed = ["Supercell","Niantic","EA","Blizzard","Sony","2K","WB Games","Zynga","Kabam","Eight Sleep","TubeScience","Toast","Papaya","Fortis","Appvertiser","Airtraffic","Alarmas"]
+  const confirmed = ["Supercell","Niantic","EA","Blizzard","Sony","2K","WB Games","Zynga","Kabam","Eight Sleep","TubeScience","Missio","Toast","Papaya","Fortis","Appvertiser","Airtraffic","Alarmas"]
   assert.deepEqual(featuredClients.map((client) => client.name), confirmed)
   assert.deepEqual(playgroundProjects, [])
 })
