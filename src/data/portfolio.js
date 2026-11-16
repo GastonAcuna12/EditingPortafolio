@@ -237,7 +237,7 @@ export const projects = [
   {
     "id": "tally-form-that-follows",
     "posterSecond": 13,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794772242/Spec_Tally_FormThatFollows_vyquwc.mp4",
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794843805/Spec_Tally_FormThatFollows_v56_me9l9k.mp4",
     "format": "16:9",
     "year": "2026",
     "tags": [
