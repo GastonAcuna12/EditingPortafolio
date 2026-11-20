@@ -159,47 +159,6 @@ export const projects = [
     "client": "Spec"
   },
   {
-    "id": "which-is-stronger-motion-ad",
-    "posterSecond": 2.6,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074832/SP_WhichIsStronger_A1_20250910_AIR_EN_Vid_1080x1920_16s_l003kd.mp4",
-    "format": "9:16",
-    "tags": [
-      "Motion Ad",
-      "High-End",
-      "9:16"
-    ],
-    "copy": {
-      "en": {
-        "title": "Which Is Stronger",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Advertising",
-        "description": "A vertical game ad built around one question: which is stronger?",
-        "tags": [
-          "Motion Ad",
-          "High-End",
-          "9:16"
-        ]
-      },
-      "es": {
-        "title": "Which Is Stronger",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Publicidad",
-        "description": "Un ad vertical de juego construido alrededor de una pregunta: ¿qué es más fuerte?",
-        "tags": [
-          "Motion Ad",
-          "High-End",
-          "9:16"
-        ]
-      }
-    },
-    "client": "Twilight Towers",
-    "sizes": {
-      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1920x1080_pqjfhi.mp4",
-      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1080_acnlgx.mp4",
-      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1350_sxhey4.mp4"
-    }
-  },
-  {
     "id": "arcane-flow-playable",
     "posterSecond": 6,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795192399/ArcaneFlow_Gameplay_1080x1920_web_uusxhx.mp4",
@@ -229,6 +188,45 @@ export const projects = [
         "eyebrow": "9:16 / PLAYABLE",
         "category": "Playable ad / Interactivo",
         "description": "No es un video: es un playable ad de tres niveles. Dibujás un camino de luz y llevás las gemas al cofre.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      }
+    },
+    "client": "Spec"
+  },
+  {
+    "id": "school-playable",
+    "posterSecond": 27.8,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795204805/School_Gameplay_1080x1920_web_zrxxke.mp4",
+    "format": "9:16",
+    "year": "2026",
+    "playUrl": "/play/school/",
+    "badge": "Playable",
+    "tags": [
+      "Playable",
+      "Motion",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "School",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactive",
+        "description": "Not a video: a playable ad. Lead a school of fish across the reef, grow it and take down the shark.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "School",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactivo",
+        "description": "No es un video: es un playable ad. Guiás un cardumen por el arrecife, lo hacés crecer y vencés al tiburón.",
         "tags": [
           "Playable",
           "Motion",
@@ -274,6 +272,47 @@ export const projects = [
       }
     },
     "client": "Spec"
+  },
+  {
+    "id": "which-is-stronger-motion-ad",
+    "posterSecond": 2.6,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074832/SP_WhichIsStronger_A1_20250910_AIR_EN_Vid_1080x1920_16s_l003kd.mp4",
+    "format": "9:16",
+    "tags": [
+      "Motion Ad",
+      "High-End",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "Which Is Stronger",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Advertising",
+        "description": "A vertical game ad built around one question: which is stronger?",
+        "tags": [
+          "Motion Ad",
+          "High-End",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "Which Is Stronger",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Publicidad",
+        "description": "Un ad vertical de juego construido alrededor de una pregunta: ¿qué es más fuerte?",
+        "tags": [
+          "Motion Ad",
+          "High-End",
+          "9:16"
+        ]
+      }
+    },
+    "client": "Twilight Towers",
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1920x1080_pqjfhi.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1080_acnlgx.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1350_sxhey4.mp4"
+    }
   },
   {
     "id": "performance-motion-cut",
@@ -421,6 +460,10 @@ export const projects = [
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_shop-titans_1080x1350_mv9bwp.mp4"
     }
   },
+]
+
+// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
+export const moreWork = [
   {
     "id": "pvz-replanted-nostalgia",
     "posterSecond": 1.5,
@@ -445,11 +488,7 @@ export const projects = [
       "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1080_k3np1u.mp4",
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1350_dogspy.mp4"
     }
-  }
-]
-
-// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
-export const moreWork = [
+  },
   {
     "id": "marvel-snap-hellcow-origin",
     "posterSecond": 1.5,
