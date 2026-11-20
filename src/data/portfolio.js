@@ -206,6 +206,7 @@ export const projects = [
     "format": "9:16",
     "year": "2026",
     "playUrl": "/play/arcane-flow/",
+    "badge": "Playable",
     "tags": [
       "Playable",
       "Motion",
@@ -215,8 +216,8 @@ export const projects = [
       "en": {
         "title": "Arcane Flow",
         "eyebrow": "9:16 / PLAYABLE",
-        "category": "Spec / Playable ad",
-        "description": "A three-level playable ad. Draw a path of light and guide the gems into the chest.",
+        "category": "Playable ad / Interactive",
+        "description": "Not a video: a three-level playable ad. Draw a path of light and guide the gems into the chest.",
         "tags": [
           "Playable",
           "Motion",
@@ -226,8 +227,8 @@ export const projects = [
       "es": {
         "title": "Arcane Flow",
         "eyebrow": "9:16 / PLAYABLE",
-        "category": "Spec / Playable ad",
-        "description": "Un playable ad de tres niveles. Dibujás un camino de luz y llevás las gemas al cofre.",
+        "category": "Playable ad / Interactivo",
+        "description": "No es un video: es un playable ad de tres niveles. Dibujás un camino de luz y llevás las gemas al cofre.",
         "tags": [
           "Playable",
           "Motion",

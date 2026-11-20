@@ -202,7 +202,9 @@ svg { flex-shrink: 0; }
 .detail-heading .eyebrow { margin-bottom: 18px; }
 .detail-intro { grid-column: 1; grid-row: 2; }
 .detail-summary { display: none; }
-.detail-play { margin-top: 28px; color: var(--paper); }
+.detail-play { gap: 10px; margin-top: 28px; padding: 0 20px; border: 0; border-radius: 2px; background: var(--paper); color: #0a0a0a; font-weight: 500; }
+.detail-play:hover { background: var(--accent); color: #0a0a0a; }
+.project-badge { display: inline-block; margin-left: 10px; padding: 4px 7px 3px; border: 1px solid rgb(237 236 231 / .35); border-radius: 2px; color: var(--paper); font-size: 11px; line-height: 1; letter-spacing: .08em; text-transform: uppercase; vertical-align: 3px; }
 .detail-video { grid-column: 2; grid-row: 1 / span 3; width: min(100%, calc((100svh - 148px) * .5625)); max-width: 440px; justify-self: end; }
 .detail-media-frame { position: relative; width: 100%; aspect-ratio: 9 / 16; background: #141414; }
 .detail-poster { width: 100%; height: 100%; object-fit: contain; }
