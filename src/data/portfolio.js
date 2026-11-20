@@ -237,6 +237,45 @@ export const projects = [
     "client": "Spec"
   },
   {
+    "id": "golden-sands-playable",
+    "posterSecond": 29.8,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795218225/GoldenSands_Gameplay_1080x1920_web_npcxoj.mp4",
+    "format": "9:16",
+    "year": "2026",
+    "playUrl": "/play/golden-sands/",
+    "badge": "Playable",
+    "tags": [
+      "Playable",
+      "Motion",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "Golden Sands",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactive",
+        "description": "Not a video: a playable ad. Spin the reels, open the pharaoh's treasure and watch the win climb.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "Golden Sands",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactivo",
+        "description": "No es un video: es un playable ad. Girás los rodillos, abrís el tesoro del faraón y ves cómo sube el premio.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      }
+    },
+    "client": "Spec"
+  },
+  {
     "id": "tally-form-that-follows",
     "posterSecond": 13,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794843805/Spec_Tally_FormThatFollows_v56_me9l9k.mp4",
@@ -435,6 +474,10 @@ export const projects = [
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1350_jeqkvb.mp4"
     }
   },
+]
+
+// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
+export const moreWork = [
   {
     "id": "shop-titans-apartment-tour",
     "posterSecond": 1.5,
@@ -460,10 +503,6 @@ export const projects = [
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_shop-titans_1080x1350_mv9bwp.mp4"
     }
   },
-]
-
-// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
-export const moreWork = [
   {
     "id": "pvz-replanted-nostalgia",
     "posterSecond": 1.5,
