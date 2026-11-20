@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { ArrowLeft, ArrowRight, X } from "lucide-react"
+import { ArrowLeft, ArrowRight, ArrowUpRight, X } from "lucide-react"
 import { VideoHandoff } from "./VideoHandoff"
 import { FormatSet } from "./FormatSet"
 import { RATIOS } from "../lib/formats"
@@ -47,6 +47,7 @@ export function ProjectDetail({ project, index, total, origin, closing, onClosed
             {[[copy.detail.role, project.role], [copy.detail.format, project.format], [copy.detail.year, project.year], [copy.detail.client, project.client]].filter(([, value]) => value).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
           </dl>
           <p className="detail-summary">{project.intro || project.context}</p>
+          {project.playUrl && <a className="text-link detail-play" data-cursor="cta" href={project.playUrl} target="_blank" rel="noopener">{copy.detail.playIt}<ArrowUpRight size={18} aria-hidden="true" /></a>}
         </div>
         <div className="detail-video">
           <div ref={frameRef} className="detail-media-frame" data-set={view === "all" || undefined} style={{ "--ar": RATIOS[view] || RATIOS[project.format] }}>

@@ -200,39 +200,42 @@ export const projects = [
     }
   },
   {
-    "id": "performance-motion-cut",
-    "posterSecond": 1,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
+    "id": "arcane-flow-playable",
+    "posterSecond": 6,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795192399/ArcaneFlow_Gameplay_1080x1920_web_uusxhx.mp4",
     "format": "9:16",
+    "year": "2026",
+    "playUrl": "/play/arcane-flow/",
     "tags": [
+      "Playable",
       "Motion",
-      "Performance",
       "9:16"
     ],
     "copy": {
       "en": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
+        "title": "Arcane Flow",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Spec / Playable ad",
+        "description": "A three-level playable ad. Draw a path of light and guide the gems into the chest.",
         "tags": [
+          "Playable",
           "Motion",
-          "Performance",
           "9:16"
         ]
       },
       "es": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
+        "title": "Arcane Flow",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Spec / Playable ad",
+        "description": "Un playable ad de tres niveles. Dibujás un camino de luz y llevás las gemas al cofre.",
         "tags": [
+          "Playable",
           "Motion",
-          "Performance",
           "9:16"
         ]
       }
-    }
+    },
+    "client": "Spec"
   },
   {
     "id": "tally-form-that-follows",
@@ -270,6 +273,41 @@ export const projects = [
       }
     },
     "client": "Spec"
+  },
+  {
+    "id": "performance-motion-cut",
+    "posterSecond": 1,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
+    "format": "9:16",
+    "tags": [
+      "Motion",
+      "Performance",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
+      }
+    }
   },
   {
     "id": "the-guest-rush-3d-ad",
@@ -358,42 +396,6 @@ export const projects = [
     }
   },
   {
-    "id": "semana-santa-motion-ad",
-    "posterSecond": 3,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074796/Motion_SemanaSanta_zu22d8.mp4",
-    "format": "9:16",
-    "tags": [
-      "Seasonal",
-      "Motion",
-      "Campaign"
-    ],
-    "copy": {
-      "en": {
-        "title": "Seasonal Motion Campaign",
-        "eyebrow": "9:16 / SEASONAL AD",
-        "category": "Seasonal campaign / Motion",
-        "description": "A seasonal piece presented as a conversation inside a phone interface.",
-        "tags": [
-          "Seasonal",
-          "Motion",
-          "Campaign"
-        ]
-      },
-      "es": {
-        "title": "Seasonal Motion Campaign",
-        "eyebrow": "9:16 / SEASONAL AD",
-        "category": "Campaña estacional / Motion",
-        "description": "Una pieza de temporada presentada como una conversación dentro de la interfaz de un teléfono.",
-        "tags": [
-          "Seasonal",
-          "Motion",
-          "Campaign"
-        ]
-      }
-    },
-    "client": "Alarmas"
-  },
-  {
     "id": "shop-titans-apartment-tour",
     "posterSecond": 1.5,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_ShopTitans_ApartmentTour_kaqitb.mp4",
@@ -466,6 +468,42 @@ export const moreWork = [
         "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
       }
     }
+  },
+  {
+    "id": "semana-santa-motion-ad",
+    "posterSecond": 3,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074796/Motion_SemanaSanta_zu22d8.mp4",
+    "format": "9:16",
+    "tags": [
+      "Seasonal",
+      "Motion",
+      "Campaign"
+    ],
+    "copy": {
+      "en": {
+        "title": "Seasonal Motion Campaign",
+        "eyebrow": "9:16 / SEASONAL AD",
+        "category": "Seasonal campaign / Motion",
+        "description": "A seasonal piece presented as a conversation inside a phone interface.",
+        "tags": [
+          "Seasonal",
+          "Motion",
+          "Campaign"
+        ]
+      },
+      "es": {
+        "title": "Seasonal Motion Campaign",
+        "eyebrow": "9:16 / SEASONAL AD",
+        "category": "Campaña estacional / Motion",
+        "description": "Una pieza de temporada presentada como una conversación dentro de la interfaz de un teléfono.",
+        "tags": [
+          "Seasonal",
+          "Motion",
+          "Campaign"
+        ]
+      }
+    },
+    "client": "Alarmas"
   },
   {
     "id": "authoritative-motion-ad",
