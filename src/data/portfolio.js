@@ -198,45 +198,6 @@ export const projects = [
     "client": "Spec"
   },
   {
-    "id": "school-playable",
-    "posterSecond": 27.8,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795204805/School_Gameplay_1080x1920_web_zrxxke.mp4",
-    "format": "9:16",
-    "year": "2026",
-    "playUrl": "/play/school/",
-    "badge": "Playable",
-    "tags": [
-      "Playable",
-      "Motion",
-      "9:16"
-    ],
-    "copy": {
-      "en": {
-        "title": "School",
-        "eyebrow": "9:16 / PLAYABLE",
-        "category": "Playable ad / Interactive",
-        "description": "Not a video: a playable ad. Lead a school of fish across the reef, grow it and take down the shark.",
-        "tags": [
-          "Playable",
-          "Motion",
-          "9:16"
-        ]
-      },
-      "es": {
-        "title": "School",
-        "eyebrow": "9:16 / PLAYABLE",
-        "category": "Playable ad / Interactivo",
-        "description": "No es un video: es un playable ad. Guiás un cardumen por el arrecife, lo hacés crecer y vencés al tiburón.",
-        "tags": [
-          "Playable",
-          "Motion",
-          "9:16"
-        ]
-      }
-    },
-    "client": "Spec"
-  },
-  {
     "id": "golden-sands-playable",
     "posterSecond": 29.8,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795218225/GoldenSands_Gameplay_1080x1920_web_npcxoj.mp4",
@@ -266,6 +227,45 @@ export const projects = [
         "eyebrow": "9:16 / PLAYABLE",
         "category": "Playable ad / Interactivo",
         "description": "No es un video: es un playable ad. Girás los rodillos, abrís el tesoro del faraón y ves cómo sube el premio.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      }
+    },
+    "client": "Spec"
+  },
+  {
+    "id": "school-playable",
+    "posterSecond": 27.8,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1795204805/School_Gameplay_1080x1920_web_zrxxke.mp4",
+    "format": "9:16",
+    "year": "2026",
+    "playUrl": "/play/school/",
+    "badge": "Playable",
+    "tags": [
+      "Playable",
+      "Motion",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "School",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactive",
+        "description": "Not a video: a playable ad. Lead a school of fish across the reef, grow it and take down the shark.",
+        "tags": [
+          "Playable",
+          "Motion",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "School",
+        "eyebrow": "9:16 / PLAYABLE",
+        "category": "Playable ad / Interactivo",
+        "description": "No es un video: es un playable ad. Guiás un cardumen por el arrecife, lo hacés crecer y vencés al tiburón.",
         "tags": [
           "Playable",
           "Motion",
