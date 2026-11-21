@@ -122,6 +122,119 @@ export const playgroundProjects = []
 // Featured work: motion pieces alternated with UGC so neither dominates (2026-11-13). Original media URLs are stored once.
 export const projects = [
   {
+    "id": "tally-form-that-follows",
+    "posterSecond": 13,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794843805/Spec_Tally_FormThatFollows_v56_me9l9k.mp4",
+    "format": "16:9",
+    "year": "2026",
+    "tags": [
+      "Motion",
+      "SaaS",
+      "16:9"
+    ],
+    "copy": {
+      "en": {
+        "title": "A Form That Follows",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / SaaS explainer",
+        "description": "A 26-second spec ad for Tally. A designer applies for a design role and the form asks about sales experience. One toggle rebuilds it, and only the questions that apply stay.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      },
+      "es": {
+        "title": "A Form That Follows",
+        "eyebrow": "16:9 / SPEC",
+        "category": "Spec / Explainer SaaS",
+        "description": "Un ad spec de 26 segundos para Tally. Un diseñador se postula a un rol de diseño y el form le pregunta por su experiencia en ventas. Un toggle lo rearma y quedan solo las preguntas que aplican.",
+        "tags": [
+          "Motion",
+          "SaaS",
+          "16:9"
+        ]
+      }
+    },
+    "client": "Spec"
+  },
+  {
+    "id": "performance-motion-cut",
+    "posterSecond": 1,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
+    "format": "9:16",
+    "tags": [
+      "Motion",
+      "Performance",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "Performance Motion Cut",
+        "eyebrow": "9:16 / MOTION",
+        "category": "Motion / Short-form",
+        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
+        "tags": [
+          "Motion",
+          "Performance",
+          "9:16"
+        ]
+      }
+    }
+  },
+  {
+    "id": "which-is-stronger-motion-ad",
+    "posterSecond": 2.6,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074832/SP_WhichIsStronger_A1_20250910_AIR_EN_Vid_1080x1920_16s_l003kd.mp4",
+    "format": "9:16",
+    "tags": [
+      "Motion Ad",
+      "High-End",
+      "9:16"
+    ],
+    "copy": {
+      "en": {
+        "title": "Which Is Stronger",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Advertising",
+        "description": "A vertical game ad built around one question: which is stronger?",
+        "tags": [
+          "Motion Ad",
+          "High-End",
+          "9:16"
+        ]
+      },
+      "es": {
+        "title": "Which Is Stronger",
+        "eyebrow": "9:16 / MOTION AD",
+        "category": "Motion / Publicidad",
+        "description": "Un ad vertical de juego construido alrededor de una pregunta: ¿qué es más fuerte?",
+        "tags": [
+          "Motion Ad",
+          "High-End",
+          "9:16"
+        ]
+      }
+    },
+    "client": "Twilight Towers",
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1920x1080_pqjfhi.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1080_acnlgx.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1350_sxhey4.mp4"
+    }
+  },
+  {
     "id": "linear-cycles-spec",
     "posterSecond": 1.8,
     "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794581537/Linear_Cycles_Opening_kd7g9t.mp4",
@@ -157,6 +270,87 @@ export const projects = [
       }
     },
     "client": "Spec"
+  },
+  {
+    "id": "diablo-immortal-necromancer-helpline",
+    "posterSecond": 1.5,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_DiabloImmortal_NecromancerHelpline_y1twnc.mp4",
+    "format": "9:16",
+    "client": "Diablo Immortal",
+    "year": "2026",
+    "copy": {
+      "en": {
+        "title": "Necromancer Helpline",
+        "category": "Character skit / UGC",
+        "description": "A necromancer runs a support line, answering player questions with cooldowns, damage and gear."
+      },
+      "es": {
+        "title": "Necromancer Helpline",
+        "category": "Sketch de personaje / UGC",
+        "description": "Un nigromante atiende una línea de ayuda y responde dudas de jugadores sobre cooldowns, daño y equipo."
+      }
+    },
+    "sizes": {
+      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1920x1080_kvxgwy.mp4",
+      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1080_g6iwzl.mp4",
+      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1350_qgbjxa.mp4"
+    }
+  },
+  {
+    "id": "marvel-snap-hellcow-origin",
+    "posterSecond": 1.5,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_MarvelSnap_HellcowOrigin_nzqfmb.mp4",
+    "format": "9:16",
+    "client": "Marvel Snap",
+    "year": "2025",
+    "copy": {
+      "en": {
+        "title": "Hellcow Origin",
+        "category": "Card reveal / Motion ad",
+        "description": "A Marvel Snap ad built around one card: Hellcow, her ability and the deck she belongs in."
+      },
+      "es": {
+        "title": "Hellcow Origin",
+        "category": "Revelación de carta / Motion ad",
+        "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
+      }
+    }
+  },
+  {
+    "id": "the-guest-rush-3d-ad",
+    "posterSecond": 1,
+    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779379990/DM_TheGuestRush_V1_30s_21_05_Demeter_EN_Vid_1080x1920_nohir4.mp4",
+    "format": "9:16",
+    "tags": [
+      "High-End Ad",
+      "3D Camera",
+      "Motion"
+    ],
+    "copy": {
+      "en": {
+        "title": "The Guest Rush",
+        "eyebrow": "9:16 / HIGH-END AD",
+        "category": "3D camera / Motion ad",
+        "description": "A vertical game ad that starts in the characters' world and moves into the game board.",
+        "tags": [
+          "High-End Ad",
+          "3D Camera",
+          "Motion"
+        ]
+      },
+      "es": {
+        "title": "The Guest Rush",
+        "eyebrow": "9:16 / HIGH-END AD",
+        "category": "Cámara 3D / Motion ad",
+        "description": "Un ad vertical que empieza en el mundo de los personajes y pasa al tablero del juego.",
+        "tags": [
+          "High-End Ad",
+          "3D Camera",
+          "Motion"
+        ]
+      }
+    },
+    "client": "Bloom & Breakfast"
   },
   {
     "id": "arcane-flow-playable",
@@ -274,181 +468,11 @@ export const projects = [
       }
     },
     "client": "Spec"
-  },
-  {
-    "id": "tally-form-that-follows",
-    "posterSecond": 13,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/v1794843805/Spec_Tally_FormThatFollows_v56_me9l9k.mp4",
-    "format": "16:9",
-    "year": "2026",
-    "tags": [
-      "Motion",
-      "SaaS",
-      "16:9"
-    ],
-    "copy": {
-      "en": {
-        "title": "A Form That Follows",
-        "eyebrow": "16:9 / SPEC",
-        "category": "Spec / SaaS explainer",
-        "description": "A 26-second spec ad for Tally. A designer applies for a design role and the form asks about sales experience. One toggle rebuilds it, and only the questions that apply stay.",
-        "tags": [
-          "Motion",
-          "SaaS",
-          "16:9"
-        ]
-      },
-      "es": {
-        "title": "A Form That Follows",
-        "eyebrow": "16:9 / SPEC",
-        "category": "Spec / Explainer SaaS",
-        "description": "Un ad spec de 26 segundos para Tally. Un diseñador se postula a un rol de diseño y el form le pregunta por su experiencia en ventas. Un toggle lo rearma y quedan solo las preguntas que aplican.",
-        "tags": [
-          "Motion",
-          "SaaS",
-          "16:9"
-        ]
-      }
-    },
-    "client": "Spec"
-  },
-  {
-    "id": "which-is-stronger-motion-ad",
-    "posterSecond": 2.6,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779074832/SP_WhichIsStronger_A1_20250910_AIR_EN_Vid_1080x1920_16s_l003kd.mp4",
-    "format": "9:16",
-    "tags": [
-      "Motion Ad",
-      "High-End",
-      "9:16"
-    ],
-    "copy": {
-      "en": {
-        "title": "Which Is Stronger",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Advertising",
-        "description": "A vertical game ad built around one question: which is stronger?",
-        "tags": [
-          "Motion Ad",
-          "High-End",
-          "9:16"
-        ]
-      },
-      "es": {
-        "title": "Which Is Stronger",
-        "eyebrow": "9:16 / MOTION AD",
-        "category": "Motion / Publicidad",
-        "description": "Un ad vertical de juego construido alrededor de una pregunta: ¿qué es más fuerte?",
-        "tags": [
-          "Motion Ad",
-          "High-End",
-          "9:16"
-        ]
-      }
-    },
-    "client": "Twilight Towers",
-    "sizes": {
-      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1920x1080_pqjfhi.mp4",
-      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1080_acnlgx.mp4",
-      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_which-is-stronger_1080x1350_sxhey4.mp4"
-    }
-  },
-  {
-    "id": "performance-motion-cut",
-    "posterSecond": 1,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779289607/JulianPort_y8itgt.mp4",
-    "format": "9:16",
-    "tags": [
-      "Motion",
-      "Performance",
-      "9:16"
-    ],
-    "copy": {
-      "en": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "A vertical motion piece that moves between a phone, human figures and short bursts of text.",
-        "tags": [
-          "Motion",
-          "Performance",
-          "9:16"
-        ]
-      },
-      "es": {
-        "title": "Performance Motion Cut",
-        "eyebrow": "9:16 / MOTION",
-        "category": "Motion / Short-form",
-        "description": "Una pieza vertical que combina un teléfono, figuras humanas y frases breves.",
-        "tags": [
-          "Motion",
-          "Performance",
-          "9:16"
-        ]
-      }
-    }
-  },
-  {
-    "id": "the-guest-rush-3d-ad",
-    "posterSecond": 1,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/q_auto/f_auto/v1779379990/DM_TheGuestRush_V1_30s_21_05_Demeter_EN_Vid_1080x1920_nohir4.mp4",
-    "format": "9:16",
-    "tags": [
-      "High-End Ad",
-      "3D Camera",
-      "Motion"
-    ],
-    "copy": {
-      "en": {
-        "title": "The Guest Rush",
-        "eyebrow": "9:16 / HIGH-END AD",
-        "category": "3D camera / Motion ad",
-        "description": "A vertical game ad that starts in the characters' world and moves into the game board.",
-        "tags": [
-          "High-End Ad",
-          "3D Camera",
-          "Motion"
-        ]
-      },
-      "es": {
-        "title": "The Guest Rush",
-        "eyebrow": "9:16 / HIGH-END AD",
-        "category": "Cámara 3D / Motion ad",
-        "description": "Un ad vertical que empieza en el mundo de los personajes y pasa al tablero del juego.",
-        "tags": [
-          "High-End Ad",
-          "3D Camera",
-          "Motion"
-        ]
-      }
-    },
-    "client": "Bloom & Breakfast"
-  },
-  {
-    "id": "diablo-immortal-necromancer-helpline",
-    "posterSecond": 1.5,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_DiabloImmortal_NecromancerHelpline_y1twnc.mp4",
-    "format": "9:16",
-    "client": "Diablo Immortal",
-    "year": "2026",
-    "copy": {
-      "en": {
-        "title": "Necromancer Helpline",
-        "category": "Character skit / UGC",
-        "description": "A necromancer runs a support line, answering player questions with cooldowns, damage and gear."
-      },
-      "es": {
-        "title": "Necromancer Helpline",
-        "category": "Sketch de personaje / UGC",
-        "description": "Un nigromante atiende una línea de ayuda y responde dudas de jugadores sobre cooldowns, daño y equipo."
-      }
-    },
-    "sizes": {
-      "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1920x1080_kvxgwy.mp4",
-      "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1080_g6iwzl.mp4",
-      "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_diablo_1080x1350_qgbjxa.mp4"
-    }
-  },
+  }
+]
+
+// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
+export const moreWork = [
   {
     "id": "words-with-friends-tennis",
     "posterSecond": 13,
@@ -474,10 +498,6 @@ export const projects = [
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_wwf-tennis_1080x1350_jeqkvb.mp4"
     }
   },
-]
-
-// More work: a compact grid under the gallery. Notes are optional here; client names only when confirmed.
-export const moreWork = [
   {
     "id": "shop-titans-apartment-tour",
     "posterSecond": 1.5,
@@ -526,26 +546,6 @@ export const moreWork = [
       "16:9": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1920x1080_v53qdp.mp4",
       "1:1": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1080_k3np1u.mp4",
       "4:5": "https://res.cloudinary.com/deqkn7ti2/video/upload/SZ_pvzr_1080x1350_dogspy.mp4"
-    }
-  },
-  {
-    "id": "marvel-snap-hellcow-origin",
-    "posterSecond": 1.5,
-    "videoSrc": "https://res.cloudinary.com/deqkn7ti2/video/upload/AT_MarvelSnap_HellcowOrigin_nzqfmb.mp4",
-    "format": "9:16",
-    "client": "Marvel Snap",
-    "year": "2025",
-    "copy": {
-      "en": {
-        "title": "Hellcow Origin",
-        "category": "Card reveal / Motion ad",
-        "description": "A Marvel Snap ad built around one card: Hellcow, her ability and the deck she belongs in."
-      },
-      "es": {
-        "title": "Hellcow Origin",
-        "category": "Revelación de carta / Motion ad",
-        "description": "Un ad de Marvel Snap construido alrededor de una carta: Hellcow, su habilidad y el mazo donde encaja."
-      }
     }
   },
   {
